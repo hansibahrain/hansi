@@ -1,5 +1,8 @@
 export const WHATSAPP_NUMBER = "97334240567";
 
+/** Ordering happens on Keeta — swap this for your exact store link. */
+export const KEETA_LINK = "https://keeta.com";
+
 export function whatsappLink(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
@@ -9,18 +12,15 @@ export const orderLink = whatsappLink(
 );
 
 export const cateringLink = whatsappLink(
-  "Hey HANSI! 🌭 I want to book you for my event. Here are the details:",
+  "Hey HANSI! 🌭 I want a HANSI hotdog station at my event. Here are the details:",
 );
-
-export function orderItemLink(item: string) {
-  return whatsappLink(`Hey HANSI! 🌭 I'd like to order the ${item}. Bite me!`);
-}
 
 export type MenuItem = {
   name: string;
   flag?: string;
   description: string;
   bun?: string;
+  img: string;
 };
 
 export type MenuCategory = {
@@ -41,51 +41,51 @@ export const menu: MenuCategory[] = [
       {
         name: "NEW YORK DOG",
         flag: "🇺🇸",
-        description:
-          "Classic beef dog with yellow mustard, ketchup, sauerkraut, fresh onions and crispy onions.",
+        description: "Mustard, ketchup, sauerkraut, onions, crispy onions.",
         bun: "Potato bun",
+        img: "ny-dog",
       },
       {
         name: "CHICAGO DOG",
         flag: "🇺🇸",
-        description:
-          "Beef dog with yellow mustard, sweet relish, fresh onions, tomato, pickle spear, sport peppers and celery salt.",
+        description: "Relish, pickle, tomato, sport peppers, celery salt.",
         bun: "Potato bun",
+        img: "chicago-dog",
       },
       {
         name: "AMSTERDAM DOG",
         flag: "🇳🇱",
-        description:
-          "Beef dog with tomato sauce, pepperoni, melted mozzarella, oregano and crispy onions.",
+        description: "Tomato sauce, pepperoni, mozzarella, crispy onions.",
         bun: "Special bun",
+        img: "amsterdam-dog",
       },
       {
         name: "MEXICAN DOG",
         flag: "🇲🇽",
-        description:
-          "Beef dog with jalapeños, cheddar cheese sauce, pico de gallo, chipotle mayo and crispy onions.",
+        description: "Jalapeños, cheddar sauce, pico de gallo, chipotle mayo.",
         bun: "Potato bun",
+        img: "mexican-dog",
       },
       {
         name: "DANISH DOG",
         flag: "🇩🇰",
-        description:
-          "Beef dog served in a Danish-style hollowed bun with Danish remoulade, ketchup, mustard, pickles and fresh onions.",
+        description: "Danish remoulade, ketchup, mustard, pickles, onions.",
         bun: "Danish bun",
+        img: "danish-dog",
       },
       {
         name: "GERMAN CRUNCH DOG",
         flag: "🇩🇪",
-        description:
-          "Beef dog with German mustard, sauerkraut, pickles and crispy potato strings.",
+        description: "German mustard, sauerkraut, pickles, crispy potato.",
         bun: "Potato bun",
+        img: "german-dog",
       },
       {
         name: "BAHRAIN NASHEF DOG",
         flag: "🇧🇭",
-        description:
-          "Sliced beef sausage tossed in a rich tomato sauce with Bahraini spices and fresh onions.",
+        description: "Sliced beef sausage, spiced tomato sauce, onions.",
         bun: "Potato bun",
+        img: "nashef-dog",
       },
     ],
   },
@@ -97,13 +97,13 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI CLASSIC CORN DOG",
-        description:
-          "100% beef sausage coated in golden corn batter and fried until crispy. Served with ketchup & mustard.",
+        description: "Crispy corn batter. Ketchup & mustard.",
+        img: "corn-dog",
       },
       {
         name: "HANSI CHEESY CORN DOG",
-        description:
-          "100% beef sausage with melted cheese, coated in golden corn batter and fried until crispy. Served with cheese sauce & spicy mayo.",
+        description: "Melted cheese inside. Cheese sauce & spicy mayo.",
+        img: "cheesy-corn-dog",
       },
     ],
   },
@@ -115,17 +115,18 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI SMOKE FRIES",
-        description:
-          "Crispy fries tossed in our signature Hansi Smoke Seasoning — smoked paprika, garlic powder, onion powder, salt, black pepper, a touch of sugar and cayenne.",
+        description: "Crispy fries in our smoky signature seasoning.",
+        img: "smoke-fries",
       },
       {
         name: "LOADED HANSI FRIES",
-        description:
-          "Hansi Smoke Fries topped with cheddar cheese sauce, Hansi special sauce and crispy onions.",
+        description: "Cheddar sauce, Hansi special sauce, crispy onions.",
+        img: "loaded-fries",
       },
       {
         name: "CRISPY POTATO",
-        description: "Thin, golden crispy potato strings.",
+        description: "Thin, golden potato strings.",
+        img: "crispy-potato",
       },
     ],
   },
@@ -137,19 +138,23 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI COMBO",
-        description: "Any Signature Dog + Hansi Smoke Fries + Soft Drink.",
+        description: "Signature dog + Smoke Fries + drink.",
+        img: "combo",
       },
       {
         name: "CORN DOG COMBO",
-        description: "2 Corn Dogs + Hansi Smoke Fries + Soft Drink.",
+        description: "2 corn dogs + Smoke Fries + drink.",
+        img: "corn-dog",
       },
       {
         name: "HANSI DUO",
-        description: "Any 2 Signature Dogs + Loaded Hansi Fries + 2 Drinks.",
+        description: "2 signature dogs + Loaded Fries + 2 drinks.",
+        img: "loaded-fries",
       },
       {
         name: "KIDS COMBO",
-        description: "Mini Beef Dog + Fries + Soft Drink / juice.",
+        description: "Mini beef dog + fries + drink.",
+        img: "combo",
       },
     ],
   },
@@ -161,11 +166,13 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI PEACH ICED TEA",
-        description: "Homemade black tea, peach and fresh lemon, served over ice.",
+        description: "Homemade peach tea over ice.",
+        img: "drinks",
       },
       {
         name: "HANSI LEMON MINT",
-        description: "Fresh lemon, mint and homemade syrup served over ice.",
+        description: "Fresh lemon, mint, over ice.",
+        img: "drinks",
       },
     ],
   },
@@ -177,27 +184,13 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI SPECIAL SAUCE",
-        description:
-          "Mayo, ketchup, mustard, pickle relish, smoked paprika, garlic and a touch of hot sauce.",
+        description: "Smoky, tangy, a little spicy. Our house sauce.",
+        img: "sauce",
       },
     ],
   },
 ];
 
-export const addOns = [
-  "Extra Beef Sausage",
-  "Cheddar Cheese Sauce",
-  "Mozzarella",
-  "Crispy Onions",
-  "Crispy Potato",
-  "Jalapeños",
-  "Pickles",
-  "Sauerkraut",
-  "Fresh Onions",
-  "Chipotle Mayo",
-  "Danish Remoulade",
-  "Hansi Special Sauce",
-];
 
 export type HansiEvent = {
   name: string;
