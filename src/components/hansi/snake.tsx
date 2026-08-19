@@ -1,6 +1,6 @@
 /**
- * Pixel monkey chasing a pixel hotdog freely around the page.
- * No box, no frame — a fixed, non-interactive overlay.
+ * Pixel monkey chasing a pixel hotdog inside a single homepage strip.
+ * Sits in the page flow, right under the hero and above the intro.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -100,12 +100,12 @@ export function HansiSnake() {
   const dRef = useRef<Pt>({ x: 0.7, y: 0.35 });
   const [flip, setFlip] = useState(false);
 
-  // hotdog jumps to a new random spot every few seconds
+  // hotdog jumps to a new random spot inside the strip every few seconds
   useEffect(() => {
     const pick = () => {
       const next = {
-        x: 0.08 + Math.random() * 0.84,
-        y: 0.12 + Math.random() * 0.72,
+        x: 0.08 + Math.random() * 0.78,
+        y: 0.15 + Math.random() * 0.55,
       };
       dRef.current = next;
       setDog(next);
@@ -134,7 +134,7 @@ export function HansiSnake() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-30 hidden overflow-hidden md:block"
+      className="pointer-events-none relative z-10 -mt-6 h-28 overflow-hidden sm:h-36 md:h-40"
     >
       <div
         className="absolute animate-bob transition-all duration-[2400ms] ease-in-out"
