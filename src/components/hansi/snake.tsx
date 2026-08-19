@@ -111,13 +111,14 @@ function clamp(n: number, min: number, max: number) {
 function farSpot(from: Pt): Pt {
   for (let i = 0; i < 30; i++) {
     const x = 0.04 + Math.random() * 0.84;
-    const y = 0.05 + Math.random() * 0.7;
+    const y = 0.05 + Math.random() * 0.65;
     if (Math.hypot(x - from.x, y - from.y) >= MIN_JUMP) return { x, y };
   }
-  return { x: clamp(1 - from.x, 0.04, 0.88), y: clamp(0.75 - from.y, 0.05, 0.75) };
+  return { x: clamp(1 - from.x, 0.04, 0.88), y: clamp(0.7 - from.y, 0.05, 0.7) };
 }
 
 export function HansiSnake() {
+  const [scale, setScale] = useState(DESKTOP_SCALE);
   const [dog, setDog] = useState<Pt>({ x: 0.78, y: 0.2 });
   const [monkey, setMonkey] = useState<Pt>({ x: 0.08, y: 0.6 });
   const [look, setLook] = useState<Pt>({ x: 1, y: 0 });
@@ -125,6 +126,13 @@ export function HansiSnake() {
 
   const dRef = useRef<Pt>({ x: 0.78, y: 0.2 });
   const mRef = useRef<Pt>({ x: 0.08, y: 0.6 });
+
+  useEffect(() => {
+    setScale(getScale());
+    const onResize = () => setScale(getScale());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   const flee = () => {
     const next = farSpot(dRef.current);
@@ -152,7 +160,7 @@ export function HansiSnake() {
       const stepLen = Math.min(HOP, dist - CATCH_DIST * 0.9);
       const nm = {
         x: clamp(m.x + (vx / dist) * stepLen, 0.02, 0.9),
-        y: clamp(m.y + (vy / dist) * stepLen, 0.02, 0.75),
+        y: clamp(m.y + (vy / dist) * stepLen, 0.02, 0.7),
       };
       mRef.current = nm;
       setMonkey(nm);
@@ -162,15 +170,15 @@ export function HansiSnake() {
 
   const pupil = (leftPx: number) => ({
     position: "absolute" as const,
-    width: SCALE,
-    height: SCALE,
+    width: scale,
+    height: scale,
     background: PX['i'],
     left: leftPx + look.x * 3,
-    top: 4 * SCALE + 1 + look.y * 3,
+    top: 4 * scale + 1 + look.y * 3,
   });
 
   return (
-    <div className="pointer-events-none relative z-10 -mt-6 h-28 overflow-hidden sm:h-36 md:h-40">
+    <div className="pointer-events-none relative z-10 -mt-2 h-40 overflow-hidden sm:h-48 md:h-56">
       <div
         className="pointer-events-auto absolute animate-bob cursor-pointer"
         style={{
@@ -181,7 +189,7 @@ export function HansiSnake() {
         onMouseEnter={flee}
         onTouchStart={flee}
       >
-        <Sprite art={HOTDOG} scale={SCALE} />
+        <Sprite art={HOTDOG} scale={scale} />
       </div>
 
       <div
@@ -195,16 +203,15 @@ export function HansiSnake() {
       >
         <div className="relative animate-wiggle">
           <div style={{ transform: flip ? "scaleX(-1)" : undefined }}>
-            <Sprite art={MONKEY} scale={SCALE} />
+            <Sprite art={MONKEY} scale={scale} />
           </div>
           {/* eyes follow the hotdog */}
-          <div style={{ position: "absolute", left: 5 * SCALE, top: 4 * SCALE, width: 2 * SCALE, height: 2 * SCALE, background: PX['w'] }} />
-          <div style={{ position: "absolute", left: 9 * SCALE, top: 4 * SCALE, width: 2 * SCALE, height: 2 * SCALE, background: PX['w'] }} />
-          <div style={pupil(5 * SCALE + 1)} />
-          <div style={pupil(9 * SCALE + 1)} />
+          <div style={{ position: "absolute", left: 5 * scale, top: 4 * scale, width: 2 * scale, height: 2 * scale, background: PX['w'] }} />
+          <div style={{ position: "absolute", left: 9 * scale, top: 4 * scale, width: 2 * scale, height: 2 * scale, background: PX['w'] }} />
+          <div style={pupil(5 * scale + 1)} />
+          <div style={pupil(9 * scale + 1)} />
         </div>
       </div>
     </div>
   );
 }
-
