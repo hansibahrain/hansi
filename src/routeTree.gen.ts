@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MenuRouteImport } from './routes/menu'
+import { Route as WhereWeAreRouteImport } from './routes/where-we-are'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MenuRoute = MenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhereWeAreRoute = WhereWeAreRouteImport.update({
+  id: '/where-we-are',
+  path: '/where-we-are',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/menu': typeof MenuRoute
+  '/where-we-are': typeof WhereWeAreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/menu': typeof MenuRoute
+  '/where-we-are': typeof WhereWeAreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/menu': typeof MenuRoute
+  '/where-we-are': typeof WhereWeAreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/menu' | '/where-we-are'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/menu' | '/where-we-are'
+  id: '__root__' | '/' | '/menu' | '/where-we-are'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MenuRoute: typeof MenuRoute
+  WhereWeAreRoute: typeof WhereWeAreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/where-we-are': {
+      id: '/where-we-are'
+      path: '/where-we-are'
+      fullPath: '/where-we-are'
+      preLoaderRoute: typeof WhereWeAreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MenuRoute: MenuRoute,
+  WhereWeAreRoute: WhereWeAreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
