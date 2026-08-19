@@ -93,10 +93,16 @@ const HOTDOG = [
 
 type Pt = { x: number; y: number };
 
-const SCALE = 5;
+const DESKTOP_SCALE = 5;
+const MOBILE_SCALE = 3;
 const HOP = 0.055; // how far the monkey jumps each hop
 const CATCH_DIST = 0.16; // hotdog bolts when the monkey gets this close
 const MIN_JUMP = 0.45; // new hotdog spot must be at least this far away
+
+function getScale() {
+  if (typeof window === "undefined") return DESKTOP_SCALE;
+  return window.innerWidth < 640 ? MOBILE_SCALE : DESKTOP_SCALE;
+}
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
