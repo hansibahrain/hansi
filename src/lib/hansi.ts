@@ -503,7 +503,7 @@ export function getEvents(lang: Lang): HansiEvent[] {
         dates: "٦ مايو",
         location: "جزر أمواج",
         type: "حفلة شاطئية",
-        description: "شمس، رمل وكلب البحرين الناشف. جيب مناديل.",
+        description: "شمس، رمل والبحرين الناشف دوغ. جيب مناديل.",
         status: "COMING SOON",
       },
       {
