@@ -1,14 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sides from "@/assets/sides.jpg";
 import heroDog from "@/assets/hero-dog.jpg";
-import { addOns, menu, orderItemLink, orderLink } from "@/lib/hansi";
-import {
-  AnchorButton,
-  Marquee,
-  Reveal,
-  SectionTitle,
-  Sticker,
-} from "@/components/hansi/bits";
+import { KEETA_LINK, menu } from "@/lib/hansi";
+import { menuImages } from "@/components/hansi/menu-images";
+import { AnchorButton, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -17,13 +12,15 @@ export const Route = createFileRoute("/menu")({
       {
         name: "description",
         content:
-          "Seven world-inspired 100% beef dogs, crispy corn dogs, Hansi Smoke Fries, homemade drinks and combos. Pick your dog. Add your sauce. Get messy.",
+          "Seven world-inspired 100% beef dogs, crispy corn dogs, Hansi Smoke Fries, homemade drinks and combos. Order from Keeta.",
       },
       { property: "og:title", content: "The HANSI Menu — Good dogs only" },
       {
         property: "og:description",
         content: "World-inspired beef dogs, corn dogs, loaded fries and homemade drinks.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: MenuPage,
@@ -45,9 +42,9 @@ function MenuPage() {
               Pick your dog. Add your sauce. Get messy. Everything is grilled fresh when
               you order it — no sad heat lamps here.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <AnchorButton href={orderLink} size="lg" tone="ketchup">
-                I&apos;m hungry →
+            <div className="mt-7">
+              <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
+                Order from Keeta →
               </AnchorButton>
             </div>
           </div>
@@ -72,8 +69,6 @@ function MenuPage() {
         </div>
       </section>
 
-      <Marquee words={["More sauce? Always.", "Good dogs only", "No boring bites"]} />
-
       <div className="mx-auto max-w-7xl space-y-20 px-4 py-16">
         {menu.map((cat) => (
           <section key={cat.id} id={cat.id}>
@@ -83,19 +78,26 @@ function MenuPage() {
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {cat.items.map((item, i) => (
                 <Reveal key={item.name} delay={i * 60}>
-                  <article className="pop press flex h-full flex-col rounded-3xl bg-card p-6 hover:-rotate-1">
-                    {item.flag ? <span className="text-3xl">{item.flag}</span> : null}
-                    <h3 className="mt-2 text-xl leading-tight uppercase">{item.name}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                    {item.bun ? (
-                      <p className="mt-3 font-hand text-xl text-secondary">{item.bun}</p>
-                    ) : null}
-                    <div className="mt-auto pt-5">
-                      <AnchorButton href={orderItemLink(item.name)}>
-                        Order this
-                      </AnchorButton>
+                  <article className="pop flex h-full flex-col overflow-hidden rounded-3xl bg-card">
+                    <img
+                      src={menuImages[item.img]}
+                      alt={item.name}
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      className="h-44 w-full border-b-[3px] border-cocoa object-cover"
+                    />
+                    <div className="flex flex-1 flex-col p-5">
+                      {item.flag ? <span className="text-2xl">{item.flag}</span> : null}
+                      <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                      {item.bun ? (
+                        <p className="mt-auto pt-3 font-hand text-xl text-secondary">
+                          {item.bun}
+                        </p>
+                      ) : null}
                     </div>
                   </article>
                 </Reveal>
@@ -104,29 +106,19 @@ function MenuPage() {
           </section>
         ))}
 
-        <section id="add-ons">
-          <Reveal>
-            <SectionTitle kicker="Things are getting saucy." title="Add-ons ➕" />
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {addOns.map((a) => (
-                <li
-                  key={a}
-                  className="pop-sm press rounded-full bg-card px-4 py-2 text-sm font-semibold"
-                >
-                  {a}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 font-hand text-3xl text-secondary">
-              Prices? Ask us on WhatsApp — we&apos;ll sort you out.
+        <Reveal>
+          <div className="pop rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
+            <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">Hungry yet?</h2>
+            <p className="mx-auto mt-3 max-w-md text-lg">
+              All HANSI orders and delivery go through Keeta.
             </p>
-            <div className="mt-4">
-              <AnchorButton href={orderLink} size="lg" tone="ketchup">
-                Order on WhatsApp
+            <div className="mt-7">
+              <AnchorButton href={KEETA_LINK} size="lg">
+                Order from Keeta
               </AnchorButton>
             </div>
-          </Reveal>
-        </section>
+          </div>
+        </Reveal>
       </div>
     </>
   );
