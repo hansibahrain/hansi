@@ -106,8 +106,9 @@ function Home() {
 
             <ul className="mt-6 flex flex-wrap gap-2">
               {t("home.tags")
-                .split(",")
+                .split(/,|،/)
                 .map((t) => t.trim())
+                .filter(Boolean)
                 .map((tag) => (
                   <li
                     key={tag}
