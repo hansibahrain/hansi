@@ -83,7 +83,7 @@ function Home() {
               width={300}
               height={300}
               loading="lazy"
-              className="animate-float absolute -bottom-8 -left-6 w-28 drop-shadow-xl sm:w-40"
+              className="animate-float absolute -bottom-8 -left-6 w-28 mix-blend-multiply sm:w-40"
             />
             <Sticker className="absolute -top-4 right-2 bg-secondary text-secondary-foreground" rotate={9}>
               Nice bun.
