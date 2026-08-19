@@ -67,7 +67,7 @@ const MONKEY = [
   "...bbbbbb...",
   "..bbbbbbbb..",
   ".bboooooobb.",
-  ".bocccccco b".replace(" ", ""),
+  ".boccccccob.",
   "..occcccco..",
   "..okkkkkko..",
   "...oooooo...",
