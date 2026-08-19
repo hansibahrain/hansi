@@ -6,8 +6,9 @@ import { Sticker } from "./bits";
 const statusTone: Record<HansiEvent["status"], string> = {
   "LIVE NOW": "bg-secondary text-secondary-foreground",
   "UP NEXT": "bg-primary text-primary-foreground",
-  "COMING SOON": "bg-muted text-foreground",
+  "COMING SOON": "bg-ink text-cream",
 };
+
 
 export function EventCard({ event }: { event: HansiEvent }) {
   return (

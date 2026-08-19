@@ -102,10 +102,11 @@ function Home() {
               title="We make hotdogs. You make the memories."
             />
             <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              We roll the HANSI truck anywhere people get hungry — and then we make it
-              a party. Seven world-inspired beef dogs, smoky fries and homemade drinks,
-              grilled fresh in front of you.
+              We set up HANSI hotdog stations anywhere people get hungry — and then we
+              make it a party. Seven world-inspired beef dogs, smoky fries and homemade
+              drinks, grilled fresh in front of you.
             </p>
+
             <ul className="mt-6 flex flex-wrap gap-2">
               {[
                 "Events",
