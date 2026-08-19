@@ -3,19 +3,19 @@ import heroDog from "@/assets/hero-dog.jpg";
 import crowd from "@/assets/crowd.jpg";
 import sides from "@/assets/sides.jpg";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
-import mascot from "@/assets/hansi-mascot.jpg.asset.json";
-import { menu, orderLink, cateringLink } from "@/lib/hansi";
+import { menu, KEETA_LINK, cateringLink } from "@/lib/hansi";
 import {
   AnchorButton,
   ArrowDown,
   LinkButton,
-  Marquee,
   Reveal,
   SectionTitle,
   Sticker,
   Squiggle,
 } from "@/components/hansi/bits";
+import { HansiSnake } from "@/components/hansi/snake";
 import { EventCarousel } from "@/components/hansi/events";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,14 +77,6 @@ function Home() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <img
-              src={mascot.url}
-              alt="HANSI mascot"
-              width={300}
-              height={300}
-              loading="lazy"
-              className="animate-float absolute -bottom-8 -left-6 w-28 mix-blend-multiply sm:w-40"
-            />
             <Sticker className="absolute -top-4 right-2 bg-secondary text-secondary-foreground" rotate={9}>
               Nice bun.
             </Sticker>
@@ -93,14 +85,11 @@ function Home() {
         <Squiggle className="text-primary" />
       </section>
 
-      <Marquee
-        words={[
-          "Hot dogs. Cool people.",
-          "No boring dogs here",
-          "Bun-believable",
-          "Come hungry, leave happy",
-        ]}
-      />
+      {/* PIXEL SNAKE */}
+      <section className="mx-auto max-w-5xl px-4 py-10">
+        <HansiSnake />
+      </section>
+
 
       {/* INTRO */}
       <section className="mx-auto max-w-7xl px-4 py-20">
