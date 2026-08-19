@@ -94,49 +94,73 @@ const HOTDOG = [
 type Pt = { x: number; y: number };
 
 const SCALE = 5;
-const MIN_GAP = 0.14; // monkey never closes this gap
+const MIN_GAP = 0.26; // monkey never closes this gap
+const FLEE_DIST = 0.34; // hotdog runs away if monkey gets this close
+
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
 
 export function HansiSnake() {
-  const [dog, setDog] = useState<Pt>({ x: 0.7, y: 0.35 });
-  const [monkey, setMonkey] = useState<Pt>({ x: 0.15, y: 0.6 });
+  const [dog, setDog] = useState<Pt>({ x: 0.75, y: 0.35 });
+  const [monkey, setMonkey] = useState<Pt>({ x: 0.12, y: 0.6 });
   const [look, setLook] = useState<Pt>({ x: 1, y: 0 });
   const [flip, setFlip] = useState(false);
 
-  const dRef = useRef<Pt>({ x: 0.7, y: 0.35 });
+  const dRef = useRef<Pt>({ x: 0.75, y: 0.35 });
   const targetRef = useRef<Pt>({ x: 0.3, y: 0.25 });
-  const mRef = useRef<Pt>({ x: 0.15, y: 0.6 });
+  const mRef = useRef<Pt>({ x: 0.12, y: 0.6 });
 
-  const pickTarget = () => {
-    targetRef.current = {
-      x: 0.06 + Math.random() * 0.8,
-      y: 0.08 + Math.random() * 0.6,
-    };
+  // Pick a random target, optionally biased away from a point (the monkey)
+  const pickTarget = (awayFrom?: Pt) => {
+    let x = 0.06 + Math.random() * 0.82;
+    let y = 0.08 + Math.random() * 0.68;
+
+    if (awayFrom) {
+      const dx = x - awayFrom.x;
+      const dy = y - awayFrom.y;
+      const dist = Math.hypot(dx, dy) || 1;
+      // push the target further away from the monkey
+      x = clamp(awayFrom.x + (dx / dist) * (0.45 + Math.random() * 0.25), 0.06, 0.88);
+      y = clamp(awayFrom.y + (dy / dist) * (0.35 + Math.random() * 0.25), 0.08, 0.76);
+    }
+
+    targetRef.current = { x, y };
   };
 
   useEffect(() => {
-    const id = window.setInterval(pickTarget, 2200);
+    const id = window.setInterval(() => pickTarget(), 2200);
     return () => window.clearInterval(id);
   }, []);
 
   useEffect(() => {
     let raf = 0;
     const step = () => {
-      // hotdog glides toward its waypoint
       const d = dRef.current;
       const t = targetRef.current;
+      const m = mRef.current;
+
+      // hotdog runs away if the monkey gets too close
+      const runDx = d.x - m.x;
+      const runDy = d.y - m.y;
+      const runDist = Math.hypot(runDx, runDy) || 1;
+      if (runDist < FLEE_DIST) {
+        pickTarget(m);
+      }
+
+      // hotdog glides quickly toward its waypoint
       const dx = t.x - d.x;
       const dy = t.y - d.y;
-      if (Math.hypot(dx, dy) < 0.02) pickTarget();
-      const nd = { x: d.x + dx * 0.02, y: d.y + dy * 0.02 };
+      if (Math.hypot(dx, dy) < 0.025) pickTarget();
+      const nd = { x: d.x + dx * 0.055, y: d.y + dy * 0.055 };
       dRef.current = nd;
       setDog(nd);
 
-      // monkey chases but always stays a step behind
-      const m = mRef.current;
+      // monkey chases but can never close the gap
       const vx = nd.x - m.x;
       const vy = nd.y - m.y;
       const dist = Math.hypot(vx, vy) || 1;
-      const chase = dist > MIN_GAP ? 0.018 : 0;
+      const chase = dist > MIN_GAP ? 0.011 : 0;
       const nm = { x: m.x + vx * chase, y: m.y + vy * chase };
       mRef.current = nm;
       setMonkey(nm);
@@ -164,8 +188,8 @@ export function HansiSnake() {
       <div
         className="pointer-events-auto absolute animate-bob cursor-pointer"
         style={{ left: `${dog.x * 100}%`, top: `${dog.y * 100}%` }}
-        onMouseEnter={pickTarget}
-        onTouchStart={pickTarget}
+        onMouseEnter={() => pickTarget(mRef.current)}
+        onTouchStart={() => pickTarget(mRef.current)}
       >
         <Sprite art={HOTDOG} scale={SCALE} />
       </div>
