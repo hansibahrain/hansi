@@ -55,8 +55,8 @@ const TRUCK = [
   "..bkkkbkkkocccccccckkkb.",
   "..bkkkkkkkkkkkkkkkkkkkb.",
   "..bbbbbbbbbbbbbbbbbbbbb.",
-  "...bii b...bii b..bii b.".replace(/ /g, "b"),
-  "...bii b...bii b..bii b.".replace(/ /g, "b"),
+  "...biib....biib...biib..",
+  "...biib....biib...biib..",
   "....bbb.....bbb....bbb..",
 ];
 
