@@ -4,28 +4,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 26px);
+  --radius-4xl: calc(var(--radius) + 40px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -46,11 +33,13 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+
+  --color-cream: var(--cream);
+  --color-mustard: var(--mustard);
+  --color-ketchup: var(--ketchup);
+  --color-cocoa: var(--cocoa);
+  --color-ink: var(--ink);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,77 +48,54 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-display: "Bungee", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 0.5rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Extracted from the HANSI mascot logo */
+  --cream: oklch(0.955 0.022 88);
+  --mustard: oklch(0.79 0.147 71);
+  --ketchup: oklch(0.52 0.145 35);
+  --cocoa: oklch(0.36 0.09 38);
+  --ink: oklch(0.24 0.055 40);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.985 0.012 88);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.985 0.012 88);
+  --popover-foreground: var(--ink);
+  --primary: var(--mustard);
+  --primary-foreground: oklch(0.24 0.055 40);
+  --secondary: var(--ketchup);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.915 0.025 85);
+  --muted-foreground: oklch(0.47 0.05 45);
+  --accent: var(--ketchup);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.56 0.2 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.52 0.145 35 / 25%);
+  --input: oklch(0.52 0.145 35 / 35%);
+  --ring: var(--mustard);
+
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--mustard);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: oklch(0.915 0.025 85);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: oklch(0.52 0.145 35 / 25%);
+  --sidebar-ring: var(--mustard);
+
+  --shadow-pop: 6px 6px 0 var(--cocoa);
+  --shadow-pop-sm: 3px 3px 0 var(--cocoa);
+  --gradient-sunset: linear-gradient(140deg, var(--mustard), var(--ketchup));
 }
 
 @layer base {
@@ -140,5 +106,158 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
+
+@utility pop {
+  box-shadow: var(--shadow-pop);
+  border: 3px solid var(--cocoa);
+}
+
+@utility pop-sm {
+  box-shadow: var(--shadow-pop-sm);
+  border: 3px solid var(--cocoa);
+}
+
+@utility press {
+  transition:
+    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 160ms ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--cocoa);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--cocoa);
+  }
+}
+
+@utility text-outline {
+  -webkit-text-stroke: 3px var(--cocoa);
+  paint-order: stroke fill;
+}
+
+@utility checker {
+  background-image:
+    linear-gradient(45deg, var(--cocoa) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--cocoa) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--cocoa) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--cocoa) 75%);
+  background-size: 24px 24px;
+  background-position:
+    0 0,
+    0 12px,
+    12px -12px,
+    -12px 0;
+}
+
+@keyframes hansi-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hansi-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes hansi-wiggle {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes hansi-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes hansi-dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hansi-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-12deg);
+  }
+  70% {
+    transform: scale(1.06) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+}
+
+@utility animate-marquee {
+  animation: hansi-marquee 24s linear infinite;
+}
+
+@utility animate-float {
+  animation: hansi-float 5s ease-in-out infinite;
+}
+
+@utility animate-wiggle {
+  animation: hansi-wiggle 3.4s ease-in-out infinite;
+}
+
+@utility animate-bob {
+  animation: hansi-bob 2.2s ease-in-out infinite;
+}
+
+@utility animate-pop-in {
+  animation: hansi-pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  &[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
