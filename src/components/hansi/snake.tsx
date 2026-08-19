@@ -45,15 +45,19 @@ function Sprite({
 }
 
 const TRUCK = [
-  "....oooooooooo....",
-  "...oooooooooooo...",
-  "..oooccccccoooo...",
-  "ooooccccccccoooooo",
-  "ooookkkkkkkkooooo.",
-  "oooooooooooooooooo",
-  "bbbbbbbbbbbbbbbbbb",
-  ".ii....ii...ii.ii.",
-  ".ii....ii...ii.ii.",
+  ".........bbbbbbbbbbbb...",
+  "........bkkkkkkkkkkkkb..",
+  "........bkccccccccccbb..",
+  "...bbbbbbkkkkkkkkkkkkb..",
+  "..bkkkkkkkkkkkkkkkkkkkb.",
+  "..bkccbkkkkkkkkkkkkkkkb.",
+  "..bkccbkkkooooooooookkb.",
+  "..bkkkbkkkocccccccckkkb.",
+  "..bkkkkkkkkkkkkkkkkkkkb.",
+  "..bbbbbbbbbbbbbbbbbbbbb.",
+  "...bii b...bii b..bii b.".replace(/ /g, "b"),
+  "...bii b...bii b..bii b.".replace(/ /g, "b"),
+  "....bbb.....bbb....bbb..",
 ];
 
 const HOTDOG = [
@@ -64,20 +68,23 @@ const HOTDOG = [
 ];
 
 const MONKEY = [
-  "...bbbbbb...",
-  "..bbbbbbbb..",
-  ".bboooooobb.",
-  ".boccccccob.",
-  "..occcccco..",
-  "..okkkkkko..",
-  "...oooooo...",
-  "..bb.oo.bb..",
-  ".bb..oo..bb.",
+  "..bb......bb..",
+  ".bcbb....bbcb.",
+  ".bbbbbbbbbbbb.",
+  "bbboooooooobbb",
+  "bboccccccccobb",
+  ".bocibbbicoob.",
+  ".bocccccccccb.",
+  ".bboccccccobb.",
+  "..bokkkkkkob..",
+  "...boooooob...",
+  "...bb.oo.bb...",
+  "..bb..oo..bb..",
 ];
 
 function Parade() {
   return (
-    <div className="flex shrink-0 items-end gap-6 pr-6">
+    <div className="flex shrink-0 items-end gap-8 pr-8">
       <Sprite art={TRUCK} scale={5} className="animate-bob" />
       <Sprite art={HOTDOG} scale={5} />
       <Sprite art={HOTDOG} scale={5} className="animate-bob" />
