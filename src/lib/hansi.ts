@@ -311,54 +311,54 @@ export function getMenu(lang: Lang): MenuCategory[] {
     return [
       {
         id: "dogs",
-        title: "الكلاب",
+        title: "السجق",
         emoji: "🌭",
-        kicker: "كلاب بقريّة مستوحاة من العالم. 100% بقر، مشوية عند الطلب.",
+        kicker: "سجق بقري مستوحى من العالم. 100% بقر، مشوي عند الطلب.",
         items: [
           {
-            name: "كلب نيويورك",
+            name: "سجق نيويورك",
             flag: "🇺🇸",
             description: "خردل، كاتشب، ملفوف مخمّر، بصل، بصل مقرمش.",
             bun: "خبز بطاطا",
             img: "ny-dog",
           },
           {
-            name: "كلب شيكاغو",
+            name: "سجق شيكاغو",
             flag: "🇺🇸",
             description: "مخلل، خيار، طماطم، فلفل رياضي، ملح كرفس.",
             bun: "خبز بطاطا",
             img: "chicago-dog",
           },
           {
-            name: "كلب أمستردام",
+            name: "سجق أمستردام",
             flag: "🇳🇱",
             description: "صلصة طماطم، ببروني، موزاريلا، بصل مقرمش.",
             bun: "خبز مميز",
             img: "amsterdam-dog",
           },
           {
-            name: "كلب مكسيكي",
+            name: "سجق مكسيكي",
             flag: "🇲🇽",
             description: "هالابينيو، صلصة شيدر، بيكو دي غالو، مايونيز شيبوتلي.",
             bun: "خبز بطاطا",
             img: "mexican-dog",
           },
           {
-            name: "كلب دنماركي",
+            name: "سجق دنماركي",
             flag: "🇩🇰",
             description: "ريمولاد دنماركي، كاتشب، خردل، مخلل، بصل.",
             bun: "خبز دنماركي",
             img: "danish-dog",
           },
           {
-            name: "كلب كرانش ألماني",
+            name: "سجق كرانش ألماني",
             flag: "🇩🇪",
             description: "خردل ألماني، ملفوف مخمّر، مخلل، بطاطا مقرمشة.",
             bun: "خبز بطاطا",
             img: "german-dog",
           },
           {
-            name: "كلب البحرين الناشف",
+            name: "سجق البحرين الناشف",
             flag: "🇧🇭",
             description: "سجق بقري مقطّع، صلصة طماطم متبّلة، بصل.",
             bun: "خبز بطاطا",
@@ -411,11 +411,11 @@ export function getMenu(lang: Lang): MenuCategory[] {
         id: "combos",
         title: "وجبات",
         emoji: "🎯",
-        kicker: "أقصى كلب، أقل قرارات.",
+        kicker: "أقصى سجق، أقل قرارات.",
         items: [
           {
             name: "وجبة هانسي",
-            description: "كلب مميز + بطاطا مدخّنة + مشروب.",
+            description: "سجق مميز + بطاطا مدخّنة + مشروب.",
             img: "combo",
           },
           {
@@ -425,12 +425,12 @@ export function getMenu(lang: Lang): MenuCategory[] {
           },
           {
             name: "هانسي الثنائي",
-            description: "٢ كلب مميز + بطاطا محمّلة + ٢ مشروب.",
+            description: "٢ سجق مميز + بطاطا محمّلة + ٢ مشروب.",
             img: "loaded-fries",
           },
           {
             name: "وجبة الأطفال",
-            description: "كلب بقري صغير + بطاطا + مشروب.",
+            description: "سجق بقري صغير + بطاطا + مشروب.",
             img: "combo",
           },
         ],
