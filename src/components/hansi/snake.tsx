@@ -134,7 +134,7 @@ export function HansiSnake() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-30 hidden overflow-hidden md:block"
+      className="pointer-events-none relative z-10 -mt-8 hidden h-40 overflow-hidden md:block"
     >
       <div
         className="absolute animate-bob transition-all duration-[2400ms] ease-in-out"
