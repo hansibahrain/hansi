@@ -211,7 +211,7 @@ export const events: HansiEvent[] = [
     dates: "12–15 March",
     location: "Bahrain Bay",
     type: "Food festival",
-    description: "Find us at the HANSI truck. Follow the smoke, follow the noise.",
+    description: "A full HANSI hotdog station. Follow the smoke, follow the noise.",
     status: "LIVE NOW",
   },
   {
@@ -247,6 +247,15 @@ export const events: HansiEvent[] = [
     status: "COMING SOON",
   },
 ];
+
+/** Where the HANSI truck is parked right now. Update this whenever it moves. */
+export const truckNow = {
+  location: "Bahrain Bay — Bahrain Food Festival",
+  hours: "Today, 5 PM – 12 AM",
+  note: "Look for the glowing HANSI sign. You'll smell us first.",
+  mapUrl: "https://maps.google.com/?q=Bahrain+Bay",
+};
+
 
 export const cateringTypes = [
   "Birthday parties",
