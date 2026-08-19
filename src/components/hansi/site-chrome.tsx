@@ -108,9 +108,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <div className="mt-2 flex items-center gap-2">
-              <LanguageToggle />
-            </div>
             <AnchorButton href={cateringLink} tone="ketchup" size="lg" className="mt-2">
               {t("header.cta")}
             </AnchorButton>
