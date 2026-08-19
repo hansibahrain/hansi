@@ -1,113 +1,122 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+/**
+ * Pixel-art parade: a HANSI truck drives, hotdogs trail behind it,
+ * and a pixel monkey chases the whole thing.
+ */
 
-type Cell = { x: number; y: number };
+const PX: Record<string, string> = {
+  ".": "transparent",
+  o: "var(--mustard)",
+  k: "var(--ketchup)",
+  c: "var(--cream)",
+  b: "var(--cocoa)",
+  i: "var(--ink)",
+};
 
-const COLS = 24;
-const ROWS = 10;
-
-function randFood(taken: Cell[]): Cell {
-  let f: Cell;
-  do {
-    f = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * ROWS) };
-  } while (taken.some((c) => c.x === f.x && c.y === f.y));
-  return f;
+function Sprite({
+  art,
+  scale = 4,
+  className = "",
+}: {
+  art: string[];
+  scale?: number;
+  className?: string;
+}) {
+  const cols = Math.max(...art.map((r) => r.length));
+  return (
+    <div
+      aria-hidden="true"
+      className={className}
+      style={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${cols}, ${scale}px)`,
+        gridAutoRows: `${scale}px`,
+      }}
+    >
+      {art.flatMap((row, y) =>
+        Array.from({ length: cols }, (_, x) => {
+          const ch = row[x] ?? ".";
+          return (
+            <div key={`${y}-${x}`} style={{ background: PX[ch] ?? "transparent" }} />
+          );
+        }),
+      )}
+    </div>
+  );
 }
 
-/**
- * Auto-playing pixel "snake": HANSI the monkey chases a hotdog around the grid.
- */
-export function HansiSnake() {
-  const [snake, setSnake] = useState<Cell[]>([
-    { x: 6, y: 5 },
-    { x: 5, y: 5 },
-    { x: 4, y: 5 },
-  ]);
-  const [food, setFood] = useState<Cell>({ x: 16, y: 3 });
-  const [score, setScore] = useState(0);
-  const dirRef = useRef<Cell>({ x: 1, y: 0 });
+const TRUCK = [
+  "....oooooooooo....",
+  "...oooooooooooo...",
+  "..oooccccccoooo...",
+  "ooooccccccccoooooo",
+  "ooookkkkkkkkooooo.",
+  "oooooooooooooooooo",
+  "bbbbbbbbbbbbbbbbbb",
+  ".ii....ii...ii.ii.",
+  ".ii....ii...ii.ii.",
+];
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setSnake((prev) => {
-        const head = prev[0]!;
-        const dir = dirRef.current;
+const HOTDOG = [
+  "..kkkkkkkk..",
+  ".oookkkkoooo",
+  "oooccccccooo",
+  ".oooooooooo.",
+];
 
-        // greedy chase: prefer the axis with the biggest gap, avoid reversing/self
-        const options: Cell[] = [];
-        if (food.x !== head.x) options.push({ x: Math.sign(food.x - head.x), y: 0 });
-        if (food.y !== head.y) options.push({ x: 0, y: Math.sign(food.y - head.y) });
-        options.push(dir, { x: 0, y: 1 }, { x: 0, y: -1 }, { x: 1, y: 0 }, { x: -1, y: 0 });
+const MONKEY = [
+  "...bbbbbb...",
+  "..bbbbbbbb..",
+  ".bboooooobb.",
+  ".bocccccco b".replace(" ", ""),
+  "..occcccco..",
+  "..okkkkkko..",
+  "...oooooo...",
+  "..bb.oo.bb..",
+  ".bb..oo..bb.",
+];
 
-        const body = prev.slice(0, -1);
-        const next =
-          options.find((o) => {
-            const nx = head.x + o.x;
-            const ny = head.y + o.y;
-            if (nx < 0 || ny < 0 || nx >= COLS || ny >= ROWS) return false;
-            return !body.some((c) => c.x === nx && c.y === ny);
-          }) ?? dir;
-
-        dirRef.current = next;
-        const newHead = { x: head.x + next.x, y: head.y + next.y };
-        const ate = newHead.x === food.x && newHead.y === food.y;
-        const grown = [newHead, ...prev];
-        if (ate) {
-          setScore((s) => s + 1);
-          setFood(randFood(grown));
-          if (grown.length > 12) grown.pop();
-          return grown;
-        }
-        grown.pop();
-        return grown;
-      });
-    }, 140);
-    return () => clearInterval(id);
-  }, [food]);
-
-  const cells = useMemo(() => Array.from({ length: COLS * ROWS }), []);
-
+function Parade() {
   return (
-    <div className="pop rounded-[2rem] bg-ink p-4">
+    <div className="flex shrink-0 items-end gap-6 pr-6">
+      <Sprite art={TRUCK} scale={5} className="animate-bob" />
+      <Sprite art={HOTDOG} scale={5} />
+      <Sprite art={HOTDOG} scale={5} className="animate-bob" />
+      <Sprite art={HOTDOG} scale={5} />
+      <Sprite art={MONKEY} scale={5} className="animate-wiggle" />
+    </div>
+  );
+}
+
+export function HansiSnake() {
+  return (
+    <div className="pop overflow-hidden rounded-[2rem] bg-ink p-4">
       <div className="mb-3 flex items-center justify-between">
         <p className="font-display text-xs uppercase tracking-widest text-primary">
           HANSI vs. hotdogs
         </p>
         <p className="font-display text-xs uppercase tracking-widest text-cream">
-          Dogs eaten: {score}
+          Catch that truck
         </p>
       </div>
-      <div
-        aria-hidden="true"
-        className="grid gap-[2px]"
-        style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}
-      >
-        {cells.map((_, i) => {
-          const x = i % COLS;
-          const y = Math.floor(i / COLS);
-          const idx = snake.findIndex((c) => c.x === x && c.y === y);
-          const isFood = food.x === x && food.y === y;
-          const isHead = idx === 0;
-          const isBody = idx > 0;
-          return (
-            <div
-              key={i}
-              className="aspect-square rounded-[2px]"
-              style={{
-                background: isHead
-                  ? "var(--mustard)"
-                  : isBody
-                    ? "color-mix(in oklab, var(--mustard) 55%, var(--ink))"
-                    : isFood
-                      ? "var(--ketchup)"
-                      : "color-mix(in oklab, var(--cream) 7%, transparent)",
-                boxShadow: isHead ? "0 0 0 2px var(--cream)" : undefined,
-              }}
-            />
-          );
-        })}
+
+      <div className="relative overflow-hidden py-4">
+        <div className="flex w-max animate-marquee">
+          <Parade />
+          <Parade />
+        </div>
+        <div
+          aria-hidden="true"
+          className="mt-2 h-[5px] w-full"
+          style={{
+            background:
+              "repeating-linear-gradient(90deg, var(--cream) 0 15px, transparent 15px 30px)",
+            opacity: 0.35,
+          }}
+        />
       </div>
+
       <p className="mt-3 text-center font-hand text-2xl text-primary">
-        He never stops eating. Same.
+        He never stops chasing. Same.
       </p>
     </div>
   );
