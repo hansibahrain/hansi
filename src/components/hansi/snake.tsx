@@ -178,7 +178,7 @@ export function HansiSnake() {
   });
 
   return (
-    <div className="pointer-events-none relative z-10 -mt-2 h-40 overflow-hidden sm:h-48 md:h-56">
+    <div className="pointer-events-none relative z-50 -mt-2 h-44 overflow-visible sm:h-52 md:h-60">
       <div
         className="pointer-events-auto absolute animate-bob cursor-pointer"
         style={{
