@@ -8,7 +8,7 @@ const PX: Record<string, string> = {
   o: "var(--mustard)",
   k: "var(--ketchup)",
   c: "var(--cream)",
-  b: "var(--cocoa)",
+  b: "color-mix(in oklab, var(--cocoa) 45%, var(--cream))",
   i: "var(--ink)",
 };
 
@@ -85,11 +85,11 @@ const MONKEY = [
 function Parade() {
   return (
     <div className="flex shrink-0 items-end gap-8 pr-8">
-      <Sprite art={TRUCK} scale={5} className="animate-bob" />
-      <Sprite art={HOTDOG} scale={5} />
-      <Sprite art={HOTDOG} scale={5} className="animate-bob" />
-      <Sprite art={HOTDOG} scale={5} />
-      <Sprite art={MONKEY} scale={5} className="animate-wiggle" />
+      <Sprite art={TRUCK} scale={6} className="animate-bob" />
+      <Sprite art={HOTDOG} scale={6} />
+      <Sprite art={HOTDOG} scale={6} className="animate-bob" />
+      <Sprite art={HOTDOG} scale={6} />
+      <Sprite art={MONKEY} scale={6} className="animate-wiggle" />
     </div>
   );
 }
