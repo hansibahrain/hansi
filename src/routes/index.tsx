@@ -87,7 +87,7 @@ function Home() {
         <Squiggle className="text-primary" />
       </section>
 
-      {/* PIXEL CHASE OVERLAY */}
+      {/* PIXEL CHASE STRIP */}
       <HansiSnake />
 
 
