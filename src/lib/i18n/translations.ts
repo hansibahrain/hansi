@@ -33,16 +33,7 @@ export const translations = {
       introTitle: "We make hotdogs. You make the memories.",
       introBody:
         "We set up HANSI hotdog stations anywhere people get hungry — and then we make it a party. Seven world-inspired beef dogs, smoky fries and homemade drinks, grilled fresh in front of you.",
-      tags: [
-        "Events",
-        "Parties",
-        "Offices",
-        "Festivals",
-        "Private gatherings",
-        "Corporate",
-        "Pop-ups",
-        "Anywhere hungry people are",
-      ],
+      tags: "Events, Parties, Offices, Festivals, Private gatherings, Corporate, Pop-ups, Anywhere hungry people are",
       ctaCatering: "Bring the dogs →",
       whereKicker: "Catch us if you can.",
       whereTitle: "Where's HANSI?",
