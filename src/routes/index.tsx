@@ -230,7 +230,7 @@ function Home() {
       {/* ABOUT TEASER */}
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <Reveal>
-          <div className="pop checker-none relative overflow-hidden rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
+          <div className="pop relative overflow-hidden rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-6xl">
               Who let the dogs out?
               <br />
