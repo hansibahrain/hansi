@@ -200,7 +200,7 @@ export function Footer() {
           </h3>
           <p className="mt-3 text-sm text-cream/80">
             {lang === "ar"
-              ? "اطلب هانسي على كيتا ونوصل لك الكلاب."
+              ? "اطلب هانسي على كيتا ونوصل لك الدوغ."
               : "Order HANSI on Keeta and we’ll get the dogs to you."}
           </p>
           <AnchorButton href={KEETA_LINK} className="mt-4">
