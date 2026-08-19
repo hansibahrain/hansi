@@ -87,10 +87,10 @@ function Home() {
         <Squiggle className="text-primary" />
       </section>
 
-      {/* PIXEL SNAKE */}
-      <section className="mx-auto max-w-5xl px-4 py-10">
-        <HansiSnake />
-      </section>
+      {/* PIXEL CHASE OVERLAY */}
+      <HansiSnake />
+
+
 
 
       {/* INTRO */}
