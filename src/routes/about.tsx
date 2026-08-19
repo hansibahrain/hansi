@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import mascot from "@/assets/hansi-mascot.jpg.asset.json";
+import logo from "@/assets/hansi-logo.png.asset.json";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
 import crowd from "@/assets/crowd.jpg";
 import { cateringLink } from "@/lib/hansi";

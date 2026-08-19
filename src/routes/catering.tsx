@@ -26,24 +26,25 @@ export const Route = createFileRoute("/catering")({
 
 const packages = [
   {
-    name: "THE POP-UP",
-    line: "Our stand, your spot.",
+    name: "THE MINI STATION",
+    line: "Small spot, big flavour.",
     detail:
-      "A compact HANSI setup for smaller gatherings — signature dogs grilled to order plus Hansi Smoke Fries.",
+      "A compact HANSI hotdog station for smaller gatherings — signature dogs grilled to order plus Hansi Smoke Fries.",
   },
   {
-    name: "THE FULL TRUCK",
-    line: "The whole circus rolls in.",
+    name: "THE FULL STATION",
+    line: "The whole circus sets up.",
     detail:
-      "The HANSI truck, full signature dog line-up, corn dogs, loaded fries and our homemade drinks.",
+      "Our full HANSI hotdog station: the complete signature dog line-up, corn dogs, loaded fries and homemade drinks.",
   },
   {
     name: "BUILD YOUR OWN",
     line: "Tell us what you're planning.",
     detail:
-      "Pick the dogs, sides and drinks you want and we'll shape the setup around your guest count and venue.",
+      "Pick the dogs, sides and drinks you want and we'll shape the station around your guest count and venue.",
   },
 ];
+
 
 function Field({
   label,
