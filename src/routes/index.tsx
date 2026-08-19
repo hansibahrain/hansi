@@ -3,7 +3,8 @@ import heroDog from "@/assets/hero-dog.jpg";
 import crowd from "@/assets/crowd.jpg";
 import sides from "@/assets/sides.jpg";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
-import { menu, KEETA_LINK, cateringLink } from "@/lib/hansi";
+import { getMenu, KEETA_LINK, cateringLink } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import {
   AnchorButton,
   ArrowDown,
@@ -17,7 +18,6 @@ import { HansiSnake } from "@/components/hansi/snake";
 import { menuImages } from "@/components/hansi/menu-images";
 
 import { EventCarousel } from "@/components/hansi/events";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,6 +40,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { t, lang } = useTranslation();
+  const menu = getMenu(lang);
   const dogs = menu[0]!.items.slice(0, 4);
 
   return (
@@ -48,24 +50,24 @@ function Home() {
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-10 pb-16 lg:grid-cols-2 lg:pt-16">
           <div className="relative z-10">
-            <Sticker className="animate-wiggle bg-primary">Bahrain 🇧🇭 · Grilled to order</Sticker>
+            <Sticker className="animate-wiggle bg-primary">{t("home.sticker")}</Sticker>
             <h1 className="animate-wiggle mt-5 text-[19vw] leading-[0.8] text-secondary uppercase sm:text-8xl lg:text-9xl">
-              Bite Me!
+              {t("home.title")}
             </h1>
             <p className="mt-5 max-w-md text-xl font-medium sm:text-2xl">
-              Good dogs. Nice buns. Big vibes.
+              {t("home.subtitle")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <AnchorButton href={cateringLink} tone="ketchup" size="lg">
-                Get HANSI for your event
+                {t("home.ctaEvent")}
               </AnchorButton>
               <LinkButton to="/menu" size="lg" tone="cream">
-                See the menu
+                {t("home.ctaMenu")}
               </LinkButton>
             </div>
             <div className="mt-10 flex items-center gap-3 text-secondary">
               <ArrowDown />
-              <span className="font-hand text-2xl">Scroll. It gets saucier.</span>
+              <span className="font-hand text-2xl">{t("home.scroll")}</span>
             </div>
           </div>
 
@@ -80,7 +82,7 @@ function Home() {
               />
             </div>
             <Sticker className="absolute -top-4 right-2 bg-secondary text-secondary-foreground" rotate={9}>
-              Nice bun.
+              {lang === "ar" ? "خبز حلو." : "Nice bun."}
             </Sticker>
           </div>
         </div>
@@ -90,45 +92,34 @@ function Home() {
       {/* PIXEL CHASE STRIP */}
       <HansiSnake />
 
-
-
-
       {/* INTRO */}
       <section className="mx-auto max-w-7xl px-4 py-20">
         <Reveal className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionTitle
-              kicker="Say hello to your new favorite dog"
-              title="We make hotdogs. You make the memories."
+              kicker={t("home.introKicker")}
+              title={t("home.introTitle")}
             />
             <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              We set up HANSI hotdog stations anywhere people get hungry — and then we
-              make it a party. Seven world-inspired beef dogs, smoky fries and homemade
-              drinks, grilled fresh in front of you.
+              {t("home.introBody")}
             </p>
 
             <ul className="mt-6 flex flex-wrap gap-2">
-              {[
-                "Events",
-                "Parties",
-                "Offices",
-                "Festivals",
-                "Private gatherings",
-                "Corporate",
-                "Pop-ups",
-                "Anywhere hungry people are",
-              ].map((t) => (
-                <li
-                  key={t}
-                  className="pop-sm rounded-full bg-card px-3 py-1.5 text-xs font-semibold uppercase"
-                >
-                  {t}
-                </li>
-              ))}
+              {t("home.tags")
+                .split(",")
+                .map((t) => t.trim())
+                .map((tag) => (
+                  <li
+                    key={tag}
+                    className="pop-sm rounded-full bg-card px-3 py-1.5 text-xs font-semibold uppercase"
+                  >
+                    {tag}
+                  </li>
+                ))}
             </ul>
             <div className="mt-8">
               <LinkButton to="/catering" size="lg" tone="ketchup">
-                Bring the dogs →
+                {t("home.ctaCatering")}
               </LinkButton>
             </div>
           </div>
@@ -167,17 +158,16 @@ function Home() {
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="font-hand text-3xl text-primary">Catch us if you can.</p>
+                <p className="font-hand text-3xl text-primary">{t("home.whereKicker")}</p>
                 <h2 className="mt-1 text-5xl leading-[0.9] uppercase text-primary sm:text-7xl">
-                  Where&apos;s HANSI?
+                  {t("home.whereTitle")}
                 </h2>
                 <p className="mt-4 max-w-lg text-cream/80">
-                  We move around Bahrain like a rumour. Here&apos;s where the truck is
-                  parked next.
+                  {t("home.whereBody")}
                 </p>
               </div>
               <LinkButton to="/where-we-are" size="lg">
-                See all events →
+                {t("home.whereCta")}
               </LinkButton>
             </div>
           </Reveal>
@@ -191,8 +181,8 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20">
         <Reveal>
           <SectionTitle
-            kicker="Pick your dog. Add your sauce. Get messy."
-            title="The Dogs 🌭"
+            kicker={t("home.menuKicker")}
+            title={t("home.menuTitle")}
           />
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -223,10 +213,10 @@ function Home() {
         </div>
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <LinkButton to="/menu" size="lg" tone="cream">
-            See the full menu
+            {t("home.menuCta")}
           </LinkButton>
           <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
-            Order from Keeta
+            {t("home.menuOrder")}
           </AnchorButton>
         </div>
 
@@ -237,27 +227,26 @@ function Home() {
         <Reveal>
           <div className="pop relative overflow-hidden rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-6xl">
-              Who let the dogs out?
+              {t("home.aboutTitle")}
               <br />
-              <span className="text-secondary">We did.</span>
+              <span className="text-secondary">{t("home.aboutTitleAccent")}</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-lg">
-              We love hotdogs. We love feeding people. We love a good party. So we put
-              all three together.
+              {t("home.aboutBody")}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <LinkButton to="/about" size="lg" tone="cream">
-                Meet HANSI
+                {t("home.aboutCta")}
               </LinkButton>
               <Link
                 to="/contact"
                 className="pop press inline-flex items-center rounded-full bg-secondary px-7 py-4 font-display text-base uppercase text-secondary-foreground"
               >
-                Talk to HANSI
+                {t("home.contactCta")}
               </Link>
             </div>
             <p className="mt-8 font-hand text-3xl text-secondary">
-              See you at the next party.
+              {t("home.aboutClosing")}
             </p>
           </div>
         </Reveal>

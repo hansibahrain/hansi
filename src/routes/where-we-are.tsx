@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import truckNight from "@/assets/hansi-truck-night.png.asset.json";
-import { cateringLink, events, truckNow } from "@/lib/hansi";
+import { getCateringLink, getEvents, getTruckNow } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { EventCard } from "@/components/hansi/events";
 import { AnchorButton, Reveal, Sticker } from "@/components/hansi/bits";
 
@@ -26,16 +27,20 @@ export const Route = createFileRoute("/where-we-are")({
 });
 
 function WhereWeAre() {
+  const { t, lang } = useTranslation();
+  const events = getEvents(lang);
+  const truckNow = getTruckNow(lang);
+  const cateringLink = getCateringLink(lang);
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-10">
-        <Sticker className="animate-wiggle bg-primary">Honk honk. We&apos;re here. 🌭</Sticker>
+        <Sticker className="animate-wiggle bg-primary">{t("whereWeAre.sticker")}</Sticker>
         <h1 className="mt-4 text-6xl leading-[0.85] uppercase sm:text-8xl">
-          Catch us <span className="text-secondary">if you can.</span>
+          {t("whereWeAre.title")} <span className="text-secondary">{t("whereWeAre.titleAccent")}</span>
         </h1>
         <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-          One truck, plenty of hotdog stations. Bookmark this page — we update it
-          constantly.
+          {t("whereWeAre.body")}
         </p>
       </section>
 
@@ -53,7 +58,7 @@ function WhereWeAre() {
             />
             <div className="p-8 text-cream sm:p-10">
               <span className="pop-sm inline-block rounded-full bg-secondary px-4 py-1.5 font-display text-[11px] uppercase tracking-widest text-secondary-foreground">
-                🚚 The truck right now
+                {t("whereWeAre.truckBadge")}
               </span>
               <h2 className="mt-5 text-4xl leading-[0.9] uppercase text-primary sm:text-5xl">
                 {truckNow.location}
@@ -64,7 +69,7 @@ function WhereWeAre() {
               <p className="mt-3 text-cream/80">{truckNow.note}</p>
               <div className="mt-7">
                 <AnchorButton href={truckNow.mapUrl} size="lg">
-                  Open in Maps
+                  {t("whereWeAre.truckCta")}
                 </AnchorButton>
               </div>
             </div>
@@ -74,10 +79,10 @@ function WhereWeAre() {
 
       <section className="mx-auto max-w-7xl px-4 pb-16">
         <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
-          HANSI hotdog stations
+          {t("whereWeAre.stationsTitle")}
         </h2>
         <p className="mt-3 max-w-xl text-muted-foreground">
-          Where we&apos;re setting up next around Bahrain.
+          {t("whereWeAre.stationsBody")}
         </p>
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {events.map((event, i) => (
@@ -90,15 +95,14 @@ function WhereWeAre() {
         <Reveal className="mt-14">
           <div className="pop rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
-              Want us at your spot?
+              {t("whereWeAre.ctaTitle")}
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg">
-              Private party, festival, office lunch — if there are hungry people, we&apos;ll
-              set up a HANSI hotdog station.
+              {t("whereWeAre.ctaBody")}
             </p>
             <div className="mt-7">
               <AnchorButton href={cateringLink} size="lg">
-                Get HANSI for your event
+                {t("whereWeAre.cta")}
               </AnchorButton>
             </div>
           </div>
