@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sides from "@/assets/sides.jpg";
 import heroDog from "@/assets/hero-dog.jpg";
-import { KEETA_LINK, menu } from "@/lib/hansi";
+import { KEETA_LINK, getMenu } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { menuImages } from "@/components/hansi/menu-images";
 import { AnchorButton, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
 
@@ -27,24 +28,26 @@ export const Route = createFileRoute("/menu")({
 });
 
 function MenuPage() {
+  const { t, lang } = useTranslation();
+  const menu = getMenu(lang);
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-10">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
           <div>
             <Sticker className="animate-wiggle bg-secondary text-secondary-foreground">
-              100% beef · Grilled to order
+              {t("menu.sticker")}
             </Sticker>
             <h1 className="mt-4 text-6xl leading-[0.85] uppercase sm:text-8xl">
-              The <span className="text-secondary">Menu</span>
+              {t("menu.titlePrefix")} <span className="text-secondary">{t("menu.titleAccent")}</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              Pick your dog. Add your sauce. Get messy. Everything is grilled fresh when
-              you order it — no sad heat lamps here.
+              {t("menu.body")}
             </p>
             <div className="mt-7">
               <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
-                Order from Keeta →
+                {t("menu.cta")}
               </AnchorButton>
             </div>
           </div>
@@ -108,13 +111,13 @@ function MenuPage() {
 
         <Reveal>
           <div className="pop rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
-            <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">Hungry yet?</h2>
+            <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">{t("menu.bottomTitle")}</h2>
             <p className="mx-auto mt-3 max-w-md text-lg">
-              All HANSI orders and delivery go through Keeta.
+              {t("menu.bottomBody")}
             </p>
             <div className="mt-7">
               <AnchorButton href={KEETA_LINK} size="lg">
-                Order from Keeta
+                {t("menu.bottomCta")}
               </AnchorButton>
             </div>
           </div>

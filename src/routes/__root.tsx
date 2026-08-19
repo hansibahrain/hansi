@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer, MobileCTA } from "@/components/hansi/site-chrome";
+import { LanguageProvider, useLanguage } from "@/lib/i18n/language-provider";
 
 function NotFoundComponent() {
   return (
@@ -96,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;500;600;700&family=Caveat:wght@600;700&family=Cairo:wght@400;700;900&display=swap",
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
@@ -109,23 +110,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <LanguageProvider>
+          <RootInner>{children}</RootInner>
+        </LanguageProvider>
         <Scripts />
       </body>
     </html>
   );
 }
 
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+function RootInner({ children }: { children: ReactNode }) {
+  const { lang } = useLanguage();
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, [lang]);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={Route.useRouteContext().queryClient}>
+      {children}
+    </QueryClientProvider>
+  );
+}
+
+function RootComponent() {
+  return (
+    <>
       <Header />
       <main className="pb-24 md:pb-0">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
@@ -133,6 +149,6 @@ function RootComponent() {
       </main>
       <Footer />
       <MobileCTA />
-    </QueryClientProvider>
+    </>
   );
 }

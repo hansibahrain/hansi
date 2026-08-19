@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png.asset.json";
-import { cateringLink, orderLink, socials, whatsappLink } from "@/lib/hansi";
+import { getCateringLink, getOrderLink, getSocials, whatsappLink } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { AnchorButton, Marquee, Reveal, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/contact")({
@@ -22,48 +23,56 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const reasons = [
-  {
-    title: "GENERAL ENQUIRIES",
-    copy: "Questions, compliments, hotdog philosophy.",
-    message: "Hey HANSI! 🌭 I've got a question:",
-  },
-  {
-    title: "CATERING",
-    copy: "Feed a crowd. We do the grilling.",
-    message: "Hey HANSI! 🌭 I'd like to talk catering for my event:",
-  },
-  {
-    title: "EVENT BOOKINGS",
-    copy: "Festivals, markets and pop-ups.",
-    message: "Hey HANSI! 🌭 We'd love the truck at our event:",
-  },
-  {
-    title: "PARTNERSHIPS & COLLABS",
-    copy: "Brands, creators, fellow food lovers.",
-    message: "Hey HANSI! 🌭 Let's collaborate on something saucy:",
-  },
-];
+function useReasons() {
+  const { t } = useTranslation();
+  return [
+    {
+      title: t("contact.reasonGeneralTitle"),
+      copy: t("contact.reasonGeneralCopy"),
+      message: t("contact.reasonGeneralMessage"),
+    },
+    {
+      title: t("contact.reasonCateringTitle"),
+      copy: t("contact.reasonCateringCopy"),
+      message: t("contact.reasonCateringMessage"),
+    },
+    {
+      title: t("contact.reasonBookingTitle"),
+      copy: t("contact.reasonBookingCopy"),
+      message: t("contact.reasonBookingMessage"),
+    },
+    {
+      title: t("contact.reasonCollabTitle"),
+      copy: t("contact.reasonCollabCopy"),
+      message: t("contact.reasonCollabMessage"),
+    },
+  ];
+}
 
 function Contact() {
+  const { t, lang } = useTranslation();
+  const reasons = useReasons();
+  const socials = getSocials(lang);
+  const orderLink = getOrderLink(lang);
+  const cateringLink = getCateringLink(lang);
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-10">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <Sticker className="animate-wiggle bg-secondary text-secondary-foreground">
-              We reply fast
+              {t("contact.sticker")}
             </Sticker>
             <h1 className="mt-4 text-6xl leading-[0.85] uppercase sm:text-8xl">
-              Talk to <span className="text-secondary">HANSI</span>
+              {t("contact.title")} <span className="text-secondary">{t("contact.titleAccent")}</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              One number, one monster, zero call centres. Everything lands straight in
-              our WhatsApp.
+              {t("contact.body")}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <AnchorButton href={orderLink} size="lg" tone="ketchup">
-                Message us on WhatsApp
+                {t("contact.ctaWhatsApp")}
               </AnchorButton>
               <a
                 href="tel:+97334240567"
@@ -99,7 +108,7 @@ function Contact() {
                 <h2 className="text-2xl uppercase leading-tight">{r.title}</h2>
                 <p className="mt-2 text-sm text-muted-foreground">{r.copy}</p>
                 <span className="mt-auto pt-6 font-display text-xs uppercase tracking-wide text-secondary">
-                  Message us →
+                  {t("contact.reasonCta")}
                 </span>
               </a>
             </Reveal>
@@ -109,10 +118,10 @@ function Contact() {
         <Reveal className="mt-14">
           <div className="pop rounded-[3rem] bg-primary px-6 py-12 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
-              Follow the truck
+              {t("contact.socialTitle")}
             </h2>
             <p className="mx-auto mt-3 max-w-md">
-              We post every location, festival and last-minute pop-up first on socials.
+              {t("contact.socialBody")}
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               {socials.map((s) => (
@@ -123,7 +132,7 @@ function Contact() {
             </div>
             <div className="mt-8">
               <AnchorButton href={cateringLink} tone="ketchup" size="lg">
-                Get HANSI for your event
+                {t("contact.ctaEvent")}
               </AnchorButton>
             </div>
           </div>

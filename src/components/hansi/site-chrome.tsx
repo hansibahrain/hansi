@@ -2,20 +2,41 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png.asset.json";
-import { cateringLink, KEETA_LINK, socials } from "@/lib/hansi";
+import { cateringLink, KEETA_LINK, getSocials } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
+import { useLanguage } from "@/lib/i18n/language-provider";
 import { AnchorButton, Squiggle } from "./bits";
 
-const nav = [
-  { to: "/", label: "Home" },
-  { to: "/menu", label: "Menu" },
-  { to: "/catering", label: "Catering" },
-  { to: "/where-we-are", label: "Where We Are" },
-  { to: "/about", label: "About HANSI" },
-  { to: "/contact", label: "Contact" },
-] as const;
+function useNav() {
+  const { t } = useTranslation();
+  return [
+    { to: "/", label: t("nav.home") },
+    { to: "/menu", label: t("nav.menu") },
+    { to: "/catering", label: t("nav.catering") },
+    { to: "/where-we-are", label: t("nav.whereWeAre") },
+    { to: "/about", label: t("nav.about") },
+    { to: "/contact", label: t("nav.contact") },
+  ] as const;
+}
+
+function LanguageToggle() {
+  const { lang, toggleLang } = useLanguage();
+  return (
+    <button
+      type="button"
+      onClick={toggleLang}
+      aria-label={lang === "en" ? "Switch to Arabic" : "Switch to English"}
+      className="pop-sm press rounded-full bg-card px-3 py-2 font-display text-xs uppercase tracking-wide"
+    >
+      {lang === "en" ? "عربي" : "EN"}
+    </button>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
+  const nav = useNav();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -52,12 +73,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageToggle />
           <AnchorButton
             href={cateringLink}
             tone="ketchup"
             className="hidden md:inline-flex"
           >
-            Get HANSI for your event
+            {t("header.cta")}
           </AnchorButton>
           <button
             type="button"
@@ -87,7 +109,7 @@ export function Header() {
               </Link>
             ))}
             <AnchorButton href={cateringLink} tone="ketchup" size="lg" className="mt-2">
-              Get HANSI for your event
+              {t("header.cta")}
             </AnchorButton>
           </nav>
         </div>
@@ -97,6 +119,7 @@ export function Header() {
 }
 
 export function MobileCTA() {
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
       <a
@@ -105,13 +128,18 @@ export function MobileCTA() {
         rel="noreferrer"
         className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
       >
-        Get HANSI →
+        {t("mobileCta")}
       </a>
     </div>
   );
 }
 
 export function Footer() {
+  const { t, lang } = useTranslation();
+  const nav = useNav();
+  const socials = getSocials(lang);
+  const year = new Date().getFullYear();
+
   return (
     <footer className="mt-24 bg-ink text-cream">
       <Squiggle className="-mt-3 h-6 text-ink" />
@@ -126,13 +154,13 @@ export function Footer() {
             className="animate-wiggle h-20 w-auto"
           />
           <p className="mt-4 font-hand text-2xl text-primary">
-            Hotdogs with a little attitude.
+            {t("footer.tagline")}
           </p>
         </div>
 
         <div>
           <h3 className="font-display text-sm uppercase tracking-widest text-primary">
-            Wander off
+            {t("footer.wander")}
           </h3>
           <ul className="mt-3 space-y-2 text-sm">
             {nav.map((item) => (
@@ -147,7 +175,7 @@ export function Footer() {
 
         <div>
           <h3 className="font-display text-sm uppercase tracking-widest text-primary">
-            Say hi
+            {t("footer.sayHi")}
           </h3>
           <ul className="mt-3 space-y-2 text-sm">
             {socials.map((s) => (
@@ -162,24 +190,26 @@ export function Footer() {
                 +973 3424 0567
               </a>
             </li>
-            <li>Kingdom of Bahrain</li>
+            <li>{lang === "ar" ? "مملكة البحرين" : "Kingdom of Bahrain"}</li>
           </ul>
         </div>
 
         <div>
           <h3 className="font-display text-sm uppercase tracking-widest text-primary">
-            Hungry?
+            {t("footer.hungry")}
           </h3>
           <p className="mt-3 text-sm text-cream/80">
-            Order HANSI on Keeta and we’ll get the dogs to you.
+            {lang === "ar"
+              ? "اطلب هانسي على كيتا ونوصل لك الكلاب."
+              : "Order HANSI on Keeta and we’ll get the dogs to you."}
           </p>
           <AnchorButton href={KEETA_LINK} className="mt-4">
-            Order from Keeta
+            {t("footer.orderKeeta")}
           </AnchorButton>
         </div>
       </div>
       <div className="border-t border-cream/20 py-5 text-center font-display text-[10px] uppercase tracking-[0.3em] text-cream/60">
-        © {new Date().getFullYear()} HANSI · Good dogs only
+        {t("footer.copyright").replace("{year}", String(year))}
       </div>
     </footer>
   );

@@ -1,3 +1,5 @@
+import type { Lang } from "./i18n/translations";
+
 export const WHATSAPP_NUMBER = "97334240567";
 
 /** Ordering happens on Keeta — swap this for your exact store link. */
@@ -14,6 +16,22 @@ export const orderLink = whatsappLink(
 export const cateringLink = whatsappLink(
   "Hey HANSI! 🌭 I want a HANSI hotdog station at my event. Here are the details:",
 );
+
+export function getOrderLink(lang: Lang) {
+  const msg =
+    lang === "ar"
+      ? "مرحبا هانسي! 🌭 أبي أطلب. هذا اللي أبي:"
+      : "Hey HANSI! 🌭 I'd like to place an order. Here's what I want:";
+  return whatsappLink(msg);
+}
+
+export function getCateringLink(lang: Lang) {
+  const msg =
+    lang === "ar"
+      ? "مرحبا هانسي! 🌭 أبي محطة هوت دوغ هانسي في فعاليتي. هذي التفاصيل:"
+      : "Hey HANSI! 🌭 I want a HANSI hotdog station at my event. Here are the details:";
+  return whatsappLink(msg);
+}
 
 export type MenuItem = {
   name: string;
@@ -276,3 +294,258 @@ export const socials = [
   { label: "TikTok", href: "https://tiktok.com" },
   { label: "WhatsApp", href: `https://wa.me/${WHATSAPP_NUMBER}` },
 ];
+
+export function getSocials(lang: Lang) {
+  if (lang === "ar") {
+    return [
+      { label: "إنستغرام", href: "https://instagram.com" },
+      { label: "تيك توك", href: "https://tiktok.com" },
+      { label: "واتساب", href: `https://wa.me/${WHATSAPP_NUMBER}` },
+    ];
+  }
+  return socials;
+}
+
+export function getMenu(lang: Lang): MenuCategory[] {
+  if (lang === "ar") {
+    return [
+      {
+        id: "dogs",
+        title: "الكلاب",
+        emoji: "🌭",
+        kicker: "كلاب بقريّة مستوحاة من العالم. 100% بقر، مشوية عند الطلب.",
+        items: [
+          {
+            name: "كلب نيويورك",
+            flag: "🇺🇸",
+            description: "خردل، كاتشب، ملفوف مخمّر، بصل، بصل مقرمش.",
+            bun: "خبز بطاطا",
+            img: "ny-dog",
+          },
+          {
+            name: "كلب شيكاغو",
+            flag: "🇺🇸",
+            description: "مخلل، خيار، طماطم، فلفل رياضي، ملح كرفس.",
+            bun: "خبز بطاطا",
+            img: "chicago-dog",
+          },
+          {
+            name: "كلب أمستردام",
+            flag: "🇳🇱",
+            description: "صلصة طماطم، ببروني، موزاريلا، بصل مقرمش.",
+            bun: "خبز مميز",
+            img: "amsterdam-dog",
+          },
+          {
+            name: "كلب مكسيكي",
+            flag: "🇲🇽",
+            description: "هالابينيو، صلصة شيدر، بيكو دي غالو، مايونيز شيبوتلي.",
+            bun: "خبز بطاطا",
+            img: "mexican-dog",
+          },
+          {
+            name: "كلب دنماركي",
+            flag: "🇩🇰",
+            description: "ريمولاد دنماركي، كاتشب، خردل، مخلل، بصل.",
+            bun: "خبز دنماركي",
+            img: "danish-dog",
+          },
+          {
+            name: "كلب كرانش ألماني",
+            flag: "🇩🇪",
+            description: "خردل ألماني، ملفوف مخمّر، مخلل، بطاطا مقرمشة.",
+            bun: "خبز بطاطا",
+            img: "german-dog",
+          },
+          {
+            name: "كلب البحرين الناشف",
+            flag: "🇧🇭",
+            description: "سجق بقري مقطّع، صلصة طماطم متبّلة، بصل.",
+            bun: "خبز بطاطا",
+            img: "nashef-dog",
+          },
+        ],
+      },
+      {
+        id: "corn-dogs",
+        title: "كورن دوغ",
+        emoji: "🍢",
+        kicker: "عجينة ذهبية. صفر هدوء.",
+        items: [
+          {
+            name: "كورن دوغ كلاسيك هانسي",
+            description: "عجينة ذرة مقرمشة. كاتشب وخردل.",
+            img: "corn-dog",
+          },
+          {
+            name: "كورن دوغ بالجبن هانسي",
+            description: "جبن ذائب بالداخل. صلصة جبن ومايونيز حار.",
+            img: "cheesy-corn-dog",
+          },
+        ],
+      },
+      {
+        id: "sides",
+        title: "إضافات",
+        emoji: "🍟",
+        kicker: "لا تطلب واحدة بس.",
+        items: [
+          {
+            name: "بطاطا هانسي المدخّنة",
+            description: "بطاطا مقرمشة ببهاراتنا المدخّنة المميزة.",
+            img: "smoke-fries",
+          },
+          {
+            name: "بطاطا هانسي المحمّلة",
+            description: "صلصة شيدر، صلصة هانسي الخاصة، بصل مقرمش.",
+            img: "loaded-fries",
+          },
+          {
+            name: "بطاطا مقرمشة",
+            description: "شرائح بطاطا رفيعة وذهبية.",
+            img: "crispy-potato",
+          },
+        ],
+      },
+      {
+        id: "combos",
+        title: "وجبات",
+        emoji: "🎯",
+        kicker: "أقصى كلب، أقل قرارات.",
+        items: [
+          {
+            name: "وجبة هانسي",
+            description: "كلب مميز + بطاطا مدخّنة + مشروب.",
+            img: "combo",
+          },
+          {
+            name: "وجبة كورن دوغ",
+            description: "٢ كورن دوغ + بطاطا مدخّنة + مشروب.",
+            img: "corn-dog",
+          },
+          {
+            name: "هانسي الثنائي",
+            description: "٢ كلب مميز + بطاطا محمّلة + ٢ مشروب.",
+            img: "loaded-fries",
+          },
+          {
+            name: "وجبة الأطفال",
+            description: "كلب بقري صغير + بطاطا + مشروب.",
+            img: "combo",
+          },
+        ],
+      },
+      {
+        id: "drinks",
+        title: "مشروبات",
+        emoji: "🥤",
+        kicker: "باردة. منزلية.",
+        items: [
+          {
+            name: "شاي هانسي بالخوخ المثلج",
+            description: "شاي خوخ منزلي على الثلج.",
+            img: "drinks",
+          },
+          {
+            name: "ليمون نعناع هانسي",
+            description: "ليمون طازج ونعناع على الثلج.",
+            img: "drinks",
+          },
+        ],
+      },
+      {
+        id: "saucy",
+        title: "الصلصات",
+        emoji: "🌶️",
+        kicker: "صوص زيادة؟ دائماً.",
+        items: [
+          {
+            name: "صلصة هانسي الخاصة",
+            description: "مدخّنة، حامضة، حارة شوي. صلصتنا الخاصة.",
+            img: "sauce",
+          },
+        ],
+      },
+    ];
+  }
+  return menu;
+}
+
+export function getEvents(lang: Lang): HansiEvent[] {
+  if (lang === "ar") {
+    return [
+      {
+        name: "مهرجان البحرين للأكل",
+        dates: "١٢–١٥ مارس",
+        location: "خليج البحرين",
+        type: "مهرجان أكل",
+        description: "محطة هوت دوغ هانسي كاملة. اتبع الدخان، اتبع الصوت.",
+        status: "LIVE NOW",
+      },
+      {
+        name: "سوق بلوك ٣٣٨ الليلي",
+        dates: "كل جمعة",
+        location: "العدلية، بلوك ٣٣٨",
+        type: "بوب-آب شارعي",
+        description: "كلاب متأخرة، موسيقى صاخبة وطابور طويل. يستاهل.",
+        status: "UP NEXT",
+      },
+      {
+        name: "بوب-آب مجمع السيف",
+        dates: "٢٢–٢٤ أبريل",
+        location: "منطقة السيف",
+        type: "تفعيل في المول",
+        description: "التسوق يجوّع. حلّيناها.",
+        status: "UP NEXT",
+      },
+      {
+        name: "يوم شاطئ جزر أمواج",
+        dates: "٦ مايو",
+        location: "جزر أمواج",
+        type: "حفلة شاطئية",
+        description: "شمس، رمل وكلب البحرين الناشف. جيب مناديل.",
+        status: "COMING SOON",
+      },
+      {
+        name: "سوق المزارعين في البديع",
+        dates: "السبت، موسم الشتاء",
+        location: "البديع",
+        type: "سوق نهاية الأسبوع",
+        description: "خضار طازة بالجوار، وأطيب كورن دوغ في المنطقة هني.",
+        status: "COMING SOON",
+      },
+    ];
+  }
+  return events;
+}
+
+export function getTruckNow(lang: Lang) {
+  if (lang === "ar") {
+    return {
+      location: "خليج البحرين — مهرجان البحرين للأكل",
+      hours: "اليوم، ٥ مساءً – ١٢ صباحاً",
+      note: "ابحث عن لوحة هانسي المضيئة. ريحتنا توصل قبلنا.",
+      mapUrl: "https://maps.google.com/?q=Bahrain+Bay",
+    };
+  }
+  return truckNow;
+}
+
+export function getCateringTypes(lang: Lang): string[] {
+  if (lang === "ar") {
+    return [
+      "حفلات أعياد ميلاد",
+      "فعاليات شركات",
+      "غداء مكاتب",
+      "حفلات خاصة",
+      "أعراس",
+      "مهرجانات",
+      "تفعيل علامات تجارية",
+      "فعاليات مدارس وجامعات",
+      "بوب-آب",
+      "فعاليات مجتمعية",
+      "أي تجمع فيه ناس جعانين",
+    ];
+  }
+  return cateringTypes;
+}

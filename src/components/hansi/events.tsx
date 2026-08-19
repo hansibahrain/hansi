@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight, MapPin, CalendarDays } from "lucide-react";
-import { events, type HansiEvent } from "@/lib/hansi";
+import { getEvents, type HansiEvent } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { Sticker } from "./bits";
 
 const statusTone: Record<HansiEvent["status"], string> = {
@@ -9,15 +10,24 @@ const statusTone: Record<HansiEvent["status"], string> = {
   "COMING SOON": "bg-ink text-cream",
 };
 
+function statusLabel(status: HansiEvent["status"], lang: string): string {
+  if (lang === "ar") {
+    if (status === "LIVE NOW") return "حيّ الآن";
+    if (status === "UP NEXT") return "الجاية";
+    return "قريباً";
+  }
+  return status;
+}
 
 export function EventCard({ event }: { event: HansiEvent }) {
+  const { lang } = useTranslation();
   return (
     <article className="pop press flex h-full flex-col rounded-3xl bg-card p-6 text-card-foreground transition-transform hover:-rotate-1">
       <div className="flex items-center justify-between gap-3">
         <span
           className={`pop-sm rounded-full px-3 py-1 font-display text-[10px] uppercase tracking-widest ${statusTone[event.status]}`}
         >
-          {event.status}
+          {statusLabel(event.status, lang)}
         </span>
         <span className="font-hand text-xl text-secondary">{event.type}</span>
       </div>
@@ -35,7 +45,7 @@ export function EventCard({ event }: { event: HansiEvent }) {
 
       <p className="mt-4 text-sm text-muted-foreground">{event.description}</p>
       <p className="mt-auto pt-5 font-display text-xs uppercase tracking-wide text-secondary">
-        🌭 Full HANSI hotdog station
+        🌭 {lang === "ar" ? "محطة هوت دوغ هانسي كاملة" : "Full HANSI hotdog station"}
       </p>
 
     </article>
@@ -44,6 +54,8 @@ export function EventCard({ event }: { event: HansiEvent }) {
 
 export function EventCarousel() {
   const scroller = useRef<HTMLDivElement>(null);
+  const { t, lang } = useTranslation();
+  const events = getEvents(lang);
 
   const scrollBy = (dir: number) => {
     scroller.current?.scrollBy({ left: dir * 340, behavior: "smooth" });
@@ -53,12 +65,12 @@ export function EventCarousel() {
     <div>
       <div className="mb-4 flex items-center justify-between gap-4">
         <Sticker className="animate-wiggle bg-primary" rotate={-4}>
-          Honk honk. We&apos;re here. 🌭
+          {t("whereWeAre.sticker")}
         </Sticker>
         <div className="hidden gap-2 sm:flex">
           <button
             type="button"
-            aria-label="Previous events"
+            aria-label={lang === "ar" ? "الفعاليات السابقة" : "Previous events"}
             onClick={() => scrollBy(-1)}
             className="pop-sm press rounded-full bg-card p-2.5"
           >
@@ -66,7 +78,7 @@ export function EventCarousel() {
           </button>
           <button
             type="button"
-            aria-label="Next events"
+            aria-label={lang === "ar" ? "الفعاليات التالية" : "Next events"}
             onClick={() => scrollBy(1)}
             className="pop-sm press rounded-full bg-card p-2.5"
           >

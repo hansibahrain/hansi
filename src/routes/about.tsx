@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png.asset.json";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
 import crowd from "@/assets/crowd.jpg";
-import { cateringLink } from "@/lib/hansi";
+import { getCateringLink } from "@/lib/hansi";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import {
   AnchorButton,
   LinkButton,
@@ -30,35 +31,37 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const facts = [
-  { big: "7", small: "World-inspired dogs" },
-  { big: "100%", small: "Beef, always" },
-  { big: "0", small: "Boring bites" },
-  { big: "∞", small: "Sauce refills" },
-];
+function useFacts() {
+  const { t } = useTranslation();
+  return [
+    { big: t("about.fact1Big"), small: t("about.fact1Small") },
+    { big: t("about.fact2Big"), small: t("about.fact2Small") },
+    { big: t("about.fact3Big"), small: t("about.fact3Small") },
+    { big: t("about.fact4Big"), small: t("about.fact4Small") },
+  ];
+}
 
 function About() {
+  const { t, lang } = useTranslation();
+  const facts = useFacts();
+  const cateringLink = getCateringLink(lang);
+
   return (
     <>
       <section className="mx-auto max-w-7xl px-4 pt-12 pb-10">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <Sticker className="animate-wiggle bg-primary">Est. in Bahrain</Sticker>
+            <Sticker className="animate-wiggle bg-primary">{t("about.sticker")}</Sticker>
             <h1 className="mt-4 text-5xl leading-[0.85] uppercase sm:text-7xl">
-              Who let the dogs out?
+              {t("about.title")}
               <br />
-              <span className="text-secondary">We did.</span>
+              <span className="text-secondary">{t("about.titleAccent")}</span>
             </h1>
-            <p className="mt-6 max-w-lg text-xl">
-              We love hotdogs. We love feeding people. We love a good party.
-              <br />
-              So we put all three together.
+            <p className="mt-6 max-w-lg text-xl whitespace-pre-line">
+              {t("about.body1")}
             </p>
             <p className="mt-4 max-w-lg text-muted-foreground">
-              HANSI started with one simple idea: a hotdog should never be boring. So we
-              took the classics from New York, Chicago, Amsterdam, Mexico, Copenhagen and
-              Germany, added our own Bahrain Nashef Dog, and rolled the whole thing onto
-              a very loud truck.
+              {t("about.body2")}
             </p>
           </div>
           <img
@@ -69,7 +72,6 @@ function About() {
             loading="lazy"
             className="pop rounded-[3rem] bg-card object-contain p-6"
           />
-
         </div>
       </section>
 
@@ -112,16 +114,16 @@ function About() {
 
         <Reveal className="mt-14">
           <div className="pop rounded-[3rem] bg-ink px-6 py-14 text-center text-cream sm:px-12">
-            <p className="font-hand text-3xl text-primary">Come hungry. Leave happy.</p>
+            <p className="font-hand text-3xl text-primary">{t("about.closingKicker")}</p>
             <h2 className="mt-2 text-4xl leading-[0.9] uppercase text-primary sm:text-6xl">
-              Hotdogs with a little attitude.
+              {t("about.closingTitle")}
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <AnchorButton href={cateringLink} size="lg" tone="ketchup">
-                Get HANSI for your event
+                {t("about.ctaEvent")}
               </AnchorButton>
               <LinkButton to="/menu" size="lg">
-                See the menu
+                {t("about.ctaMenu")}
               </LinkButton>
             </div>
           </div>
