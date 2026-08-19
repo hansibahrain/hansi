@@ -62,13 +62,14 @@ function About() {
             </p>
           </div>
           <img
-            src={mascot.url}
-            alt="The HANSI mascot character"
+            src={logo.url}
+            alt="The full HANSI logo with the mascot holding a hotdog"
             width={900}
             height={900}
             loading="lazy"
-            className="pop animate-float rounded-[3rem] bg-card object-contain p-6"
+            className="pop rounded-[3rem] bg-card object-contain p-6"
           />
+
         </div>
       </section>
 
