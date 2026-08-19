@@ -1,23 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
-import night from "@/assets/hansi-night.png.asset.json";
-import { cateringLink, events } from "@/lib/hansi";
+import truckNight from "@/assets/hansi-truck-night.png.asset.json";
+import { cateringLink, events, truckNow } from "@/lib/hansi";
 import { EventCard } from "@/components/hansi/events";
-import { AnchorButton, Marquee, Reveal, Sticker } from "@/components/hansi/bits";
+import { AnchorButton, Reveal, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/where-we-are")({
   head: () => ({
     meta: [
-      { title: "Where's HANSI? — Upcoming Bahrain Events & Pop-Ups" },
+      { title: "Where's HANSI? — The Truck Right Now & Upcoming Bahrain Events" },
       {
         name: "description",
         content:
-          "Catch the HANSI hotdog truck around Bahrain — festivals, night markets, mall pop-ups and beach days. Check back for new locations.",
+          "See where the HANSI truck is parked right now, plus every upcoming HANSI hotdog station around Bahrain — festivals, night markets and pop-ups.",
       },
       { property: "og:title", content: "Where's HANSI? Catch us if you can." },
       {
         property: "og:description",
-        content: "The HANSI truck's upcoming Bahrain events, festivals and pop-ups.",
+        content: "The HANSI truck's live location and upcoming Bahrain hotdog stations.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: WhereWeAre,
@@ -32,23 +34,52 @@ function WhereWeAre() {
           Catch us <span className="text-secondary">if you can.</span>
         </h1>
         <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-          The truck never sits still. Here&apos;s every spot we&apos;re rolling into
-          around Bahrain — bookmark this page, we update it constantly.
+          One truck, plenty of hotdog stations. Bookmark this page — we update it
+          constantly.
         </p>
-        <img
-          src={night.url}
-          alt="The HANSI truck lit up at night with a crowd ordering hotdogs"
-          width={1400}
-          height={1000}
-          loading="lazy"
-          className="pop mt-8 h-72 w-full rounded-[3rem] object-cover sm:h-[26rem]"
-        />
       </section>
 
-      <Marquee words={["Currently getting grilled", "We're outside", "Follow the smoke"]} />
+      {/* TRUCK RIGHT NOW */}
+      <section className="mx-auto max-w-7xl px-4 pb-14">
+        <Reveal>
+          <div className="pop grid gap-0 overflow-hidden rounded-[3rem] bg-ink md:grid-cols-2">
+            <img
+              src={truckNight.url}
+              alt="The HANSI truck lit up at night with its glowing mascot sign"
+              width={1400}
+              height={1400}
+              loading="lazy"
+              className="h-72 w-full object-cover md:h-full"
+            />
+            <div className="p-8 text-cream sm:p-10">
+              <span className="pop-sm inline-block rounded-full bg-secondary px-4 py-1.5 font-display text-[11px] uppercase tracking-widest text-secondary-foreground">
+                🚚 The truck right now
+              </span>
+              <h2 className="mt-5 text-4xl leading-[0.9] uppercase text-primary sm:text-5xl">
+                {truckNow.location}
+              </h2>
+              <p className="mt-4 font-display text-sm uppercase tracking-wide text-cream">
+                {truckNow.hours}
+              </p>
+              <p className="mt-3 text-cream/80">{truckNow.note}</p>
+              <div className="mt-7">
+                <AnchorButton href={truckNow.mapUrl} size="lg">
+                  Open in Maps
+                </AnchorButton>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-4 pb-16">
+        <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
+          HANSI hotdog stations
+        </h2>
+        <p className="mt-3 max-w-xl text-muted-foreground">
+          Where we&apos;re setting up next around Bahrain.
+        </p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {events.map((event, i) => (
             <Reveal key={event.name} delay={i * 70}>
               <EventCard event={event} />
@@ -62,8 +93,8 @@ function WhereWeAre() {
               Want us at your spot?
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-lg">
-              Private party, festival stand, office lunch — if there are hungry people,
-              we&apos;ll park there.
+              Private party, festival, office lunch — if there are hungry people, we&apos;ll
+              set up a HANSI hotdog station.
             </p>
             <div className="mt-7">
               <AnchorButton href={cateringLink} size="lg">

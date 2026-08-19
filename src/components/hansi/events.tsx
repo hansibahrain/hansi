@@ -6,12 +6,13 @@ import { Sticker } from "./bits";
 const statusTone: Record<HansiEvent["status"], string> = {
   "LIVE NOW": "bg-secondary text-secondary-foreground",
   "UP NEXT": "bg-primary text-primary-foreground",
-  "COMING SOON": "bg-muted text-foreground",
+  "COMING SOON": "bg-ink text-cream",
 };
+
 
 export function EventCard({ event }: { event: HansiEvent }) {
   return (
-    <article className="pop press flex h-full flex-col rounded-3xl bg-card p-6 transition-transform hover:-rotate-1">
+    <article className="pop press flex h-full flex-col rounded-3xl bg-card p-6 text-card-foreground transition-transform hover:-rotate-1">
       <div className="flex items-center justify-between gap-3">
         <span
           className={`pop-sm rounded-full px-3 py-1 font-display text-[10px] uppercase tracking-widest ${statusTone[event.status]}`}
@@ -34,8 +35,9 @@ export function EventCard({ event }: { event: HansiEvent }) {
 
       <p className="mt-4 text-sm text-muted-foreground">{event.description}</p>
       <p className="mt-auto pt-5 font-display text-xs uppercase tracking-wide text-secondary">
-        🌭 Find us at the HANSI truck
+        🌭 Full HANSI hotdog station
       </p>
+
     </article>
   );
 }

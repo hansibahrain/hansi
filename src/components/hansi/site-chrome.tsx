@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png.asset.json";
-import { cateringLink, orderLink, socials } from "@/lib/hansi";
+import { cateringLink, KEETA_LINK, socials } from "@/lib/hansi";
 import { AnchorButton, Squiggle } from "./bits";
 
 const nav = [
@@ -100,7 +100,7 @@ export function MobileCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
       <a
-        href={orderLink}
+        href={KEETA_LINK}
         target="_blank"
         rel="noreferrer"
         className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
@@ -171,10 +171,10 @@ export function Footer() {
             Hungry?
           </h3>
           <p className="mt-3 text-sm text-cream/80">
-            Order straight to our WhatsApp. No apps, no fuss, just dogs.
+            Order HANSI on Keeta and we’ll get the dogs to you.
           </p>
-          <AnchorButton href={orderLink} className="mt-4">
-            Order on WhatsApp
+          <AnchorButton href={KEETA_LINK} className="mt-4">
+            Order from Keeta
           </AnchorButton>
         </div>
       </div>

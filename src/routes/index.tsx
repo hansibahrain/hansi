@@ -3,19 +3,21 @@ import heroDog from "@/assets/hero-dog.jpg";
 import crowd from "@/assets/crowd.jpg";
 import sides from "@/assets/sides.jpg";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
-import mascot from "@/assets/hansi-mascot.jpg.asset.json";
-import { menu, orderLink, cateringLink } from "@/lib/hansi";
+import { menu, KEETA_LINK, cateringLink } from "@/lib/hansi";
 import {
   AnchorButton,
   ArrowDown,
   LinkButton,
-  Marquee,
   Reveal,
   SectionTitle,
   Sticker,
   Squiggle,
 } from "@/components/hansi/bits";
+import { HansiSnake } from "@/components/hansi/snake";
+import { menuImages } from "@/components/hansi/menu-images";
+
 import { EventCarousel } from "@/components/hansi/events";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,14 +79,6 @@ function Home() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <img
-              src={mascot.url}
-              alt="HANSI mascot"
-              width={300}
-              height={300}
-              loading="lazy"
-              className="animate-float absolute -bottom-8 -left-6 w-28 mix-blend-multiply sm:w-40"
-            />
             <Sticker className="absolute -top-4 right-2 bg-secondary text-secondary-foreground" rotate={9}>
               Nice bun.
             </Sticker>
@@ -93,14 +87,11 @@ function Home() {
         <Squiggle className="text-primary" />
       </section>
 
-      <Marquee
-        words={[
-          "Hot dogs. Cool people.",
-          "No boring dogs here",
-          "Bun-believable",
-          "Come hungry, leave happy",
-        ]}
-      />
+      {/* PIXEL SNAKE */}
+      <section className="mx-auto max-w-5xl px-4 py-10">
+        <HansiSnake />
+      </section>
+
 
       {/* INTRO */}
       <section className="mx-auto max-w-7xl px-4 py-20">
@@ -111,10 +102,11 @@ function Home() {
               title="We make hotdogs. You make the memories."
             />
             <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              We roll the HANSI truck anywhere people get hungry — and then we make it
-              a party. Seven world-inspired beef dogs, smoky fries and homemade drinks,
-              grilled fresh in front of you.
+              We set up HANSI hotdog stations anywhere people get hungry — and then we
+              make it a party. Seven world-inspired beef dogs, smoky fries and homemade
+              drinks, grilled fresh in front of you.
             </p>
+
             <ul className="mt-6 flex flex-wrap gap-2">
               {[
                 "Events",
@@ -206,25 +198,38 @@ function Home() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {dogs.map((item, i) => (
             <Reveal key={item.name} delay={i * 80}>
-              <article className="pop press h-full rounded-3xl bg-card p-5 hover:rotate-1">
-                <span className="text-3xl">{item.flag}</span>
-                <h3 className="mt-2 text-xl leading-tight uppercase">{item.name}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-                {item.bun ? (
-                  <p className="mt-3 font-hand text-xl text-secondary">{item.bun}</p>
-                ) : null}
+              <article className="pop flex h-full flex-col overflow-hidden rounded-3xl bg-card">
+                <img
+                  src={menuImages[item.img]}
+                  alt={item.name}
+                  width={800}
+                  height={600}
+                  loading="lazy"
+                  className="h-36 w-full border-b-[3px] border-cocoa object-cover"
+                />
+                <div className="flex flex-1 flex-col p-5">
+                  <span className="text-2xl">{item.flag}</span>
+                  <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                  {item.bun ? (
+                    <p className="mt-auto pt-3 font-hand text-xl text-secondary">
+                      {item.bun}
+                    </p>
+                  ) : null}
+                </div>
               </article>
             </Reveal>
           ))}
         </div>
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <LinkButton to="/menu" size="lg" tone="ketchup">
-            I&apos;m hungry →
+          <LinkButton to="/menu" size="lg" tone="cream">
+            See the full menu
           </LinkButton>
-          <AnchorButton href={orderLink} size="lg">
-            Order on WhatsApp
+          <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
+            Order from Keeta
           </AnchorButton>
         </div>
+
       </section>
 
       {/* ABOUT TEASER */}

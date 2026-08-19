@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import mascot from "@/assets/hansi-mascot.jpg.asset.json";
+import logo from "@/assets/hansi-logo.png.asset.json";
 import truck from "@/assets/hansi-truck.jpg.asset.json";
 import crowd from "@/assets/crowd.jpg";
 import { cateringLink } from "@/lib/hansi";
@@ -62,13 +62,14 @@ function About() {
             </p>
           </div>
           <img
-            src={mascot.url}
-            alt="The HANSI mascot character"
+            src={logo.url}
+            alt="The full HANSI logo with the mascot holding a hotdog"
             width={900}
             height={900}
             loading="lazy"
-            className="pop animate-float rounded-[3rem] bg-card object-contain p-6"
+            className="pop rounded-[3rem] bg-card object-contain p-6"
           />
+
         </div>
       </section>
 
