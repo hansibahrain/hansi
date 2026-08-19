@@ -69,13 +69,9 @@ function btnClass({ tone = "mustard", size = "md", className }: BtnProps) {
   );
 }
 
-export function LinkButton({
-  to,
-  hash,
-  ...props
-}: BtnProps & { to: string; hash?: string }) {
+export function LinkButton({ to, ...props }: BtnProps & { to: string }) {
   return (
-    <Link to={to} hash={hash} className={btnClass(props)}>
+    <Link to={to} className={btnClass(props)}>
       {props.children}
     </Link>
   );
