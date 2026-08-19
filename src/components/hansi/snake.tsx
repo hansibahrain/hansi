@@ -1,6 +1,6 @@
 /**
- * Pixel monkey chasing a pixel hotdog freely around the page.
- * No box, no frame — a fixed, non-interactive overlay.
+ * Pixel monkey chasing a pixel hotdog inside a single homepage strip.
+ * Sits in the page flow, right under the hero and above the intro.
  */
 
 import { useEffect, useRef, useState } from "react";
