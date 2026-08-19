@@ -55,9 +55,9 @@ const TRUCK = [
   "..booookookcccccccckookb",
   "..booooooookkkkkkkkoookb",
   "..bbbbbbbbbbbbbbbbbbbbb.",
-  "...biiib...biiib..biiib.",
-  "...biiib...biiib..biiib.",
-  "....bbb.....bbb....bbb..",
+  "...bbbb....bbbb...bbbb..",
+  "...bbbb....bbbb...bbbb..",
+  "....bb......bb.....bb...",
 ];
 
 const HOTDOG = [
