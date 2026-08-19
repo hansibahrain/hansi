@@ -52,13 +52,13 @@ function Sprite({
   );
 }
 
-// Blocky illustAC-style monkey with arms up
+// Blocky illustAC-style monkey with arms up (eyes are drawn as an overlay)
 const MONKEY = [
   "....mmmmmmmm....",
   "....mmmmmmmm....",
   "..mmmffffffmm...",
   "mm.mmffffffmm.mm",
-  "mm.mmiffiffmm.mm",
+  "mm.mmffffffmm.mm",
   "mm.mmffffffmm.mm",
   "mmmmmffffffmmmmm",
   "mmmmmffffffmmmmm",
@@ -93,65 +93,98 @@ const HOTDOG = [
 
 type Pt = { x: number; y: number };
 
+const SCALE = 5;
+const MIN_GAP = 0.14; // monkey never closes this gap
+
 export function HansiSnake() {
   const [dog, setDog] = useState<Pt>({ x: 0.7, y: 0.35 });
-  const [monkey, setMonkey] = useState<Pt>({ x: 0.2, y: 0.6 });
-  const mRef = useRef<Pt>({ x: 0.2, y: 0.6 });
-  const dRef = useRef<Pt>({ x: 0.7, y: 0.35 });
+  const [monkey, setMonkey] = useState<Pt>({ x: 0.15, y: 0.6 });
+  const [look, setLook] = useState<Pt>({ x: 1, y: 0 });
   const [flip, setFlip] = useState(false);
 
-  // hotdog jumps to a new random spot inside the strip every few seconds
-  useEffect(() => {
-    const pick = () => {
-      const next = {
-        x: 0.08 + Math.random() * 0.78,
-        y: 0.15 + Math.random() * 0.55,
-      };
-      dRef.current = next;
-      setDog(next);
+  const dRef = useRef<Pt>({ x: 0.7, y: 0.35 });
+  const targetRef = useRef<Pt>({ x: 0.3, y: 0.25 });
+  const mRef = useRef<Pt>({ x: 0.15, y: 0.6 });
+
+  const pickTarget = () => {
+    targetRef.current = {
+      x: 0.06 + Math.random() * 0.8,
+      y: 0.08 + Math.random() * 0.6,
     };
-    const id = window.setInterval(pick, 2600);
+  };
+
+  useEffect(() => {
+    const id = window.setInterval(pickTarget, 2200);
     return () => window.clearInterval(id);
   }, []);
 
-  // monkey eases toward the hotdog
   useEffect(() => {
     let raf = 0;
     const step = () => {
-      const m = mRef.current;
+      // hotdog glides toward its waypoint
       const d = dRef.current;
-      const nx = m.x + (d.x - m.x) * 0.012;
-      const ny = m.y + (d.y - m.y) * 0.012;
-      if (Math.abs(d.x - m.x) > 0.01) setFlip(d.x < m.x);
-      mRef.current = { x: nx, y: ny };
-      setMonkey(mRef.current);
+      const t = targetRef.current;
+      const dx = t.x - d.x;
+      const dy = t.y - d.y;
+      if (Math.hypot(dx, dy) < 0.02) pickTarget();
+      const nd = { x: d.x + dx * 0.02, y: d.y + dy * 0.02 };
+      dRef.current = nd;
+      setDog(nd);
+
+      // monkey chases but always stays a step behind
+      const m = mRef.current;
+      const vx = nd.x - m.x;
+      const vy = nd.y - m.y;
+      const dist = Math.hypot(vx, vy) || 1;
+      const chase = dist > MIN_GAP ? 0.018 : 0;
+      const nm = { x: m.x + vx * chase, y: m.y + vy * chase };
+      mRef.current = nm;
+      setMonkey(nm);
+
+      if (Math.abs(vx) > 0.01) setFlip(vx < 0);
+      setLook({ x: vx / dist, y: vy / dist });
+
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  const pupil = (leftPx: number) => ({
+    position: "absolute" as const,
+    width: SCALE,
+    height: SCALE,
+    background: PX['i'],
+    left: leftPx + look.x * 3,
+    top: 4 * SCALE + 1 + look.y * 3,
+  });
+
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none relative z-10 -mt-6 h-28 overflow-hidden sm:h-36 md:h-40"
-    >
+    <div className="pointer-events-none relative z-10 -mt-6 h-28 overflow-hidden sm:h-36 md:h-40">
       <div
-        className="absolute animate-bob transition-all duration-[2400ms] ease-in-out"
+        className="pointer-events-auto absolute animate-bob cursor-pointer"
         style={{ left: `${dog.x * 100}%`, top: `${dog.y * 100}%` }}
+        onMouseEnter={pickTarget}
+        onTouchStart={pickTarget}
       >
-        <Sprite art={HOTDOG} scale={5} />
+        <Sprite art={HOTDOG} scale={SCALE} />
       </div>
 
       <div
-        className="absolute animate-wiggle"
-        style={{
-          left: `${monkey.x * 100}%`,
-          top: `${monkey.y * 100}%`,
-          transform: flip ? "scaleX(-1)" : undefined,
-        }}
+        aria-hidden="true"
+        className="absolute"
+        style={{ left: `${monkey.x * 100}%`, top: `${monkey.y * 100}%` }}
       >
-        <Sprite art={MONKEY} scale={5} />
+        <div className="relative animate-wiggle">
+          <div style={{ transform: flip ? "scaleX(-1)" : undefined }}>
+            <Sprite art={MONKEY} scale={SCALE} />
+          </div>
+          {/* eyes follow the hotdog */}
+          <div style={{ position: "absolute", left: 5 * SCALE, top: 4 * SCALE, width: 2 * SCALE, height: 2 * SCALE, background: PX['w'] }} />
+          <div style={{ position: "absolute", left: 9 * SCALE, top: 4 * SCALE, width: 2 * SCALE, height: 2 * SCALE, background: PX['w'] }} />
+          <div style={pupil(5 * SCALE + 1)} />
+          <div style={pupil(9 * SCALE + 1)} />
+        </div>
       </div>
     </div>
   );
