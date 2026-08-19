@@ -94,84 +94,64 @@ const HOTDOG = [
 type Pt = { x: number; y: number };
 
 const SCALE = 5;
-const MIN_GAP = 0.26; // monkey never closes this gap
-const FLEE_DIST = 0.34; // hotdog runs away if monkey gets this close
+const HOP = 0.055; // how far the monkey jumps each hop
+const CATCH_DIST = 0.16; // hotdog bolts when the monkey gets this close
+const MIN_JUMP = 0.45; // new hotdog spot must be at least this far away
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
+function farSpot(from: Pt): Pt {
+  for (let i = 0; i < 30; i++) {
+    const x = 0.04 + Math.random() * 0.84;
+    const y = 0.05 + Math.random() * 0.7;
+    if (Math.hypot(x - from.x, y - from.y) >= MIN_JUMP) return { x, y };
+  }
+  return { x: clamp(1 - from.x, 0.04, 0.88), y: clamp(0.75 - from.y, 0.05, 0.75) };
+}
+
 export function HansiSnake() {
-  const [dog, setDog] = useState<Pt>({ x: 0.75, y: 0.35 });
-  const [monkey, setMonkey] = useState<Pt>({ x: 0.12, y: 0.6 });
+  const [dog, setDog] = useState<Pt>({ x: 0.78, y: 0.2 });
+  const [monkey, setMonkey] = useState<Pt>({ x: 0.08, y: 0.6 });
   const [look, setLook] = useState<Pt>({ x: 1, y: 0 });
   const [flip, setFlip] = useState(false);
 
-  const dRef = useRef<Pt>({ x: 0.75, y: 0.35 });
-  const targetRef = useRef<Pt>({ x: 0.3, y: 0.25 });
-  const mRef = useRef<Pt>({ x: 0.12, y: 0.6 });
+  const dRef = useRef<Pt>({ x: 0.78, y: 0.2 });
+  const mRef = useRef<Pt>({ x: 0.08, y: 0.6 });
 
-  // Pick a random target, optionally biased away from a point (the monkey)
-  const pickTarget = (awayFrom?: Pt) => {
-    let x = 0.06 + Math.random() * 0.82;
-    let y = 0.08 + Math.random() * 0.68;
-
-    if (awayFrom) {
-      const dx = x - awayFrom.x;
-      const dy = y - awayFrom.y;
-      const dist = Math.hypot(dx, dy) || 1;
-      // push the target further away from the monkey
-      x = clamp(awayFrom.x + (dx / dist) * (0.45 + Math.random() * 0.25), 0.06, 0.88);
-      y = clamp(awayFrom.y + (dy / dist) * (0.35 + Math.random() * 0.25), 0.08, 0.76);
-    }
-
-    targetRef.current = { x, y };
+  const flee = () => {
+    const next = farSpot(dRef.current);
+    dRef.current = next;
+    setDog(next);
   };
 
   useEffect(() => {
-    const id = window.setInterval(() => pickTarget(), 2200);
-    return () => window.clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    let raf = 0;
-    const step = () => {
+    // monkey hops toward the hotdog on a steady beat
+    const id = window.setInterval(() => {
       const d = dRef.current;
-      const t = targetRef.current;
       const m = mRef.current;
+      const vx = d.x - m.x;
+      const vy = d.y - m.y;
+      const dist = Math.hypot(vx, vy) || 1;
 
-      // hotdog runs away if the monkey gets too close
-      const runDx = d.x - m.x;
-      const runDy = d.y - m.y;
-      const runDist = Math.hypot(runDx, runDy) || 1;
-      if (runDist < FLEE_DIST) {
-        pickTarget(m);
+      setLook({ x: vx / dist, y: vy / dist });
+      if (Math.abs(vx) > 0.01) setFlip(vx < 0);
+
+      if (dist < CATCH_DIST) {
+        flee();
+        return;
       }
 
-      // hotdog glides quickly toward its waypoint
-      const dx = t.x - d.x;
-      const dy = t.y - d.y;
-      if (Math.hypot(dx, dy) < 0.025) pickTarget();
-      const nd = { x: d.x + dx * 0.055, y: d.y + dy * 0.055 };
-      dRef.current = nd;
-      setDog(nd);
-
-      // monkey chases but can never close the gap
-      const vx = nd.x - m.x;
-      const vy = nd.y - m.y;
-      const dist = Math.hypot(vx, vy) || 1;
-      const chase = dist > MIN_GAP ? 0.011 : 0;
-      const nm = { x: m.x + vx * chase, y: m.y + vy * chase };
+      const stepLen = Math.min(HOP, dist - CATCH_DIST * 0.9);
+      const nm = {
+        x: clamp(m.x + (vx / dist) * stepLen, 0.02, 0.9),
+        y: clamp(m.y + (vy / dist) * stepLen, 0.02, 0.75),
+      };
       mRef.current = nm;
       setMonkey(nm);
-
-      if (Math.abs(vx) > 0.01) setFlip(vx < 0);
-      setLook({ x: vx / dist, y: vy / dist });
-
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    }, 380);
+    return () => window.clearInterval(id);
   }, []);
 
   const pupil = (leftPx: number) => ({
@@ -187,9 +167,13 @@ export function HansiSnake() {
     <div className="pointer-events-none relative z-10 -mt-6 h-28 overflow-hidden sm:h-36 md:h-40">
       <div
         className="pointer-events-auto absolute animate-bob cursor-pointer"
-        style={{ left: `${dog.x * 100}%`, top: `${dog.y * 100}%` }}
-        onMouseEnter={() => pickTarget(mRef.current)}
-        onTouchStart={() => pickTarget(mRef.current)}
+        style={{
+          left: `${dog.x * 100}%`,
+          top: `${dog.y * 100}%`,
+          transition: "left 260ms ease-out, top 260ms ease-out",
+        }}
+        onMouseEnter={flee}
+        onTouchStart={flee}
       >
         <Sprite art={HOTDOG} scale={SCALE} />
       </div>
@@ -197,7 +181,11 @@ export function HansiSnake() {
       <div
         aria-hidden="true"
         className="absolute"
-        style={{ left: `${monkey.x * 100}%`, top: `${monkey.y * 100}%` }}
+        style={{
+          left: `${monkey.x * 100}%`,
+          top: `${monkey.y * 100}%`,
+          transition: "left 300ms ease-in-out, top 300ms ease-in-out",
+        }}
       >
         <div className="relative animate-wiggle">
           <div style={{ transform: flip ? "scaleX(-1)" : undefined }}>
@@ -213,3 +201,4 @@ export function HansiSnake() {
     </div>
   );
 }
+
