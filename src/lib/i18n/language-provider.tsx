@@ -9,6 +9,10 @@ import type { Lang } from "./translations";
 
 const STORAGE_KEY = "hansi-lang";
 
+// Arabic is switched off for now: the site stays in English and the toggle is
+// hidden. Flip this back to true to bring it back.
+export const ARABIC_ENABLED = false;
+
 type LanguageContextType = {
   lang: Lang;
   setLang: (lang: Lang) => void;
@@ -22,7 +26,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (saved === "en" || saved === "ar") {
+    if (saved === "en" || (ARABIC_ENABLED && saved === "ar")) {
       setLangState(saved);
     }
   }, []);

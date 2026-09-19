@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png";
 import { cateringLink, KEETA_LINK, getSocials } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
-import { useLanguage } from "@/lib/i18n/language-provider";
+import { ARABIC_ENABLED, useLanguage } from "@/lib/i18n/language-provider";
 import { AnchorButton, Squiggle } from "./bits";
 
 function useNav() {
@@ -73,7 +73,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <LanguageToggle />
+          {ARABIC_ENABLED && <LanguageToggle />}
           <AnchorButton
             href={cateringLink}
             tone="ketchup"
