@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/hansi-logo.png.asset.json";
+import logo from "@/assets/hansi-logo.png";
 import { getCateringLink, getOrderLink, getSocials, whatsappLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { AnchorButton, Marquee, Reveal, Sticker } from "@/components/hansi/bits";
@@ -83,7 +83,7 @@ function Contact() {
             </div>
           </div>
           <img
-            src={logo.url}
+            src={logo}
             alt="HANSI logo"
             width={1024}
             height={866}

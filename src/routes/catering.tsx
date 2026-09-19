@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import crowd from "@/assets/crowd.jpg";
-import truck from "@/assets/hansi-truck.jpg.asset.json";
+import truck from "@/assets/hansi-truck.jpg";
 import { getCateringTypes, getMenu, getCateringLink, whatsappLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { Marquee, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
@@ -136,7 +136,7 @@ function Catering() {
             </p>
           </div>
           <img
-            src={truck.url}
+            src={truck}
             alt="The HANSI monster food truck ready for catering"
             width={1000}
             height={1000}

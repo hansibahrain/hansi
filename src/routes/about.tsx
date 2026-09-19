@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/hansi-logo.png.asset.json";
-import truck from "@/assets/hansi-truck.jpg.asset.json";
+import logo from "@/assets/hansi-logo.png";
+import truck from "@/assets/hansi-truck.jpg";
 import crowd from "@/assets/crowd.jpg";
 import { getCateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
@@ -65,7 +65,7 @@ function About() {
             </p>
           </div>
           <img
-            src={logo.url}
+            src={logo}
             alt="The full HANSI logo with the mascot holding a hotdog"
             width={900}
             height={900}
@@ -94,7 +94,7 @@ function About() {
         <Reveal className="mt-14">
           <div className="grid gap-5 md:grid-cols-2">
             <img
-              src={truck.url}
+              src={truck}
               alt="The HANSI food truck"
               width={1000}
               height={1000}

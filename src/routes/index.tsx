@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import heroDog from "@/assets/hero-dog.jpg";
 import crowd from "@/assets/crowd.jpg";
 import sides from "@/assets/sides.jpg";
-import truck from "@/assets/hansi-truck.jpg.asset.json";
+import truck from "@/assets/hansi-truck.jpg";
 import { getMenu, KEETA_LINK, cateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import {
@@ -134,7 +134,7 @@ function Home() {
               className="pop col-span-2 h-64 w-full rounded-3xl object-cover"
             />
             <img
-              src={truck.url}
+              src={truck}
               alt="The HANSI monster food truck"
               width={800}
               height={800}

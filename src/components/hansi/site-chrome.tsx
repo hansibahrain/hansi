@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/hansi-logo.png.asset.json";
+import logo from "@/assets/hansi-logo.png";
 import { cateringLink, KEETA_LINK, getSocials } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { useLanguage } from "@/lib/i18n/language-provider";
@@ -50,7 +50,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
         <Link to="/" className="shrink-0" onClick={() => setOpen(false)}>
           <img
-            src={logo.url}
+            src={logo}
             alt="HANSI hot dogs logo"
             width={140}
             height={118}
@@ -146,7 +146,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <img
-            src={logo.url}
+            src={logo}
             alt="HANSI logo"
             width={180}
             height={152}

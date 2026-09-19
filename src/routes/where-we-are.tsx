@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import truckNight from "@/assets/hansi-truck-night.png.asset.json";
+import truckNight from "@/assets/hansi-truck-night.png";
 import { getCateringLink, getEvents, getTruckNow } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { EventCard } from "@/components/hansi/events";
@@ -49,7 +49,7 @@ function WhereWeAre() {
         <Reveal>
           <div className="pop grid gap-0 overflow-hidden rounded-[3rem] bg-ink md:grid-cols-2">
             <img
-              src={truckNight.url}
+              src={truckNight}
               alt="The HANSI truck lit up at night with its glowing mascot sign"
               width={1400}
               height={1400}
