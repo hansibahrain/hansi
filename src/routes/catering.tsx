@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import crowd from "@/assets/crowd.jpg";
-import heroDog from "@/assets/hero-dog.jpg";
+import cartCrowd from "@/assets/events/cart-crowd.jpg";
+import cartFestival from "@/assets/events/cart-festival.jpg";
+import grillExtraction from "@/assets/events/grill-extraction.jpg";
+import teamGrilling from "@/assets/events/team-grilling.jpg";
 import { getCateringTypes, getMenu, getCateringLink, whatsappLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { Marquee, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
@@ -128,10 +130,10 @@ function Catering() {
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t("catering.body")}</p>
           </div>
           <img
-            src={heroDog}
-            alt="A HANSI beef hotdog, grilled fresh for catering"
-            width={1280}
-            height={1280}
+            src={cartFestival}
+            alt="The HANSI cart serving guests at a festival in Bahrain"
+            width={1222}
+            height={1600}
             loading="lazy"
             className="pop rounded-[3rem] bg-primary object-cover"
           />
@@ -168,14 +170,83 @@ function Catering() {
         </div>
         <p className="mt-6 text-sm text-muted-foreground">{t("catering.note")}</p>
 
-        <Reveal className="mt-14">
+        <Reveal className="mt-16">
+          <div className="pop rounded-[2.5rem] bg-foreground p-6 text-background sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+              <div>
+                <p className="font-hand text-2xl text-primary">{t("catering.smokeKicker")}</p>
+                <h2 className="mt-1 text-4xl leading-[0.95] uppercase sm:text-5xl">
+                  {t("catering.smokeTitle")}
+                </h2>
+                <p className="mt-4 text-sm opacity-80 sm:text-base">{t("catering.smokeBody")}</p>
+                <p className="pop-sm mt-5 inline-block rounded-full bg-secondary px-4 py-2 font-display text-xs uppercase tracking-wide text-secondary-foreground">
+                  {t("catering.smokeBadge")}
+                </p>
+              </div>
+              <img
+                src={grillExtraction}
+                alt="A HANSI cook grilling on the cart's smoke-extraction grill"
+                width={1287}
+                height={649}
+                loading="lazy"
+                className="pop w-full rounded-[2rem] object-cover"
+              />
+            </div>
+
+            <ol className="mt-8 grid gap-4 md:grid-cols-3">
+              {([1, 2, 3] as const).map((n) => (
+                <li key={n} className="rounded-3xl bg-background/10 p-5">
+                  <span className="pop-sm inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary font-display text-sm text-primary-foreground">
+                    {n}
+                  </span>
+                  <h3 className="mt-3 text-xl uppercase leading-tight">
+                    {t(`catering.smoke${n}Title`)}
+                  </h3>
+                  <p className="mt-2 text-sm opacity-80">{t(`catering.smoke${n}Body`)}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 font-hand text-2xl text-primary">{t("catering.smokeResult")}</p>
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-16">
+          <SectionTitle kicker={t("catering.venueKicker")} title={t("catering.venueTitle")} />
+          <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <img
+              src={teamGrilling}
+              alt="A HANSI cook grilling in front of guests at an event"
+              width={785}
+              height={459}
+              loading="lazy"
+              className="pop w-full rounded-[2.5rem] object-cover"
+            />
+            <div>
+              <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                {([1, 2, 3] as const).map((n) => (
+                  <li key={n} className="pop-sm rounded-3xl bg-card p-5">
+                    <h3 className="text-xl uppercase leading-tight">
+                      {t(`catering.venue${n}Title`)}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {t(`catering.venue${n}Body`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm text-muted-foreground">{t("catering.venueLive")}</p>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-16">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
             <div>
               <img
-                src={crowd}
-                alt="Guests enjoying HANSI hotdogs at an event"
-                width={1280}
-                height={864}
+                src={cartCrowd}
+                alt="Guests queuing at the HANSI cart during a Bahrain festival"
+                width={1203}
+                height={617}
                 loading="lazy"
                 className="pop h-72 w-full rounded-[2.5rem] object-cover"
               />
