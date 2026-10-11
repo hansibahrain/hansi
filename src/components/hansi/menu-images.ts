@@ -1,5 +1,4 @@
-import nyDog from "@/assets/menu/ny-dog.jpg";
-import chicagoDog from "@/assets/menu/chicago-dog.jpg";
+import americanDog from "@/assets/menu/american-dog.jpg";
 import amsterdamDog from "@/assets/menu/amsterdam-dog.jpg";
 import mexicanDog from "@/assets/menu/mexican-dog.jpg";
 import danishDog from "@/assets/menu/danish-dog.jpg";
@@ -15,8 +14,7 @@ import drinks from "@/assets/menu/drinks.jpg";
 import sauce from "@/assets/menu/sauce.jpg";
 
 export const menuImages: Record<string, string> = {
-  "ny-dog": nyDog,
-  "chicago-dog": chicagoDog,
+  "american-dog": americanDog,
   "amsterdam-dog": amsterdamDog,
   "mexican-dog": mexicanDog,
   "danish-dog": danishDog,

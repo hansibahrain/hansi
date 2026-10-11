@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sides from "@/assets/sides.jpg";
 import heroDog from "@/assets/hero-dog.jpg";
-import { KEETA_LINK, getMenu } from "@/lib/hansi";
+import { TALABAT_LINK, getMenu } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { menuImages } from "@/components/hansi/menu-images";
 import { AnchorButton, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/menu")({
       {
         name: "description",
         content:
-          "Seven world-inspired 100% beef dogs, crispy corn dogs, Hansi Smoke Fries, homemade drinks and combos. Order from Keeta.",
+          "Six world-inspired 100% beef dogs, Korean-style corn dogs, Hansi Smoke Fries, homemade drinks and combos. Order on Talabat.",
       },
       { property: "og:title", content: "The HANSI Menu — Good dogs only" },
       {
@@ -40,13 +40,12 @@ function MenuPage() {
               {t("menu.sticker")}
             </Sticker>
             <h1 className="mt-4 text-6xl leading-[0.85] uppercase sm:text-8xl">
-              {t("menu.titlePrefix")} <span className="text-secondary">{t("menu.titleAccent")}</span>
+              {t("menu.titlePrefix")}{" "}
+              <span className="text-secondary">{t("menu.titleAccent")}</span>
             </h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              {t("menu.body")}
-            </p>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t("menu.body")}</p>
             <div className="mt-7">
-              <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
+              <AnchorButton href={TALABAT_LINK} size="lg" tone="ketchup">
                 {t("menu.cta")}
               </AnchorButton>
             </div>
@@ -93,13 +92,9 @@ function MenuPage() {
                     <div className="flex flex-1 flex-col p-5">
                       {item.flag ? <span className="text-2xl">{item.flag}</span> : null}
                       <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
+                      <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                       {item.bun ? (
-                        <p className="mt-auto pt-3 font-hand text-xl text-secondary">
-                          {item.bun}
-                        </p>
+                        <p className="mt-auto pt-3 font-hand text-xl text-secondary">{item.bun}</p>
                       ) : null}
                     </div>
                   </article>
@@ -111,12 +106,12 @@ function MenuPage() {
 
         <Reveal>
           <div className="pop rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
-            <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">{t("menu.bottomTitle")}</h2>
-            <p className="mx-auto mt-3 max-w-md text-lg">
-              {t("menu.bottomBody")}
-            </p>
+            <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
+              {t("menu.bottomTitle")}
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-lg">{t("menu.bottomBody")}</p>
             <div className="mt-7">
-              <AnchorButton href={KEETA_LINK} size="lg">
+              <AnchorButton href={TALABAT_LINK} size="lg">
                 {t("menu.bottomCta")}
               </AnchorButton>
             </div>

@@ -77,10 +77,7 @@ export function LinkButton({ to, ...props }: BtnProps & { to: string }) {
   );
 }
 
-export function AnchorButton({
-  href,
-  ...props
-}: BtnProps & { href: string }) {
+export function AnchorButton({ href, ...props }: BtnProps & { href: string }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className={btnClass(props)}>
       {props.children}
@@ -162,23 +159,15 @@ export function SectionTitle({
 }) {
   return (
     <div className={cn("max-w-2xl", className)}>
-      {kicker ? (
-        <p className="font-hand text-2xl text-secondary">{kicker}</p>
-      ) : null}
-      <h2 className="mt-1 text-4xl leading-[0.95] uppercase sm:text-5xl md:text-6xl">
-        {title}
-      </h2>
+      {kicker ? <p className="font-hand text-2xl text-secondary">{kicker}</p> : null}
+      <h2 className="mt-1 text-4xl leading-[0.95] uppercase sm:text-5xl md:text-6xl">{title}</h2>
     </div>
   );
 }
 
 export function ArrowDown({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 24 48"
-      aria-hidden="true"
-      className={cn("animate-bob h-12 w-6", className)}
-    >
+    <svg viewBox="0 0 24 48" aria-hidden="true" className={cn("animate-bob h-12 w-6", className)}>
       <path
         d="M12 2 V38 M4 30 L12 40 L20 30"
         fill="none"

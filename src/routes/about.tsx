@@ -1,16 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png";
-import truck from "@/assets/hansi-truck.jpg";
+import sides from "@/assets/sides.jpg";
 import crowd from "@/assets/crowd.jpg";
 import { getCateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
-import {
-  AnchorButton,
-  LinkButton,
-  Marquee,
-  Reveal,
-  Sticker,
-} from "@/components/hansi/bits";
+import { AnchorButton, LinkButton, Marquee, Reveal, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -24,7 +18,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About HANSI — Who let the dogs out? We did." },
       {
         property: "og:description",
-        content: "The story behind Bahrain's cheekiest hotdog truck.",
+        content: "The story behind Bahrain's cheekiest hotdog brand.",
       },
     ],
   }),
@@ -57,12 +51,8 @@ function About() {
               <br />
               <span className="text-secondary">{t("about.titleAccent")}</span>
             </h1>
-            <p className="mt-6 max-w-lg text-xl whitespace-pre-line">
-              {t("about.body1")}
-            </p>
-            <p className="mt-4 max-w-lg text-muted-foreground">
-              {t("about.body2")}
-            </p>
+            <p className="mt-6 max-w-lg text-xl whitespace-pre-line">{t("about.body1")}</p>
+            <p className="mt-4 max-w-lg text-muted-foreground">{t("about.body2")}</p>
           </div>
           <img
             src={logo}
@@ -83,9 +73,7 @@ function About() {
             <Reveal key={f.small} delay={i * 70}>
               <div className="pop press rounded-3xl bg-primary p-6 text-center hover:rotate-2">
                 <p className="font-display text-5xl">{f.big}</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wide">
-                  {f.small}
-                </p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wide">{f.small}</p>
               </div>
             </Reveal>
           ))}
@@ -94,12 +82,12 @@ function About() {
         <Reveal className="mt-14">
           <div className="grid gap-5 md:grid-cols-2">
             <img
-              src={truck}
-              alt="The HANSI food truck"
-              width={1000}
-              height={1000}
+              src={sides}
+              alt="HANSI corn dogs and loaded fries"
+              width={1280}
+              height={864}
               loading="lazy"
-              className="pop h-80 w-full rounded-[2.5rem] bg-primary object-contain p-4"
+              className="pop h-80 w-full rounded-[2.5rem] object-cover"
             />
             <img
               src={crowd}

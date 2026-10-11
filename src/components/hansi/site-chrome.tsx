@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png";
-import { cateringLink, KEETA_LINK, getSocials } from "@/lib/hansi";
+import { cateringLink, TALABAT_LINK, getSocials } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { ARABIC_ENABLED, useLanguage } from "@/lib/i18n/language-provider";
 import { AnchorButton, Squiggle } from "./bits";
@@ -74,11 +74,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           {ARABIC_ENABLED && <LanguageToggle />}
-          <AnchorButton
-            href={cateringLink}
-            tone="ketchup"
-            className="hidden md:inline-flex"
-          >
+          <AnchorButton href={cateringLink} tone="ketchup" className="hidden md:inline-flex">
             {t("header.cta")}
           </AnchorButton>
           <button
@@ -123,7 +119,7 @@ export function MobileCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
       <a
-        href={KEETA_LINK}
+        href={TALABAT_LINK}
         target="_blank"
         rel="noreferrer"
         className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
@@ -153,9 +149,7 @@ export function Footer() {
             loading="lazy"
             className="animate-wiggle h-20 w-auto"
           />
-          <p className="mt-4 font-hand text-2xl text-primary">
-            {t("footer.tagline")}
-          </p>
+          <p className="mt-4 font-hand text-2xl text-primary">{t("footer.tagline")}</p>
         </div>
 
         <div>
@@ -200,11 +194,11 @@ export function Footer() {
           </h3>
           <p className="mt-3 text-sm text-cream/80">
             {lang === "ar"
-              ? "اطلب هانسي على كيتا ونوصل لك الدوغ."
-              : "Order HANSI on Keeta and we’ll get the dogs to you."}
+              ? "اطلب هانزي على طلبات ونوصل لك الدوغ."
+              : "Order HANSI on Talabat and we’ll get the dogs to you."}
           </p>
-          <AnchorButton href={KEETA_LINK} className="mt-4">
-            {t("footer.orderKeeta")}
+          <AnchorButton href={TALABAT_LINK} className="mt-4">
+            {t("footer.orderTalabat")}
           </AnchorButton>
         </div>
       </div>

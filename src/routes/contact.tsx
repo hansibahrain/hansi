@@ -65,11 +65,10 @@ function Contact() {
               {t("contact.sticker")}
             </Sticker>
             <h1 className="mt-4 text-6xl leading-[0.85] uppercase sm:text-8xl">
-              {t("contact.title")} <span className="text-secondary">{t("contact.titleAccent")}</span>
+              {t("contact.title")}{" "}
+              <span className="text-secondary">{t("contact.titleAccent")}</span>
             </h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              {t("contact.body")}
-            </p>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t("contact.body")}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <AnchorButton href={orderLink} size="lg" tone="ketchup">
                 {t("contact.ctaWhatsApp")}
@@ -120,9 +119,7 @@ function Contact() {
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
               {t("contact.socialTitle")}
             </h2>
-            <p className="mx-auto mt-3 max-w-md">
-              {t("contact.socialBody")}
-            </p>
+            <p className="mx-auto mt-3 max-w-md">{t("contact.socialBody")}</p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               {socials.map((s) => (
                 <AnchorButton key={s.label} href={s.href} tone="cream">

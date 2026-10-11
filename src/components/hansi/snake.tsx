@@ -172,7 +172,7 @@ export function HansiSnake() {
     position: "absolute" as const,
     width: scale,
     height: scale,
-    background: PX['i'],
+    background: PX["i"],
     left: leftPx + look.x * 3,
     top: 4 * scale + 1 + look.y * 3,
   });
@@ -206,8 +206,26 @@ export function HansiSnake() {
             <Sprite art={MONKEY} scale={scale} />
           </div>
           {/* eyes follow the hotdog */}
-          <div style={{ position: "absolute", left: 5 * scale, top: 4 * scale, width: 2 * scale, height: 2 * scale, background: PX['w'] }} />
-          <div style={{ position: "absolute", left: 9 * scale, top: 4 * scale, width: 2 * scale, height: 2 * scale, background: PX['w'] }} />
+          <div
+            style={{
+              position: "absolute",
+              left: 5 * scale,
+              top: 4 * scale,
+              width: 2 * scale,
+              height: 2 * scale,
+              background: PX["w"],
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: 9 * scale,
+              top: 4 * scale,
+              width: 2 * scale,
+              height: 2 * scale,
+              background: PX["w"],
+            }}
+          />
           <div style={pupil(5 * scale + 1)} />
           <div style={pupil(9 * scale + 1)} />
         </div>

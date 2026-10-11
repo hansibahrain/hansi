@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import heroDog from "@/assets/hero-dog.jpg";
 import crowd from "@/assets/crowd.jpg";
 import sides from "@/assets/sides.jpg";
-import truck from "@/assets/hansi-truck.jpg";
-import { getMenu, KEETA_LINK, cateringLink } from "@/lib/hansi";
+import americanDog from "@/assets/menu/american-dog.jpg";
+import { getMenu, TALABAT_LINK, cateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import {
   AnchorButton,
@@ -17,7 +17,8 @@ import {
 import { HansiSnake } from "@/components/hansi/snake";
 import { menuImages } from "@/components/hansi/menu-images";
 
-import { EventCarousel } from "@/components/hansi/events";
+import { EventCarousel, NotAnnounced } from "@/components/hansi/events";
+import { events } from "@/lib/hansi";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,13 +27,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Good dogs. Nice buns. Big vibes. HANSI is Bahrain's world-inspired beef hotdog brand — catch us at events, festivals and pop-ups, or book us for yours.",
+          "Good dogs. Nice buns. Big vibes. HANSI is Bahrain's world-inspired beef hotdog brand — order online on Talabat, or book us to cater your event.",
       },
       { property: "og:title", content: "HANSI — Bite Me! Hotdogs with a little attitude" },
       {
         property: "og:description",
         content:
-          "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired beef dogs, catering and pop-ups.",
+          "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired beef dogs — online orders and event catering.",
       },
     ],
   }),
@@ -54,9 +55,7 @@ function Home() {
             <h1 className="animate-wiggle mt-5 text-[19vw] leading-[0.8] text-secondary uppercase sm:text-8xl lg:text-9xl">
               {t("home.title")}
             </h1>
-            <p className="mt-5 max-w-md text-xl font-medium sm:text-2xl">
-              {t("home.subtitle")}
-            </p>
+            <p className="mt-5 max-w-md text-xl font-medium sm:text-2xl">{t("home.subtitle")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <AnchorButton href={cateringLink} tone="ketchup" size="lg">
                 {t("home.ctaEvent")}
@@ -81,7 +80,10 @@ function Home() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <Sticker className="absolute -top-4 right-2 bg-secondary text-secondary-foreground" rotate={9}>
+            <Sticker
+              className="absolute -top-4 right-2 bg-secondary text-secondary-foreground"
+              rotate={9}
+            >
               {lang === "ar" ? "خبز حلو." : "Nice bun."}
             </Sticker>
           </div>
@@ -96,13 +98,8 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20">
         <Reveal className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <SectionTitle
-              kicker={t("home.introKicker")}
-              title={t("home.introTitle")}
-            />
-            <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              {t("home.introBody")}
-            </p>
+            <SectionTitle kicker={t("home.introKicker")} title={t("home.introTitle")} />
+            <p className="mt-6 max-w-lg text-lg text-muted-foreground">{t("home.introBody")}</p>
 
             <ul className="mt-6 flex flex-wrap gap-2">
               {t("home.tags")
@@ -134,12 +131,12 @@ function Home() {
               className="pop col-span-2 h-64 w-full rounded-3xl object-cover"
             />
             <img
-              src={truck}
-              alt="The HANSI monster food truck"
+              src={americanDog}
+              alt="The HANSI American Dog"
               width={800}
               height={800}
               loading="lazy"
-              className="pop h-44 w-full rounded-3xl bg-card object-contain p-2"
+              className="pop h-44 w-full rounded-3xl object-cover"
             />
             <img
               src={sides}
@@ -163,28 +160,21 @@ function Home() {
                 <h2 className="mt-1 text-5xl leading-[0.9] uppercase text-primary sm:text-7xl">
                   {t("home.whereTitle")}
                 </h2>
-                <p className="mt-4 max-w-lg text-cream/80">
-                  {t("home.whereBody")}
-                </p>
+                <p className="mt-4 max-w-lg text-cream/80">{t("home.whereBody")}</p>
               </div>
               <LinkButton to="/where-we-are" size="lg">
                 {t("home.whereCta")}
               </LinkButton>
             </div>
           </Reveal>
-          <div className="mt-10">
-            <EventCarousel />
-          </div>
+          <div className="mt-10">{events.length > 0 ? <EventCarousel /> : <NotAnnounced />}</div>
         </div>
       </section>
 
       {/* MENU TEASER */}
       <section className="mx-auto max-w-7xl px-4 py-20">
         <Reveal>
-          <SectionTitle
-            kicker={t("home.menuKicker")}
-            title={t("home.menuTitle")}
-          />
+          <SectionTitle kicker={t("home.menuKicker")} title={t("home.menuTitle")} />
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {dogs.map((item, i) => (
@@ -203,9 +193,7 @@ function Home() {
                   <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                   {item.bun ? (
-                    <p className="mt-auto pt-3 font-hand text-xl text-secondary">
-                      {item.bun}
-                    </p>
+                    <p className="mt-auto pt-3 font-hand text-xl text-secondary">{item.bun}</p>
                   ) : null}
                 </div>
               </article>
@@ -216,11 +204,10 @@ function Home() {
           <LinkButton to="/menu" size="lg" tone="cream">
             {t("home.menuCta")}
           </LinkButton>
-          <AnchorButton href={KEETA_LINK} size="lg" tone="ketchup">
+          <AnchorButton href={TALABAT_LINK} size="lg" tone="ketchup">
             {t("home.menuOrder")}
           </AnchorButton>
         </div>
-
       </section>
 
       {/* ABOUT TEASER */}
@@ -232,9 +219,7 @@ function Home() {
               <br />
               <span className="text-secondary">{t("home.aboutTitleAccent")}</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-lg">
-              {t("home.aboutBody")}
-            </p>
+            <p className="mx-auto mt-5 max-w-xl text-lg">{t("home.aboutBody")}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <LinkButton to="/about" size="lg" tone="cream">
                 {t("home.aboutCta")}
@@ -246,9 +231,7 @@ function Home() {
                 {t("home.contactCta")}
               </Link>
             </div>
-            <p className="mt-8 font-hand text-3xl text-secondary">
-              {t("home.aboutClosing")}
-            </p>
+            <p className="mt-8 font-hand text-3xl text-secondary">{t("home.aboutClosing")}</p>
           </div>
         </Reveal>
       </section>

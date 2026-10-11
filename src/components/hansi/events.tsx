@@ -45,9 +45,8 @@ export function EventCard({ event }: { event: HansiEvent }) {
 
       <p className="mt-4 text-sm text-muted-foreground">{event.description}</p>
       <p className="mt-auto pt-5 font-display text-xs uppercase tracking-wide text-secondary">
-        🌭 {lang === "ar" ? "محطة هوت دوغ هانسي كاملة" : "Full HANSI hotdog station"}
+        🌭 HANSI
       </p>
-
     </article>
   );
 }
@@ -97,6 +96,36 @@ export function EventCarousel() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/** Shown wherever locations would appear, until HANSI announces them. */
+export function NotAnnounced({ dark = true }: { dark?: boolean }) {
+  const { t } = useTranslation();
+  return (
+    <div
+      className={`pop rounded-[2.5rem] px-6 py-12 text-center sm:px-12 ${
+        dark ? "bg-card text-card-foreground" : "bg-primary"
+      }`}
+    >
+      <span className="pop-sm inline-block rounded-full bg-secondary px-4 py-1.5 font-display text-[11px] uppercase tracking-widest text-secondary-foreground">
+        {t("whereWeAre.notAnnouncedBadge")}
+      </span>
+      <h3 className="mt-5 text-4xl leading-[0.9] uppercase sm:text-6xl">
+        {t("whereWeAre.notAnnouncedTitle")}
+      </h3>
+      <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+        {t("whereWeAre.notAnnouncedBody")}
+      </p>
+      <a
+        href="https://instagram.com/hansi.bh"
+        target="_blank"
+        rel="noreferrer"
+        className="pop press mt-7 inline-flex items-center rounded-full bg-secondary px-7 py-4 font-display text-base uppercase text-secondary-foreground"
+      >
+        {t("whereWeAre.notAnnouncedCta")}
+      </a>
     </div>
   );
 }

@@ -30,3 +30,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw source material kept in the working folder, not shipped with the site
+/DOGS images/
+/logos/
+/*.pdf

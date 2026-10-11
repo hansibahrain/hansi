@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import crowd from "@/assets/crowd.jpg";
-import truck from "@/assets/hansi-truck.jpg";
+import heroDog from "@/assets/hero-dog.jpg";
 import { getCateringTypes, getMenu, getCateringLink, whatsappLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { Marquee, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
@@ -9,7 +9,7 @@ import { Marquee, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits"
 export const Route = createFileRoute("/catering")({
   head: () => ({
     meta: [
-      { title: "HANSI Catering — Hotdog Trucks & Stands For Bahrain Events" },
+      { title: "HANSI Catering — Hotdog Catering For Bahrain Events" },
       {
         name: "description",
         content:
@@ -46,13 +46,7 @@ function usePackages() {
   ];
 }
 
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
       <span className="font-display text-[11px] uppercase tracking-widest">{label}</span>
@@ -131,17 +125,15 @@ function Catering() {
             <h1 className="mt-4 text-5xl leading-[0.85] uppercase sm:text-7xl whitespace-pre-line">
               {t("catering.title")}
             </h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              {t("catering.body")}
-            </p>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t("catering.body")}</p>
           </div>
           <img
-            src={truck}
-            alt="The HANSI monster food truck ready for catering"
-            width={1000}
-            height={1000}
+            src={heroDog}
+            alt="A HANSI beef hotdog, grilled fresh for catering"
+            width={1280}
+            height={1280}
             loading="lazy"
-            className="pop rounded-[3rem] bg-primary object-contain p-4"
+            className="pop rounded-[3rem] bg-primary object-cover"
           />
         </div>
       </section>
@@ -174,9 +166,7 @@ function Catering() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-6 text-sm text-muted-foreground">
-          {t("catering.note")}
-        </p>
+        <p className="mt-6 text-sm text-muted-foreground">{t("catering.note")}</p>
 
         <Reveal className="mt-14">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
@@ -199,25 +189,52 @@ function Catering() {
 
             <form onSubmit={submit} className="pop rounded-[2.5rem] bg-card p-6 sm:p-8">
               <h2 className="text-3xl uppercase leading-tight">{t("catering.formTitle")}</h2>
-              <p className="mt-1 font-hand text-2xl text-secondary">
-                {t("catering.formKicker")}
-              </p>
+              <p className="mt-1 font-hand text-2xl text-secondary">{t("catering.formKicker")}</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 <Field label={t("catering.labelName")}>
-                  <input required value={form.name} onChange={set("name")} className={inputClass} placeholder={t("catering.placeholderName")} />
+                  <input
+                    required
+                    value={form.name}
+                    onChange={set("name")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderName")}
+                  />
                 </Field>
                 <Field label={t("catering.labelCompany")}>
-                  <input value={form.company} onChange={set("company")} className={inputClass} placeholder={t("catering.placeholderCompany")} />
+                  <input
+                    value={form.company}
+                    onChange={set("company")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderCompany")}
+                  />
                 </Field>
                 <Field label={t("catering.labelEmail")}>
-                  <input required type="email" value={form.email} onChange={set("email")} className={inputClass} placeholder={t("catering.placeholderEmail")} />
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={set("email")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderEmail")}
+                  />
                 </Field>
                 <Field label={t("catering.labelPhone")}>
-                  <input required value={form.phone} onChange={set("phone")} className={inputClass} placeholder={t("catering.placeholderPhone")} />
+                  <input
+                    required
+                    value={form.phone}
+                    onChange={set("phone")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderPhone")}
+                  />
                 </Field>
                 <Field label={t("catering.labelEventType")}>
-                  <select required value={form.eventType} onChange={set("eventType")} className={inputClass}>
+                  <select
+                    required
+                    value={form.eventType}
+                    onChange={set("eventType")}
+                    className={inputClass}
+                  >
                     <option value="">{t("catering.optionPickOne")}</option>
                     {cateringTypes.map((t) => (
                       <option key={t} value={t}>
@@ -227,13 +244,32 @@ function Catering() {
                   </select>
                 </Field>
                 <Field label={t("catering.labelDate")}>
-                  <input required type="date" value={form.date} onChange={set("date")} className={inputClass} />
+                  <input
+                    required
+                    type="date"
+                    value={form.date}
+                    onChange={set("date")}
+                    className={inputClass}
+                  />
                 </Field>
                 <Field label={t("catering.labelLocation")}>
-                  <input required value={form.location} onChange={set("location")} className={inputClass} placeholder={t("catering.placeholderLocation")} />
+                  <input
+                    required
+                    value={form.location}
+                    onChange={set("location")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderLocation")}
+                  />
                 </Field>
                 <Field label={t("catering.labelGuests")}>
-                  <input required inputMode="numeric" value={form.guests} onChange={set("guests")} className={inputClass} placeholder={t("catering.placeholderGuests")} />
+                  <input
+                    required
+                    inputMode="numeric"
+                    value={form.guests}
+                    onChange={set("guests")}
+                    className={inputClass}
+                    placeholder={t("catering.placeholderGuests")}
+                  />
                 </Field>
               </div>
 
