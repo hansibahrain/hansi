@@ -17,7 +17,8 @@ export function getTalabatHours(lang: Lang) {
  * (the .../viewform?embedded=true link) and the feedback page shows the form
  * itself; while it is empty the page falls back to WhatsApp.
  */
-export const FEEDBACK_FORM_EMBED = "";
+export const FEEDBACK_FORM_EMBED =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeMP9HTKQIvbZVkTc6YdJICcIQxzwkkjaO_93hGbZf-RFg1Sg/viewform?embedded=true";
 
 export function whatsappLink(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

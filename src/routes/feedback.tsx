@@ -63,7 +63,7 @@ function Feedback() {
                 src={FEEDBACK_FORM_EMBED}
                 title={t("feedback.formTitle")}
                 loading="lazy"
-                className="h-[1100px] w-full rounded-[2rem] border-0 bg-card"
+                className="h-[1500px] w-full rounded-[2rem] border-0 bg-white sm:h-[1250px]"
               />
             </div>
           </Reveal>
