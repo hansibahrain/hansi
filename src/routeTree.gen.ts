@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CateringRouteImport } from './routes/catering'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FeedbackRouteImport } from './routes/feedback'
+import { Route as LinksRouteImport } from './routes/links'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as WhereWeAreRouteImport } from './routes/where-we-are'
 
@@ -36,6 +38,16 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LinksRoute = LinksRouteImport.update({
+  id: '/links',
+  path: '/links',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -52,6 +64,8 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/catering': typeof CateringRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
+  '/links': typeof LinksRoute
   '/menu': typeof MenuRoute
   '/where-we-are': typeof WhereWeAreRoute
 }
@@ -60,6 +74,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/catering': typeof CateringRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
+  '/links': typeof LinksRoute
   '/menu': typeof MenuRoute
   '/where-we-are': typeof WhereWeAreRoute
 }
@@ -69,21 +85,40 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/catering': typeof CateringRoute
   '/contact': typeof ContactRoute
+  '/feedback': typeof FeedbackRoute
+  '/links': typeof LinksRoute
   '/menu': typeof MenuRoute
   '/where-we-are': typeof WhereWeAreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/catering' | '/contact' | '/menu' | '/where-we-are'
+    | '/'
+    | '/about'
+    | '/catering'
+    | '/contact'
+    | '/feedback'
+    | '/links'
+    | '/menu'
+    | '/where-we-are'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/catering' | '/contact' | '/menu' | '/where-we-are'
+  to:
+    | '/'
+    | '/about'
+    | '/catering'
+    | '/contact'
+    | '/feedback'
+    | '/links'
+    | '/menu'
+    | '/where-we-are'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/catering'
     | '/contact'
+    | '/feedback'
+    | '/links'
     | '/menu'
     | '/where-we-are'
   fileRoutesById: FileRoutesById
@@ -93,6 +128,8 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CateringRoute: typeof CateringRoute
   ContactRoute: typeof ContactRoute
+  FeedbackRoute: typeof FeedbackRoute
+  LinksRoute: typeof LinksRoute
   MenuRoute: typeof MenuRoute
   WhereWeAreRoute: typeof WhereWeAreRoute
 }
@@ -127,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/links': {
+      id: '/links'
+      path: '/links'
+      fullPath: '/links'
+      preLoaderRoute: typeof LinksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -149,6 +200,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CateringRoute: CateringRoute,
   ContactRoute: ContactRoute,
+  FeedbackRoute: FeedbackRoute,
+  LinksRoute: LinksRoute,
   MenuRoute: MenuRoute,
   WhereWeAreRoute: WhereWeAreRoute,
 }

@@ -5,6 +5,20 @@ export const WHATSAPP_NUMBER = "97334240567";
 /** Ordering happens on Talabat — swap this for the exact HANSI store link once it's live. */
 export const TALABAT_LINK = "https://www.talabat.com/bahrain";
 
+export const EMAIL = "hansi.bahrain@gmail.com";
+
+/** Talabat delivery hours, shown next to every Talabat link. */
+export function getTalabatHours(lang: Lang) {
+  return lang === "ar" ? "يوميًا ٦:٠٠ مساءً – ١١:٣٠ مساءً" : "Daily 6:00 PM – 11:30 PM";
+}
+
+/**
+ * Google Form used for guest feedback. Paste the form's "embed" src here
+ * (the .../viewform?embedded=true link) and the feedback page shows the form
+ * itself; while it is empty the page falls back to WhatsApp.
+ */
+export const FEEDBACK_FORM_EMBED = "";
+
 export function whatsappLink(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }

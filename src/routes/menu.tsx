@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sides from "@/assets/sides.jpg";
 import heroDog from "@/assets/hero-dog.jpg";
-import { TALABAT_LINK, getMenu } from "@/lib/hansi";
+import { TALABAT_LINK, getMenu, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { menuImages } from "@/components/hansi/menu-images";
 import { AnchorButton, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
@@ -114,6 +114,9 @@ function MenuPage() {
               <AnchorButton href={TALABAT_LINK} size="lg">
                 {t("menu.bottomCta")}
               </AnchorButton>
+              <p className="mt-4 font-display text-xs uppercase tracking-wide">
+                {getTalabatHours(lang)}
+              </p>
             </div>
           </div>
         </Reveal>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png";
-import { cateringLink, TALABAT_LINK, getSocials } from "@/lib/hansi";
+import { cateringLink, TALABAT_LINK, getSocials, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { ARABIC_ENABLED, useLanguage } from "@/lib/i18n/language-provider";
 import { AnchorButton, Squiggle } from "./bits";
@@ -184,6 +184,16 @@ export function Footer() {
                 +973 3424 0567
               </a>
             </li>
+            <li>
+              <Link to="/feedback" className="hover:text-primary">
+                {lang === "ar" ? "قل لنا رأيك" : "Give feedback"}
+              </Link>
+            </li>
+            <li>
+              <Link to="/links" className="hover:text-primary">
+                {lang === "ar" ? "كل روابطنا" : "All our links"}
+              </Link>
+            </li>
             <li>{lang === "ar" ? "مملكة البحرين" : "Kingdom of Bahrain"}</li>
           </ul>
         </div>
@@ -200,6 +210,9 @@ export function Footer() {
           <AnchorButton href={TALABAT_LINK} className="mt-4">
             {t("footer.orderTalabat")}
           </AnchorButton>
+          <p className="mt-3 font-display text-[11px] uppercase tracking-wide text-primary">
+            {getTalabatHours(lang)}
+          </p>
         </div>
       </div>
       <div className="border-t border-cream/20 py-5 text-center font-display text-[10px] uppercase tracking-[0.3em] text-cream/60">
