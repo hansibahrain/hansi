@@ -77,6 +77,22 @@ export function LinkButton({ to, ...props }: BtnProps & { to: string }) {
   );
 }
 
+/** Looks like a button, but isn't a link: for things that aren't live yet. */
+export function SoonPill({ children, size = "md", className }: BtnProps) {
+  return (
+    <span
+      aria-disabled="true"
+      className={cn(
+        "pop-sm inline-flex items-center justify-center gap-2 rounded-full border-[3px] border-dashed border-cocoa/40 bg-card/60 font-display uppercase tracking-wide text-muted-foreground",
+        sizeMap[size],
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function AnchorButton({ href, ...props }: BtnProps & { href: string }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" className={btnClass(props)}>

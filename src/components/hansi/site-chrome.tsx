@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/hansi-logo.png";
-import { cateringLink, TALABAT_LINK, getSocials, getTalabatHours } from "@/lib/hansi";
+import { cateringLink, getSocials, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { ARABIC_ENABLED, useLanguage } from "@/lib/i18n/language-provider";
-import { AnchorButton, Squiggle } from "./bits";
+import { AnchorButton, SoonPill, Squiggle } from "./bits";
 
 function useNav() {
   const { t } = useTranslation();
@@ -118,14 +118,12 @@ export function MobileCTA() {
   const { t } = useTranslation();
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
-      <a
-        href={TALABAT_LINK}
-        target="_blank"
-        rel="noreferrer"
+      <Link
+        to="/catering"
         className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
       >
         {t("mobileCta")}
-      </a>
+      </Link>
     </div>
   );
 }
@@ -207,9 +205,9 @@ export function Footer() {
               ? "اطلب هانزي على طلبات ونوصل لك الدوغ."
               : "Order HANSI on Talabat and we’ll get the dogs to you."}
           </p>
-          <AnchorButton href={TALABAT_LINK} className="mt-4">
+          <SoonPill className="mt-4 border-cream/30 bg-transparent text-cream/80">
             {t("footer.orderTalabat")}
-          </AnchorButton>
+          </SoonPill>
           <p className="mt-3 font-display text-[11px] uppercase tracking-wide text-primary">
             {getTalabatHours(lang)}
           </p>

@@ -1,0 +1,18 @@
+import american from "@/assets/stickers/american.jpg";
+import amsterdam from "@/assets/stickers/amsterdam.jpg";
+import german from "@/assets/stickers/german.jpg";
+import danish from "@/assets/stickers/danish.jpg";
+import mexican from "@/assets/stickers/mexican.jpg";
+import bahrain from "@/assets/stickers/bahrain.jpg";
+import korea from "@/assets/stickers/korea.jpg";
+
+/** Round country stickers shown on the corner of each menu item. */
+export const stickerImages: Record<string, string> = {
+  american,
+  amsterdam,
+  german,
+  danish,
+  mexican,
+  bahrain,
+  korea,
+};

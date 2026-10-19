@@ -50,7 +50,8 @@ export function getCateringLink(lang: Lang) {
 
 export type MenuItem = {
   name: string;
-  flag?: string;
+  /** Key into the sticker art in src/assets/stickers. */
+  sticker?: string;
   description: string;
   bun?: string;
   img: string;
@@ -73,42 +74,42 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "AMERICAN DOG",
-        flag: "🇺🇸",
+        sticker: "american",
         description: "The original classic, done the HANSI way.",
         bun: "Potato bun",
         img: "american-dog",
       },
       {
         name: "AMSTERDAM DOG",
-        flag: "🇳🇱",
+        sticker: "amsterdam",
         description: "Pizza night, packed into a bun.",
         bun: "Special baguette",
         img: "amsterdam-dog",
       },
       {
         name: "GERMAN CRUNCH DOG",
-        flag: "🇩🇪",
+        sticker: "german",
         description: "It's all about the crunch.",
         bun: "Potato bun",
         img: "german-dog",
       },
       {
         name: "DANISH DOG",
-        flag: "🇩🇰",
+        sticker: "danish",
         description: "Copenhagen's street favourite, tucked right inside the bread.",
         bun: "Danish bun",
         img: "danish-dog",
       },
       {
         name: "MEXICAN DOG",
-        flag: "🇲🇽",
+        sticker: "mexican",
         description: "Turn up the heat.",
         bun: "Potato bun",
         img: "mexican-dog",
       },
       {
         name: "BAHRAIN NASHEF DOG",
-        flag: "🇧🇭",
+        sticker: "bahrain",
         description: "Our local flavour. Every trip ends at home.",
         bun: "Potato bun",
         img: "nashef-dog",
@@ -123,13 +124,21 @@ export const menu: MenuCategory[] = [
     items: [
       {
         name: "HANSI CLASSIC CORN DOG",
-        description: "Golden, crispy and impossible to share.",
+        sticker: "korea",
+        description: "100% beef inside a golden, crispy coat.",
         img: "corn-dog",
       },
       {
-        name: "HANSI CHEESY CORN DOG",
-        description: "Cheese pull guaranteed.",
-        img: "cheesy-corn-dog",
+        name: "HANSI HALF & HALF CORN DOG",
+        sticker: "korea",
+        description: "Beef on one side, melted cheese on the other.",
+        img: "half-half-corn-dog",
+      },
+      {
+        name: "HANSI CHEESE CORN DOG",
+        sticker: "korea",
+        description: "All cheese, all pull.",
+        img: "cheese-corn-dog",
       },
     ],
   },
@@ -140,40 +149,15 @@ export const menu: MenuCategory[] = [
     kicker: "Never order just one.",
     items: [
       {
-        name: "HANSI SMOKE FRIES",
+        name: "HANSI SEASONED FRIES",
         description: "Our signature seasoned fries.",
-        img: "smoke-fries",
+        img: "seasoned-fries",
       },
       {
         name: "LOADED HANSI FRIES",
         description: "Fries, but make it a meal.",
         img: "loaded-fries",
       },
-      {
-        name: "CRISPY POTATO",
-        description: "Thin, golden, dangerously snackable.",
-        img: "crispy-potato",
-      },
-    ],
-  },
-  {
-    id: "combos",
-    title: "COMBOS",
-    emoji: "🎯",
-    kicker: "Maximum dog, minimum decisions.",
-    items: [
-      { name: "HANSI COMBO", description: "Signature dog + Smoke Fries + drink.", img: "combo" },
-      {
-        name: "CORN DOG COMBO",
-        description: "2 corn dogs + Smoke Fries + drink.",
-        img: "corn-dog",
-      },
-      {
-        name: "HANSI DUO",
-        description: "2 signature dogs + Loaded Fries + 2 drinks.",
-        img: "loaded-fries",
-      },
-      { name: "KIDS COMBO", description: "Mini beef dog + fries + drink.", img: "combo" },
     ],
   },
   {
@@ -182,20 +166,17 @@ export const menu: MenuCategory[] = [
     emoji: "🥤",
     kicker: "Ice cold. Homemade.",
     items: [
-      { name: "HANSI PEACH ICED TEA", description: "Homemade and ice cold.", img: "drinks" },
-      { name: "HANSI LEMON MINT", description: "Fresh, zingy, ice cold.", img: "drinks" },
-    ],
-  },
-  {
-    id: "saucy",
-    title: "SAUCY STUFF",
-    emoji: "🌶️",
-    kicker: "More sauce? Always.",
-    items: [
       {
-        name: "HANSI SPECIAL SAUCE",
-        description: "Our house sauce. You'll want extra.",
-        img: "sauce",
+        name: "HANSI PEACH ICED TEA",
+        description: "Homemade and ice cold.",
+        img: "peach-iced-tea",
+      },
+      { name: "HANSI PINK LEMONADE", description: "Fresh, zingy, ice cold.", img: "pink-lemonade" },
+      { name: "HANSI CHERRY COLA", description: "Cola with a cherry kick.", img: "cherry-cola" },
+      {
+        name: "HANSI HIBISCUS MOJITO",
+        description: "Hibiscus, mint and lime.",
+        img: "hibiscus-mojito",
       },
     ],
   },
@@ -258,43 +239,43 @@ export function getMenu(lang: Lang): MenuCategory[] {
         items: [
           {
             name: "أمريكان دوغ",
-            flag: "🇺🇸",
+            sticker: "american",
             description: "الكلاسيكي الأصلي، على طريقة هانزي.",
             bun: "خبز البطاطس",
             img: "american-dog",
           },
           {
             name: "أمستردام دوغ",
-            flag: "🇳🇱",
+            sticker: "amsterdam",
             description: "ليلة بيتزا داخل خبزة.",
             bun: "خبز باغيت خاص",
             img: "amsterdam-dog",
           },
           {
             name: "جيرمان كرانش دوغ",
-            flag: "🇩🇪",
-            description: "السالفة كلها في الكرانش.",
+            sticker: "german",
+            description: "كله عن القرمشة.",
             bun: "خبز البطاطس",
             img: "german-dog",
           },
           {
             name: "دانيش دوغ",
-            flag: "🇩🇰",
-            description: "مفضّل شوارع كوبنهاغن، داخل الخبز.",
+            sticker: "danish",
+            description: "المفضل في شوارع كوبنهاغن، محشي داخل الخبز.",
             bun: "خبز دانيش",
             img: "danish-dog",
           },
           {
             name: "ميكسيكان دوغ",
-            flag: "🇲🇽",
+            sticker: "mexican",
             description: "ارفع الحرارة.",
             bun: "خبز البطاطس",
             img: "mexican-dog",
           },
           {
             name: "بحريني ناشف",
-            flag: "🇧🇭",
-            description: "نكهتنا المحلية. والرحلة تنتهي في البحرين.",
+            sticker: "bahrain",
+            description: "نكهتنا المحلية. كل رحلة تنتهي في البيت.",
             bun: "خبز البطاطس",
             img: "nashef-dog",
           },
@@ -306,8 +287,24 @@ export function getMenu(lang: Lang): MenuCategory[] {
         emoji: "🍢",
         kicker: "على الطريقة الكورية. ذهبي ومقرمش.",
         items: [
-          { name: "كلاسيك كورن دوغ", description: "ذهبي، مقرمش، وما ينتشارك.", img: "corn-dog" },
-          { name: "تشيزي كورن دوغ", description: "سحبة الجبن مضمونة.", img: "cheesy-corn-dog" },
+          {
+            name: "كلاسيك كورن دوغ",
+            sticker: "korea",
+            description: "100% لحم بقري داخل عجينة ذهبية مقرمشة.",
+            img: "corn-dog",
+          },
+          {
+            name: "هاف آند هاف كورن دوغ",
+            sticker: "korea",
+            description: "نص سجق ونص جبن ذائب.",
+            img: "half-half-corn-dog",
+          },
+          {
+            name: "تشيز كورن دوغ",
+            sticker: "korea",
+            description: "جبن بالكامل، وسحبة مضمونة.",
+            img: "cheese-corn-dog",
+          },
         ],
       },
       {
@@ -316,25 +313,16 @@ export function getMenu(lang: Lang): MenuCategory[] {
         emoji: "🍟",
         kicker: "لا تطلب واحدة بس.",
         items: [
-          { name: "بطاطس هانزي المتبّلة", description: "بطاطسنا المميزة.", img: "smoke-fries" },
-          { name: "بطاطس هانزي المحمّلة", description: "بطاطس بحجم وجبة.", img: "loaded-fries" },
-          { name: "بطاطس مقرمشة", description: "رفيعة، ذهبية، وما تنترك.", img: "crispy-potato" },
-        ],
-      },
-      {
-        id: "combos",
-        title: "وجبات",
-        emoji: "🎯",
-        kicker: "أقصى دوغ، أقل قرارات.",
-        items: [
-          { name: "وجبة هانزي", description: "دوغ مميز + بطاطس + مشروب.", img: "combo" },
-          { name: "وجبة كورن دوغ", description: "٢ كورن دوغ + بطاطس + مشروب.", img: "corn-dog" },
           {
-            name: "هانزي الثنائي",
-            description: "٢ دوغ مميز + بطاطس محمّلة + ٢ مشروب.",
+            name: "بطاطس هانزي المتبّلة",
+            description: "بطاطسنا المميزة.",
+            img: "seasoned-fries",
+          },
+          {
+            name: "بطاطس هانزي المحمّلة",
+            description: "بطاطس بحجم وجبة.",
             img: "loaded-fries",
           },
-          { name: "وجبة الأطفال", description: "دوغ صغير + بطاطس + مشروب.", img: "combo" },
         ],
       },
       {
@@ -343,16 +331,15 @@ export function getMenu(lang: Lang): MenuCategory[] {
         emoji: "🥤",
         kicker: "باردة. منزلية.",
         items: [
-          { name: "شاي هانزي بالخوخ", description: "منزلي وبارد.", img: "drinks" },
-          { name: "ليمون نعناع هانزي", description: "منعش وبارد.", img: "drinks" },
+          { name: "شاي هانزي بالخوخ", description: "منزلي وبارد.", img: "peach-iced-tea" },
+          { name: "ليموناضة هانزي الوردية", description: "منعشة وباردة.", img: "pink-lemonade" },
+          { name: "كولا هانزي بالكرز", description: "كولا بلمسة كرز.", img: "cherry-cola" },
+          {
+            name: "موهيتو الكركديه",
+            description: "كركديه ونعناع وليمون.",
+            img: "hibiscus-mojito",
+          },
         ],
-      },
-      {
-        id: "saucy",
-        title: "الصوصات",
-        emoji: "🌶️",
-        kicker: "صوص زيادة؟ دايماً.",
-        items: [{ name: "صوص هانزي الخاص", description: "صوص البيت. بتطلب زيادة.", img: "sauce" }],
       },
     ];
   }

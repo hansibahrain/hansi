@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png";
 import {
   EMAIL,
-  TALABAT_LINK,
   WHATSAPP_NUMBER,
   getCateringLink,
   getTalabatHours,
@@ -34,6 +33,8 @@ type Item = {
   note?: string;
   href?: string;
   to?: string;
+  /** Not live yet: shown as a plain row instead of a link. */
+  soon?: boolean;
   tone: "mustard" | "ketchup" | "cream";
   emoji: string;
 };
@@ -44,8 +45,8 @@ function useItems(): Item[] {
     {
       label: t("links.talabat"),
       note: getTalabatHours(lang),
-      href: TALABAT_LINK,
-      tone: "ketchup",
+      soon: true,
+      tone: "cream",
       emoji: "🛵",
     },
     { label: t("links.menu"), to: "/menu", tone: "mustard", emoji: "🌭" },
@@ -89,13 +90,20 @@ function Row({ item }: { item: Item }) {
         ) : null}
       </span>
       <span aria-hidden="true" className="font-display text-lg">
-        →
+        {item.soon ? "⏳" : "→"}
       </span>
     </>
   );
 
   const className = `pop press flex w-full items-center gap-4 rounded-3xl px-5 py-4 text-start hover:-rotate-1 ${toneMap[item.tone]}`;
 
+  if (item.soon) {
+    return (
+      <div aria-disabled="true" className={`${className} opacity-70`}>
+        {inner}
+      </div>
+    );
+  }
   if (item.to) {
     return (
       <Link to={item.to} className={className}>

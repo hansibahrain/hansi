@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import sides from "@/assets/sides.jpg";
-import heroDog from "@/assets/hero-dog.jpg";
-import { TALABAT_LINK, getMenu, getTalabatHours } from "@/lib/hansi";
+import heroBoxes from "@/assets/hero-boxes.jpg";
+import lifestyle from "@/assets/lifestyle-dogs.jpg";
+import { getMenu, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { menuImages } from "@/components/hansi/menu-images";
-import { AnchorButton, Reveal, SectionTitle, Sticker } from "@/components/hansi/bits";
+import { stickerImages } from "@/components/hansi/stickers";
+import { Reveal, SectionTitle, SoonPill, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -45,25 +46,23 @@ function MenuPage() {
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">{t("menu.body")}</p>
             <div className="mt-7">
-              <AnchorButton href={TALABAT_LINK} size="lg" tone="ketchup">
-                {t("menu.cta")}
-              </AnchorButton>
+              <SoonPill size="lg">{t("menu.cta")}</SoonPill>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src={heroDog}
-              alt="HANSI beef hotdog close up"
-              width={1280}
-              height={1280}
+              src={heroBoxes}
+              alt="HANSI hotdogs in branded Bite Me boxes"
+              width={1270}
+              height={1400}
               loading="lazy"
               className="pop h-56 w-full rounded-3xl object-cover"
             />
             <img
-              src={sides}
-              alt="Loaded fries and corn dogs"
-              width={1280}
-              height={864}
+              src={lifestyle}
+              alt="Guests holding a HANSI hotdog and a corn dog"
+              width={1800}
+              height={1344}
               loading="lazy"
               className="pop mt-8 h-56 w-full rounded-3xl object-cover"
             />
@@ -81,17 +80,29 @@ function MenuPage() {
               {cat.items.map((item, i) => (
                 <Reveal key={item.name} delay={i * 60}>
                   <article className="pop flex h-full flex-col overflow-hidden rounded-3xl bg-card">
-                    <img
-                      src={menuImages[item.img]}
-                      alt={item.name}
-                      width={800}
-                      height={600}
-                      loading="lazy"
-                      className="h-44 w-full border-b-[3px] border-cocoa object-cover"
-                    />
+                    <div className="relative">
+                      <img
+                        src={menuImages[item.img]}
+                        alt={item.name}
+                        width={800}
+                        height={600}
+                        loading="lazy"
+                        className="h-44 w-full border-b-[3px] border-cocoa object-cover"
+                      />
+                      {item.sticker ? (
+                        <img
+                          src={stickerImages[item.sticker]}
+                          alt=""
+                          aria-hidden="true"
+                          width={420}
+                          height={420}
+                          loading="lazy"
+                          className="pop-sm absolute -bottom-5 end-4 h-16 w-16 rounded-full object-cover"
+                        />
+                      ) : null}
+                    </div>
                     <div className="flex flex-1 flex-col p-5">
-                      {item.flag ? <span className="text-2xl">{item.flag}</span> : null}
-                      <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
+                      <h3 className="text-xl leading-tight uppercase">{item.name}</h3>
                       <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                       {item.bun ? (
                         <p className="mt-auto pt-3 font-hand text-xl text-secondary">{item.bun}</p>
@@ -111,9 +122,9 @@ function MenuPage() {
             </h2>
             <p className="mx-auto mt-3 max-w-md text-lg">{t("menu.bottomBody")}</p>
             <div className="mt-7">
-              <AnchorButton href={TALABAT_LINK} size="lg">
+              <SoonPill size="lg" className="bg-card">
                 {t("menu.bottomCta")}
-              </AnchorButton>
+              </SoonPill>
               <p className="mt-4 font-display text-xs uppercase tracking-wide">
                 {getTalabatHours(lang)}
               </p>

@@ -1,13 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroDog from "@/assets/hero-dog.jpg";
+import heroBoxes from "@/assets/hero-boxes.jpg";
 import crowd from "@/assets/crowd.jpg";
-import sides from "@/assets/sides.jpg";
+import lifestyle from "@/assets/lifestyle-dogs.jpg";
 import americanDog from "@/assets/menu/american-dog.jpg";
-import { getMenu, TALABAT_LINK, cateringLink } from "@/lib/hansi";
+import { getMenu, cateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import {
   AnchorButton,
   ArrowDown,
+  SoonPill,
   LinkButton,
   Reveal,
   SectionTitle,
@@ -16,6 +17,7 @@ import {
 } from "@/components/hansi/bits";
 import { HansiSnake } from "@/components/hansi/snake";
 import { menuImages } from "@/components/hansi/menu-images";
+import { stickerImages } from "@/components/hansi/stickers";
 
 import { EventCarousel, NotAnnounced } from "@/components/hansi/events";
 import { events } from "@/lib/hansi";
@@ -73,10 +75,10 @@ function Home() {
           <div className="relative">
             <div className="pop overflow-hidden rounded-[3rem] bg-primary">
               <img
-                src={heroDog}
-                alt="Close-up of a HANSI beef hotdog loaded with mustard, ketchup and crispy onions"
-                width={1280}
-                height={1280}
+                src={heroBoxes}
+                alt="HANSI hotdogs in branded Bite Me boxes"
+                width={1270}
+                height={1400}
                 className="h-full w-full object-cover"
               />
             </div>
@@ -139,10 +141,10 @@ function Home() {
               className="pop h-44 w-full rounded-3xl object-cover"
             />
             <img
-              src={sides}
-              alt="Loaded HANSI fries and corn dogs"
-              width={1280}
-              height={864}
+              src={lifestyle}
+              alt="Two guests holding a HANSI hotdog and a corn dog at a gathering"
+              width={1800}
+              height={1344}
               loading="lazy"
               className="pop h-44 w-full rounded-3xl object-cover"
             />
@@ -180,17 +182,29 @@ function Home() {
           {dogs.map((item, i) => (
             <Reveal key={item.name} delay={i * 80}>
               <article className="pop flex h-full flex-col overflow-hidden rounded-3xl bg-card">
-                <img
-                  src={menuImages[item.img]}
-                  alt={item.name}
-                  width={800}
-                  height={600}
-                  loading="lazy"
-                  className="h-36 w-full border-b-[3px] border-cocoa object-cover"
-                />
+                <div className="relative">
+                  <img
+                    src={menuImages[item.img]}
+                    alt={item.name}
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    className="h-36 w-full border-b-[3px] border-cocoa object-cover"
+                  />
+                  {item.sticker ? (
+                    <img
+                      src={stickerImages[item.sticker]}
+                      alt=""
+                      aria-hidden="true"
+                      width={420}
+                      height={420}
+                      loading="lazy"
+                      className="pop-sm absolute -bottom-5 end-4 h-16 w-16 rounded-full object-cover"
+                    />
+                  ) : null}
+                </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <span className="text-2xl">{item.flag}</span>
-                  <h3 className="mt-1 text-xl leading-tight uppercase">{item.name}</h3>
+                  <h3 className="text-xl leading-tight uppercase">{item.name}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                   {item.bun ? (
                     <p className="mt-auto pt-3 font-hand text-xl text-secondary">{item.bun}</p>
@@ -204,9 +218,7 @@ function Home() {
           <LinkButton to="/menu" size="lg" tone="cream">
             {t("home.menuCta")}
           </LinkButton>
-          <AnchorButton href={TALABAT_LINK} size="lg" tone="ketchup">
-            {t("home.menuOrder")}
-          </AnchorButton>
+          <SoonPill size="lg">{t("home.menuOrder")}</SoonPill>
         </div>
       </section>
 

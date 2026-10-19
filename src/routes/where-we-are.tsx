@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { getCateringLink, getEvents, TALABAT_LINK } from "@/lib/hansi";
+import { getCateringLink, getEvents } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { EventCard, NotAnnounced } from "@/components/hansi/events";
-import { AnchorButton, Reveal, Sticker } from "@/components/hansi/bits";
+import { AnchorButton, Reveal, SoonPill, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/where-we-are")({
   head: () => ({
@@ -40,9 +40,7 @@ function WhereWeAre() {
         </h1>
         <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t("whereWeAre.body")}</p>
         <div className="mt-7">
-          <AnchorButton href={TALABAT_LINK} size="lg" tone="ketchup">
-            {t("menu.cta")}
-          </AnchorButton>
+          <SoonPill size="lg">{t("menu.cta")}</SoonPill>
         </div>
       </section>
 

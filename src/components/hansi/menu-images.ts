@@ -5,13 +5,14 @@ import danishDog from "@/assets/menu/danish-dog.jpg";
 import germanDog from "@/assets/menu/german-dog.jpg";
 import nashefDog from "@/assets/menu/nashef-dog.jpg";
 import cornDog from "@/assets/menu/corn-dog.jpg";
-import cheesyCornDog from "@/assets/menu/cheesy-corn-dog.jpg";
-import smokeFries from "@/assets/menu/smoke-fries.jpg";
+import halfHalfCornDog from "@/assets/menu/half-half-corn-dog.jpg";
+import cheeseCornDog from "@/assets/menu/cheese-corn-dog.jpg";
+import seasonedFries from "@/assets/menu/seasoned-fries.jpg";
 import loadedFries from "@/assets/menu/loaded-fries.jpg";
-import crispyPotato from "@/assets/menu/crispy-potato.jpg";
-import combo from "@/assets/menu/combo.jpg";
-import drinks from "@/assets/menu/drinks.jpg";
-import sauce from "@/assets/menu/sauce.jpg";
+import peachIcedTea from "@/assets/menu/peach-iced-tea.jpg";
+import pinkLemonade from "@/assets/menu/pink-lemonade.jpg";
+import cherryCola from "@/assets/menu/cherry-cola.jpg";
+import hibiscusMojito from "@/assets/menu/hibiscus-mojito.jpg";
 
 export const menuImages: Record<string, string> = {
   "american-dog": americanDog,
@@ -21,11 +22,12 @@ export const menuImages: Record<string, string> = {
   "german-dog": germanDog,
   "nashef-dog": nashefDog,
   "corn-dog": cornDog,
-  "cheesy-corn-dog": cheesyCornDog,
-  "smoke-fries": smokeFries,
+  "half-half-corn-dog": halfHalfCornDog,
+  "cheese-corn-dog": cheeseCornDog,
+  "seasoned-fries": seasonedFries,
   "loaded-fries": loadedFries,
-  "crispy-potato": crispyPotato,
-  combo,
-  drinks,
-  sauce,
+  "peach-iced-tea": peachIcedTea,
+  "pink-lemonade": pinkLemonade,
+  "cherry-cola": cherryCola,
+  "hibiscus-mojito": hibiscusMojito,
 };

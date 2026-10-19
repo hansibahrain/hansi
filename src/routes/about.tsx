@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png";
-import sides from "@/assets/sides.jpg";
+import lifestyle from "@/assets/lifestyle-dogs.jpg";
 import crowd from "@/assets/crowd.jpg";
 import { getCateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
@@ -82,10 +82,10 @@ function About() {
         <Reveal className="mt-14">
           <div className="grid gap-5 md:grid-cols-2">
             <img
-              src={sides}
-              alt="HANSI corn dogs and loaded fries"
-              width={1280}
-              height={864}
+              src={lifestyle}
+              alt="Guests holding a HANSI hotdog and a corn dog"
+              width={1800}
+              height={1344}
               loading="lazy"
               className="pop h-80 w-full rounded-[2.5rem] object-cover"
             />
