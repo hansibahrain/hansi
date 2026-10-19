@@ -181,7 +181,7 @@ function Home() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {dogs.map((item, i) => (
             <Reveal key={item.name} delay={i * 80}>
-              <article className="pop flex h-full flex-col overflow-hidden rounded-3xl bg-card">
+              <article className="pop sticker-host flex h-full flex-col rounded-3xl bg-card">
                 <div className="relative">
                   <img
                     src={menuImages[item.img]}
@@ -189,7 +189,7 @@ function Home() {
                     width={800}
                     height={600}
                     loading="lazy"
-                    className="h-36 w-full border-b-[3px] border-cocoa object-cover"
+                    className="h-36 w-full rounded-t-3xl border-b-[3px] border-cocoa object-cover"
                   />
                   {item.sticker ? (
                     <img
@@ -199,12 +199,12 @@ function Home() {
                       width={420}
                       height={420}
                       loading="lazy"
-                      className="pop-sm absolute -bottom-5 end-4 h-16 w-16 rounded-full object-cover"
+                      className="sticker-cut absolute -bottom-7 end-3 h-24 w-24 rounded-full object-cover"
                     />
                   ) : null}
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-xl leading-tight uppercase">{item.name}</h3>
+                  <h3 className="text-xl leading-tight uppercase pe-20">{item.name}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
                   {item.bun ? (
                     <p className="mt-auto pt-3 font-hand text-xl text-secondary">{item.bun}</p>
