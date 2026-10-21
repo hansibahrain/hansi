@@ -171,7 +171,7 @@ function Catering() {
         <p className="mt-6 text-sm text-muted-foreground">{t("catering.note")}</p>
 
         <Reveal className="mt-16">
-          <div className="pop rounded-[2.5rem] bg-secondary p-6 text-cream sm:p-10">
+          <div className="pop-mustard rounded-[2.5rem] bg-secondary p-6 text-cream sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
               <div>
                 <p className="font-hand text-2xl text-primary">{t("catering.smokeKicker")}</p>
@@ -358,7 +358,7 @@ function Catering() {
 
               <button
                 type="submit"
-                className="pop press mt-6 w-full rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
+                className="pop-mustard press-mustard mt-6 w-full rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
               >
                 {t("catering.submit")}
               </button>

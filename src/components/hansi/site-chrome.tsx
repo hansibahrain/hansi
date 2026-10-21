@@ -120,7 +120,7 @@ export function MobileCTA() {
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
       <Link
         to="/catering"
-        className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
+        className="pop-mustard press-mustard flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
       >
         {t("mobileCta")}
       </Link>

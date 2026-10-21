@@ -168,6 +168,27 @@
   }
 }
 
+/* For red elements: a red drop shadow disappears into the red, so these
+   carry a mustard one instead. */
+@utility pop-mustard {
+  box-shadow: 6px 6px 0 var(--mustard);
+  border: 3px solid var(--mustard);
+}
+
+@utility press-mustard {
+  transition:
+    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 160ms ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--mustard);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--mustard);
+  }
+}
+
 @utility press {
   transition:
     transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),

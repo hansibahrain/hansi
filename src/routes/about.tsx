@@ -101,7 +101,7 @@ function About() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <div className="pop rounded-[3rem] bg-secondary px-6 py-14 text-center text-cream sm:px-12">
+          <div className="pop-mustard rounded-[3rem] bg-secondary px-6 py-14 text-center text-cream sm:px-12">
             <p className="font-hand text-3xl text-primary">{t("about.closingKicker")}</p>
             <h2 className="mt-2 text-4xl leading-[0.9] uppercase text-primary sm:text-6xl">
               {t("about.closingTitle")}

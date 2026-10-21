@@ -122,7 +122,7 @@ export function NotAnnounced({ dark = true }: { dark?: boolean }) {
         href="https://instagram.com/hansi.bh"
         target="_blank"
         rel="noreferrer"
-        className="pop press mt-7 inline-flex items-center rounded-full bg-secondary px-7 py-4 font-display text-base uppercase text-secondary-foreground"
+        className="pop-mustard press-mustard mt-7 inline-flex items-center rounded-full bg-secondary px-7 py-4 font-display text-base uppercase text-secondary-foreground"
       >
         {t("whereWeAre.notAnnouncedCta")}
       </a>

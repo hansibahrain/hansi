@@ -75,7 +75,8 @@ const sizeMap = {
 
 function btnClass({ tone = "mustard", size = "md", className }: BtnProps) {
   return cn(
-    "pop press inline-flex items-center justify-center gap-2 rounded-full font-display uppercase tracking-wide",
+    "inline-flex items-center justify-center gap-2 rounded-full font-display uppercase tracking-wide",
+    tone === "ketchup" ? "pop-mustard press-mustard" : "pop press",
     toneMap[tone],
     sizeMap[size],
     className,
