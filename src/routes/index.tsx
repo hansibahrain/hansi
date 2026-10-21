@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroBoxes from "@/assets/hero-boxes.jpg";
-import crowd from "@/assets/crowd.jpg";
+import cartCrowd from "@/assets/events/cart-crowd.jpg";
 import lifestyle from "@/assets/lifestyle-dogs.jpg";
 import americanDog from "@/assets/menu/american-dog.jpg";
 import { getMenu, cateringLink } from "@/lib/hansi";
@@ -125,10 +125,10 @@ function Home() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <img
-              src={crowd}
-              alt="People laughing and eating HANSI hotdogs at a night market"
-              width={1280}
-              height={864}
+              src={cartCrowd}
+              alt="Guests queuing at the HANSI cart during a Bahrain festival"
+              width={1203}
+              height={617}
               loading="lazy"
               className="pop col-span-2 h-64 w-full rounded-3xl object-cover"
             />
@@ -225,7 +225,7 @@ function Home() {
       {/* ABOUT TEASER */}
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <Reveal>
-          <div className="pop relative overflow-hidden rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
+          <div className="pop relative overflow-hidden rounded-[3rem] bg-card px-6 py-14 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-6xl">
               {t("home.aboutTitle")}
               <br />

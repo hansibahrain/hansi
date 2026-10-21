@@ -116,7 +116,7 @@ function MenuPage() {
         ))}
 
         <Reveal>
-          <div className="pop-mustard rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
+          <div className="pop rounded-[3rem] bg-primary px-6 py-12 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
               {t("menu.bottomTitle")}
             </h2>

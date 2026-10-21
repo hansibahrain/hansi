@@ -172,7 +172,7 @@
    carry a mustard one instead. */
 @utility pop-mustard {
   box-shadow: 6px 6px 0 var(--mustard);
-  border: 3px solid var(--mustard);
+  border: 3px solid var(--cocoa);
 }
 
 @utility press-mustard {

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png";
 import lifestyle from "@/assets/lifestyle-dogs.jpg";
-import crowd from "@/assets/crowd.jpg";
+import teamGrilling from "@/assets/events/team-grilling.jpg";
 import { getCateringLink } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { AnchorButton, LinkButton, Marquee, Reveal, Sticker } from "@/components/hansi/bits";
@@ -90,10 +90,10 @@ function About() {
               className="pop h-80 w-full rounded-[2.5rem] object-cover"
             />
             <img
-              src={crowd}
-              alt="A crowd eating HANSI hotdogs"
-              width={1280}
-              height={864}
+              src={teamGrilling}
+              alt="A HANSI cook grilling in front of guests at an event"
+              width={785}
+              height={459}
               loading="lazy"
               className="pop h-80 w-full rounded-[2.5rem] object-cover"
             />
@@ -101,13 +101,13 @@ function About() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <div className="pop-mustard rounded-[3rem] bg-secondary px-6 py-14 text-center text-cream sm:px-12">
-            <p className="font-hand text-3xl text-primary">{t("about.closingKicker")}</p>
-            <h2 className="mt-2 text-4xl leading-[0.9] uppercase text-primary sm:text-6xl">
+          <div className="pop rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
+            <p className="font-hand text-3xl text-secondary">{t("about.closingKicker")}</p>
+            <h2 className="mt-2 text-4xl leading-[0.9] uppercase sm:text-6xl">
               {t("about.closingTitle")}
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <AnchorButton href={cateringLink} size="lg" tone="cream">
+              <AnchorButton href={cateringLink} size="lg" tone="ketchup">
                 {t("about.ctaEvent")}
               </AnchorButton>
               <LinkButton to="/menu" size="lg">

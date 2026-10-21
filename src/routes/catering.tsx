@@ -250,7 +250,7 @@ function Catering() {
                 loading="lazy"
                 className="pop h-72 w-full rounded-[2.5rem] object-cover"
               />
-              <div className="pop mt-6 rounded-3xl bg-primary p-6">
+              <div className="pop mt-6 rounded-3xl bg-card p-6">
                 <h3 className="text-2xl uppercase">{t("catering.grillTitle")}</h3>
                 <p className="mt-2 text-sm">
                   {menu[0]!.items.map((i) => i.name).join(" · ")} {t("catering.grillBody")}
