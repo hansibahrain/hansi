@@ -84,8 +84,8 @@ function Contact() {
           <img
             src={logo}
             alt="HANSI logo"
-            width={1024}
-            height={866}
+            width={1000}
+            height={868}
             loading="lazy"
             className="animate-float mx-auto w-full max-w-md"
           />

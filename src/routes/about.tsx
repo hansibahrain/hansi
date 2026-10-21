@@ -57,8 +57,8 @@ function About() {
           <img
             src={logo}
             alt="The full HANSI logo with the mascot holding a hotdog"
-            width={900}
-            height={900}
+            width={1000}
+            height={868}
             loading="lazy"
             className="pop rounded-[3rem] bg-card object-contain p-6"
           />

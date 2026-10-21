@@ -124,8 +124,8 @@ function Links() {
         <img
           src={logo}
           alt="HANSI logo"
-          width={1024}
-          height={866}
+          width={1000}
+          height={868}
           className="animate-float mx-auto w-44"
         />
         <div className="mt-2">

@@ -53,7 +53,7 @@ export function Header() {
             src={logo}
             alt="HANSI hot dogs logo"
             width={140}
-            height={118}
+            height={121}
             className="h-11 w-auto transition-transform duration-300 hover:-rotate-3 hover:scale-105 sm:h-14"
           />
         </Link>
@@ -143,7 +143,7 @@ export function Footer() {
             src={logo}
             alt="HANSI logo"
             width={180}
-            height={152}
+            height={156}
             loading="lazy"
             className="animate-wiggle h-20 w-auto"
           />
