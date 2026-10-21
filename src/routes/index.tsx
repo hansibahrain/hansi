@@ -17,7 +17,7 @@ import {
 } from "@/components/hansi/bits";
 import { HansiSnake } from "@/components/hansi/snake";
 import { menuImages } from "@/components/hansi/menu-images";
-import { stickerImages } from "@/components/hansi/stickers";
+import { stickerImages, stickerTilt } from "@/components/hansi/stickers";
 
 import { EventCarousel, NotAnnounced } from "@/components/hansi/events";
 import { events } from "@/lib/hansi";
@@ -199,6 +199,7 @@ function Home() {
                       width={420}
                       height={420}
                       loading="lazy"
+                      style={{ rotate: stickerTilt(i) }}
                       className="sticker-cut absolute -bottom-7 end-3 h-24 w-24 rounded-full object-cover"
                     />
                   ) : null}

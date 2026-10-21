@@ -135,8 +135,8 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-24 bg-secondary text-cream">
-      <Squiggle className="-mt-3 h-6 text-secondary" />
+    <footer className="mt-24 bg-ink text-cream">
+      <Squiggle className="-mt-3 h-6 text-ink" />
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <img

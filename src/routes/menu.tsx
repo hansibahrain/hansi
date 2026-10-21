@@ -4,7 +4,7 @@ import lifestyle from "@/assets/lifestyle-dogs.jpg";
 import { getMenu, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { menuImages } from "@/components/hansi/menu-images";
-import { stickerImages } from "@/components/hansi/stickers";
+import { stickerImages, stickerTilt } from "@/components/hansi/stickers";
 import { Reveal, SectionTitle, SoonPill, Sticker } from "@/components/hansi/bits";
 
 export const Route = createFileRoute("/menu")({
@@ -97,6 +97,7 @@ function MenuPage() {
                           width={420}
                           height={420}
                           loading="lazy"
+                          style={{ rotate: stickerTilt(i) }}
                           className="sticker-cut absolute -bottom-7 end-3 h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
                         />
                       ) : null}

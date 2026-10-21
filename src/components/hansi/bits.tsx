@@ -64,7 +64,7 @@ type BtnProps = {
 
 const toneMap = {
   mustard: "bg-primary text-primary-foreground",
-  ketchup: "bg-secondary text-secondary-foreground",
+  ketchup: "btn-red text-secondary-foreground",
   cream: "bg-card text-foreground",
 };
 

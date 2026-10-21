@@ -157,19 +157,30 @@
   box-shadow:
     0 0 0 2px color-mix(in oklab, var(--cocoa) 55%, transparent),
     3px 5px 7px -1px color-mix(in oklab, var(--cocoa) 45%, transparent);
-  transform: rotate(-8deg);
-  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    rotate 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Lift the sticker when the card it sits on is hovered. */
 @utility sticker-host {
   &:hover .sticker-cut {
-    transform: rotate(-2deg) scale(1.06);
+    transform: scale(1.07);
+    rotate: -2deg;
   }
 }
 
 /* For red elements: a red drop shadow disappears into the red, so these
    carry a mustard one instead. */
+/* Red buttons darken toward the maroon ink when pressed, instead of only
+   shifting their shadow. */
+@utility btn-red {
+  background-color: var(--ketchup);
+  &:hover {
+    background-color: color-mix(in oklab, var(--ketchup) 88%, var(--ink));
+  }
+}
+
 @utility pop-mustard {
   box-shadow: 6px 6px 0 var(--mustard);
   border: 3px solid var(--cocoa);

@@ -16,3 +16,10 @@ export const stickerImages: Record<string, string> = {
   bahrain,
   korea,
 };
+
+/** Hand-stuck tilt: each item keeps its own angle, repeating every seven. */
+const tilts = [-11, -5, 7, -9, 4, -13, -3];
+
+export function stickerTilt(index: number) {
+  return `${tilts[index % tilts.length]}deg`;
+}
