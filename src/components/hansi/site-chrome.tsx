@@ -120,7 +120,7 @@ export function MobileCTA() {
     <div className="fixed inset-x-0 bottom-0 z-40 p-3 md:hidden">
       <Link
         to="/catering"
-        className="pop-mustard press-mustard flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
+        className="pop press flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-6 py-4 font-display text-base uppercase text-secondary-foreground"
       >
         {t("mobileCta")}
       </Link>
@@ -205,7 +205,7 @@ export function Footer() {
               ? "اطلب هانزي على طلبات ونوصل لك الدوغ."
               : "Order HANSI on Talabat and we’ll get the dogs to you."}
           </p>
-          <SoonPill className="mt-4 border-cream/30 bg-transparent text-cream/80">
+          <SoonPill className="mt-4 border-cream/40 bg-transparent text-cream/80 shadow-none">
             {t("footer.orderTalabat")}
           </SoonPill>
           <p className="mt-3 font-display text-[11px] uppercase tracking-wide text-primary">

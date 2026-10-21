@@ -96,8 +96,9 @@
   --sidebar-border: color-mix(in oklab, #d33a2c 25%, transparent);
   --sidebar-ring: var(--mustard);
 
-  --shadow-pop: 6px 6px 0 var(--cocoa);
-  --shadow-pop-sm: 3px 3px 0 var(--cocoa);
+  /* One shadow colour for the whole site: the maroon ink. Outlines stay red. */
+  --shadow-pop: 6px 6px 0 var(--ink);
+  --shadow-pop-sm: 3px 3px 0 var(--ink);
   --gradient-sunset: linear-gradient(140deg, var(--mustard), var(--ketchup));
 }
 
@@ -155,8 +156,8 @@
 @utility sticker-cut {
   border: 5px solid var(--cream);
   box-shadow:
-    0 0 0 2px color-mix(in oklab, var(--cocoa) 55%, transparent),
-    3px 5px 7px -1px color-mix(in oklab, var(--cocoa) 45%, transparent);
+    0 0 0 2px color-mix(in oklab, var(--ketchup) 60%, transparent),
+    3px 5px 7px -1px color-mix(in oklab, var(--ink) 40%, transparent);
   transition:
     transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
     rotate 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -170,33 +171,11 @@
   }
 }
 
-/* For red elements: a red drop shadow disappears into the red, so these
-   carry a mustard one instead. */
-/* Red buttons darken toward the maroon ink when pressed, instead of only
-   shifting their shadow. */
+/* Red buttons: they darken toward the maroon ink on hover. */
 @utility btn-red {
   background-color: var(--ketchup);
   &:hover {
     background-color: color-mix(in oklab, var(--ketchup) 88%, var(--ink));
-  }
-}
-
-@utility pop-mustard {
-  box-shadow: 6px 6px 0 var(--mustard);
-  border: 3px solid var(--cocoa);
-}
-
-@utility press-mustard {
-  transition:
-    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 160ms ease;
-  &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 var(--mustard);
-  }
-  &:active {
-    transform: translate(3px, 3px);
-    box-shadow: 2px 2px 0 var(--mustard);
   }
 }
 
@@ -206,11 +185,11 @@
     box-shadow 160ms ease;
   &:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 var(--cocoa);
+    box-shadow: 8px 8px 0 var(--ink);
   }
   &:active {
     transform: translate(3px, 3px);
-    box-shadow: 2px 2px 0 var(--cocoa);
+    box-shadow: 2px 2px 0 var(--ink);
   }
 }
 
