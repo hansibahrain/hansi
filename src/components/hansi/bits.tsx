@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
@@ -12,15 +12,28 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
+  // "init" until the browser takes over: the prerendered HTML must be readable
+  // even if JavaScript is slow, blocked or switched off, so nothing is hidden
+  // until we know we can reveal it again.
+  const [state, setState] = useState<"init" | "false" | "true">("init");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Anything already on screen when we mount is shown straight away, so the
+    // first screenful never fades in behind the fold.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.9) {
+      setState("true");
+      return;
+    }
+
+    setState("false");
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          setShown(true);
+          setState("true");
           io.disconnect();
         }
       },
@@ -33,7 +46,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      data-shown={shown}
+      data-shown={state}
       style={{ transitionDelay: `${delay}ms` }}
       className={cn("reveal", className)}
     >
