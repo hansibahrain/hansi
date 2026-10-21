@@ -64,7 +64,8 @@
   --ketchup: #d33a2c;
   /* Brand red, used for every outline, shadow and accent. */
   --cocoa: #d33a2c;
-  --ink: oklch(0.26 0.08 30);
+  /* Near-black for text only — no brown or maroon in the palette. */
+  --ink: oklch(0.22 0.012 60);
 
   --background: var(--cream);
   --foreground: var(--ink);
@@ -77,7 +78,7 @@
   --secondary: var(--ketchup);
   --secondary-foreground: var(--cream);
   --muted: oklch(0.915 0.025 85);
-  --muted-foreground: oklch(0.47 0.04 32);
+  --muted-foreground: oklch(0.44 0.015 55);
   --accent: var(--ketchup);
   --accent-foreground: var(--cream);
   --destructive: oklch(0.56 0.2 27);

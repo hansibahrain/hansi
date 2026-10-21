@@ -171,7 +171,7 @@ function Catering() {
         <p className="mt-6 text-sm text-muted-foreground">{t("catering.note")}</p>
 
         <Reveal className="mt-16">
-          <div className="pop rounded-[2.5rem] bg-foreground p-6 text-background sm:p-10">
+          <div className="pop rounded-[2.5rem] bg-secondary p-6 text-cream sm:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
               <div>
                 <p className="font-hand text-2xl text-primary">{t("catering.smokeKicker")}</p>
@@ -179,7 +179,7 @@ function Catering() {
                   {t("catering.smokeTitle")}
                 </h2>
                 <p className="mt-4 text-sm opacity-80 sm:text-base">{t("catering.smokeBody")}</p>
-                <p className="pop-sm mt-5 inline-block rounded-full bg-secondary px-4 py-2 font-display text-xs uppercase tracking-wide text-secondary-foreground">
+                <p className="pop-sm mt-5 inline-block rounded-full bg-primary px-4 py-2 font-display text-xs uppercase tracking-wide text-primary-foreground">
                   {t("catering.smokeBadge")}
                 </p>
               </div>

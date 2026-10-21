@@ -101,13 +101,13 @@ function About() {
         </Reveal>
 
         <Reveal className="mt-14">
-          <div className="pop rounded-[3rem] bg-ink px-6 py-14 text-center text-cream sm:px-12">
+          <div className="pop rounded-[3rem] bg-secondary px-6 py-14 text-center text-cream sm:px-12">
             <p className="font-hand text-3xl text-primary">{t("about.closingKicker")}</p>
             <h2 className="mt-2 text-4xl leading-[0.9] uppercase text-primary sm:text-6xl">
               {t("about.closingTitle")}
             </h2>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <AnchorButton href={cateringLink} size="lg" tone="ketchup">
+              <AnchorButton href={cateringLink} size="lg" tone="cream">
                 {t("about.ctaEvent")}
               </AnchorButton>
               <LinkButton to="/menu" size="lg">

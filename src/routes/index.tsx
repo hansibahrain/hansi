@@ -153,7 +153,7 @@ function Home() {
       </section>
 
       {/* WHERE'S HANSI */}
-      <section className="border-y-[3px] border-cocoa bg-ink py-20 text-cream">
+      <section className="border-y-[3px] border-cocoa bg-secondary py-20 text-cream">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">

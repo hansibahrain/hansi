@@ -1,11 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import logo from "@/assets/hansi-logo.png";
-import {
-  EMAIL,
-  WHATSAPP_NUMBER,
-  getCateringLink,
-  getTalabatHours,
-} from "@/lib/hansi";
+import { EMAIL, WHATSAPP_NUMBER, getCateringLink, getTalabatHours } from "@/lib/hansi";
 import { useTranslation } from "@/lib/i18n/use-translation";
 import { Sticker } from "@/components/hansi/bits";
 
