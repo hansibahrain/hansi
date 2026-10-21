@@ -18,19 +18,15 @@ it reads as dark, not as a colour.
 
 ## Rules
 
-1. **Beige is the page.** Each page gets **one** filled block — the red band on
-   home, the smoke panel on catering, the yellow "not announced" card on
-   where-we-are. Everything else is a beige card.
-2. **No page ends on red.** The footer is the site's dark anchor, so a red panel
-   directly above it puts two dark areas back to back. Page-closing panels are
-   yellow or beige.
-3. **Outlines are always red.** Every card, button and panel. No exceptions.
-4. **Every shadow is maroon.** One shadow colour sitewide, on every surface.
-   Shadows that changed colour per element read as accidental.
-5. **Text never sits red-on-yellow or yellow-on-red.** On yellow use maroon; on
+1. **Beige is the page**, and panels alternate: a dark maroon band, then a beige
+   or yellow card, then beige again. The dark panels are what let the yellow and
+   red ones land — a run of bright blocks with no dark between them reads as
+   noise. That was the lesson of the all-red version.
+2. **Outlines and shadows are maroon.** Every card, button and panel, one
+   colour, no exceptions.
+3. **Text never sits red-on-yellow or yellow-on-red.** On yellow use maroon; on
    red and maroon use cream, with mustard for headings.
-6. **Red means "do this".** If red is used as a large flat area on a page, that
-   page should not also have a red button competing with it.
+4. **Red means "do this".** Buttons first; panels only where the page needs heat.
 
 ## Type
 

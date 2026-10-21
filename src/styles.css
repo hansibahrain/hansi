@@ -62,10 +62,9 @@
   --cream: oklch(0.955 0.022 88);
   --mustard: oklch(0.79 0.147 71);
   --ketchup: #d33a2c;
-  /* Brand red, used for every outline, shadow and accent. */
-  --cocoa: #d33a2c;
-  /* Deep maroon pulled from the brand red — text only, never a surface. */
-  --ink: oklch(0.26 0.075 32);
+  /* Maroon, in place of the old brown: outlines, shadows, dark panels. */
+  --cocoa: oklch(0.33 0.085 32);
+  --ink: oklch(0.24 0.07 32);
 
   --background: var(--cream);
   --foreground: var(--ink);
@@ -96,9 +95,8 @@
   --sidebar-border: color-mix(in oklab, #d33a2c 25%, transparent);
   --sidebar-ring: var(--mustard);
 
-  /* One shadow colour for the whole site: the maroon ink. Outlines stay red. */
-  --shadow-pop: 6px 6px 0 var(--ink);
-  --shadow-pop-sm: 3px 3px 0 var(--ink);
+  --shadow-pop: 6px 6px 0 var(--cocoa);
+  --shadow-pop-sm: 3px 3px 0 var(--cocoa);
   --gradient-sunset: linear-gradient(140deg, var(--mustard), var(--ketchup));
 }
 
@@ -156,8 +154,8 @@
 @utility sticker-cut {
   border: 5px solid var(--cream);
   box-shadow:
-    0 0 0 2px color-mix(in oklab, var(--ketchup) 60%, transparent),
-    3px 5px 7px -1px color-mix(in oklab, var(--ink) 40%, transparent);
+    0 0 0 2px color-mix(in oklab, var(--cocoa) 55%, transparent),
+    3px 5px 7px -1px color-mix(in oklab, var(--cocoa) 45%, transparent);
   transition:
     transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
     rotate 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -171,25 +169,17 @@
   }
 }
 
-/* Red buttons: they darken toward the maroon ink on hover. */
-@utility btn-red {
-  background-color: var(--ketchup);
-  &:hover {
-    background-color: color-mix(in oklab, var(--ketchup) 88%, var(--ink));
-  }
-}
-
 @utility press {
   transition:
     transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 160ms ease;
   &:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 var(--ink);
+    box-shadow: 8px 8px 0 var(--cocoa);
   }
   &:active {
     transform: translate(3px, 3px);
-    box-shadow: 2px 2px 0 var(--ink);
+    box-shadow: 2px 2px 0 var(--cocoa);
   }
 }
 

@@ -205,7 +205,7 @@ export function Footer() {
               ? "اطلب هانزي على طلبات ونوصل لك الدوغ."
               : "Order HANSI on Talabat and we’ll get the dogs to you."}
           </p>
-          <SoonPill className="mt-4 border-cream/40 bg-transparent text-cream/80 shadow-none">
+          <SoonPill className="mt-4 border-cream/30 bg-transparent text-cream/80">
             {t("footer.orderTalabat")}
           </SoonPill>
           <p className="mt-3 font-display text-[11px] uppercase tracking-wide text-primary">

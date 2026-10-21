@@ -153,7 +153,7 @@ function Home() {
       </section>
 
       {/* WHERE'S HANSI */}
-      <section className="border-y-[3px] border-cocoa bg-secondary py-20 text-cream">
+      <section className="border-y-[3px] border-cocoa bg-ink py-20 text-cream">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
@@ -226,7 +226,7 @@ function Home() {
       {/* ABOUT TEASER */}
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <Reveal>
-          <div className="pop relative overflow-hidden rounded-[3rem] bg-card px-6 py-14 text-center sm:px-12">
+          <div className="pop relative overflow-hidden rounded-[3rem] bg-primary px-6 py-14 text-center sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-6xl">
               {t("home.aboutTitle")}
               <br />

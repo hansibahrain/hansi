@@ -13,16 +13,14 @@ export function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   // "init" until the browser takes over: the prerendered HTML must be readable
-  // even if JavaScript is slow, blocked or switched off, so nothing is hidden
-  // until we know we can reveal it again.
+  // even if JavaScript is slow, blocked or switched off.
   const [state, setState] = useState<"init" | "false" | "true">("init");
 
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // Anything already on screen when we mount is shown straight away, so the
-    // first screenful never fades in behind the fold.
+    // Anything already on screen when we mount shows straight away.
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.9) {
       setState("true");
@@ -64,7 +62,7 @@ type BtnProps = {
 
 const toneMap = {
   mustard: "bg-primary text-primary-foreground",
-  ketchup: "btn-red text-secondary-foreground",
+  ketchup: "bg-secondary text-secondary-foreground",
   cream: "bg-card text-foreground",
 };
 
@@ -75,8 +73,7 @@ const sizeMap = {
 
 function btnClass({ tone = "mustard", size = "md", className }: BtnProps) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-display uppercase tracking-wide",
-    tone === "ketchup" ? "pop press" : "pop press",
+    "pop press inline-flex items-center justify-center gap-2 rounded-full font-display uppercase tracking-wide",
     toneMap[tone],
     sizeMap[size],
     className,

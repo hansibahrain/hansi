@@ -66,7 +66,7 @@ function WhereWeAre() {
         )}
 
         <Reveal className="mt-14">
-          <div className="pop rounded-[3rem] bg-card px-6 py-12 text-center sm:px-12">
+          <div className="pop rounded-[3rem] bg-secondary px-6 py-12 text-center text-secondary-foreground sm:px-12">
             <h2 className="text-4xl leading-[0.9] uppercase sm:text-5xl">
               {t("whereWeAre.ctaTitle")}
             </h2>
