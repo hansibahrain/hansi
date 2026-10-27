@@ -83,7 +83,7 @@ export const menu: MenuCategory[] = [
         name: "AMSTERDAM DOG",
         sticker: "amsterdam",
         description: "Pizza night, packed into a bun.",
-        bun: "Special baguette",
+        bun: "Butter brioche",
         img: "amsterdam-dog",
       },
       {
@@ -97,7 +97,7 @@ export const menu: MenuCategory[] = [
         name: "DANISH DOG",
         sticker: "danish",
         description: "Copenhagen's street favourite, tucked right inside the bread.",
-        bun: "Danish bun",
+        bun: "Danish-style butter brioche",
         img: "danish-dog",
       },
       {
@@ -248,7 +248,7 @@ export function getMenu(lang: Lang): MenuCategory[] {
             name: "أمستردام دوغ",
             sticker: "amsterdam",
             description: "ليلة بيتزا داخل خبزة.",
-            bun: "خبز باغيت خاص",
+            bun: "خبز بريوش بالزبدة",
             img: "amsterdam-dog",
           },
           {
@@ -262,7 +262,7 @@ export function getMenu(lang: Lang): MenuCategory[] {
             name: "دانيش دوغ",
             sticker: "danish",
             description: "المفضل في شوارع كوبنهاغن، محشي داخل الخبز.",
-            bun: "خبز دانيش",
+            bun: "بريوش بالزبدة على الطريقة الدنماركية",
             img: "danish-dog",
           },
           {
