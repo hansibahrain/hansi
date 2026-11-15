@@ -70,7 +70,7 @@ export const menu: MenuCategory[] = [
     id: "dogs",
     title: "THE DOGS",
     emoji: "🌭",
-    kicker: "Hotdogs from around the world, with a Bahraini twist. 100% beef, grilled to order.",
+    kicker: "Hotdogs from around the world, with a Bahraini twist. Grilled to order.",
     items: [
       {
         name: "AMERICAN DOG",
@@ -125,13 +125,13 @@ export const menu: MenuCategory[] = [
       {
         name: "HANSI CLASSIC CORN DOG",
         sticker: "korea",
-        description: "100% beef inside a golden, crispy coat.",
+        description: "Golden, crispy and impossible to share.",
         img: "corn-dog",
       },
       {
         name: "HANSI HALF & HALF CORN DOG",
         sticker: "korea",
-        description: "Beef on one side, melted cheese on the other.",
+        description: "Sausage on one side, melted cheese on the other.",
         img: "half-half-corn-dog",
       },
       {
@@ -196,7 +196,17 @@ export type HansiEvent = {
  * When HANSI books a spot, add an object here — the homepage and the
  * Where We Are page will show it automatically instead of "Not announced yet".
  */
-export const events: HansiEvent[] = [];
+export const events: HansiEvent[] = [
+  {
+    name: "WEN W BKM 7",
+    dates: "2 – 19 December 2026",
+    location: "Bahrain International Circuit · Booth 062",
+    type: "Festival",
+    description:
+      "Our first stop. Eighteen nights at Wen w Bkm 7, with the full HANSI line-up grilled in front of you. Find us at Booth 062.",
+    status: "UP NEXT",
+  },
+];
 
 export const cateringTypes = [
   "Birthday parties",
@@ -235,7 +245,7 @@ export function getMenu(lang: Lang): MenuCategory[] {
         id: "dogs",
         title: "الدوغ",
         emoji: "🌭",
-        kicker: "هوت دوغ من حول العالم، بنكهة بحرينية. 100% لحم بقري، يشوى عند الطلب.",
+        kicker: "هوت دوغ من حول العالم، بنكهة بحرينية. يشوى عند الطلب.",
         items: [
           {
             name: "أمريكان دوغ",
@@ -290,7 +300,7 @@ export function getMenu(lang: Lang): MenuCategory[] {
           {
             name: "كلاسيك كورن دوغ",
             sticker: "korea",
-            description: "100% لحم بقري داخل عجينة ذهبية مقرمشة.",
+            description: "ذهبي، مقرمش، وما ينتشارك.",
             img: "corn-dog",
           },
           {

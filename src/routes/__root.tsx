@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "HANSI — Hotdogs With A Little Attitude | Bahrain" },
       {
         name: "description",
-        content: "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired beef hotdogs.",
+        content: "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired hotdogs.",
       },
       { name: "author", content: "HANSI" },
       { property: "og:type", content: "website" },

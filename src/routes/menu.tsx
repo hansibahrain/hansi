@@ -10,16 +10,16 @@ import { Reveal, SectionTitle, SoonPill, Sticker } from "@/components/hansi/bits
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "The HANSI Menu — World-Inspired Beef Dogs in Bahrain" },
+      { title: "The HANSI Menu — World-Inspired Hotdogs in Bahrain" },
       {
         name: "description",
         content:
-          "Six world-inspired 100% beef dogs, Korean-style corn dogs, Hansi Smoke Fries, homemade drinks and combos. Order on Talabat.",
+          "Six world-inspired dogs, Korean-style corn dogs, Hansi Seasoned Fries and homemade drinks.",
       },
       { property: "og:title", content: "The HANSI Menu — Good dogs only" },
       {
         property: "og:description",
-        content: "World-inspired beef dogs, corn dogs, loaded fries and homemade drinks.",
+        content: "World-inspired dogs, corn dogs, loaded fries and homemade drinks.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

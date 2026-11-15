@@ -7,7 +7,7 @@ import { AnchorButton, Reveal, SoonPill, Sticker } from "@/components/hansi/bits
 export const Route = createFileRoute("/where-we-are")({
   head: () => ({
     meta: [
-      { title: "Where's HANSI? — Locations Coming Soon" },
+      { title: "Where's HANSI? — Upcoming Events in Bahrain" },
       {
         name: "description",
         content:

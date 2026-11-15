@@ -29,13 +29,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Good dogs. Nice buns. Big vibes. HANSI is Bahrain's world-inspired beef hotdog brand — order online on Talabat, or book us to cater your event.",
+          "Good dogs. Nice buns. Big vibes. HANSI is Bahrain's world-inspired hotdog brand — order online on Talabat, or book us to cater your event.",
       },
       { property: "og:title", content: "HANSI — Bite Me! Hotdogs with a little attitude" },
       {
         property: "og:description",
         content:
-          "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired beef dogs — online orders and event catering.",
+          "Good dogs. Nice buns. Big vibes. Bahrain's world-inspired dogs — online orders and event catering.",
       },
     ],
   }),
