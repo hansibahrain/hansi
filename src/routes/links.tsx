@@ -54,7 +54,7 @@ function useItems(): Item[] {
     },
     {
       label: t("links.whatsapp"),
-      note: "+973 3424 0567",
+      note: "+973 3451 6681",
       href: `https://wa.me/${WHATSAPP_NUMBER}`,
       tone: "cream",
       emoji: "💬",

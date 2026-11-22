@@ -1,6 +1,6 @@
 import type { Lang } from "./i18n/translations";
 
-export const WHATSAPP_NUMBER = "97334240567";
+export const WHATSAPP_NUMBER = "97334516681";
 
 /** Ordering happens on Talabat — swap this for the exact HANSI store link once it's live. */
 export const TALABAT_LINK = "https://www.talabat.com/bahrain";

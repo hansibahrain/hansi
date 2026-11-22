@@ -178,8 +178,8 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <a href="tel:+97334240567" className="hover:text-primary">
-                +973 3424 0567
+              <a href="tel:+97334516681" className="hover:text-primary">
+                +973 3451 6681
               </a>
             </li>
             <li>

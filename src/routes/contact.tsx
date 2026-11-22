@@ -74,10 +74,10 @@ function Contact() {
                 {t("contact.ctaWhatsApp")}
               </AnchorButton>
               <a
-                href="tel:+97334240567"
+                href="tel:+97334516681"
                 className="pop press inline-flex items-center rounded-full bg-card px-7 py-4 font-display text-base uppercase"
               >
-                +973 3424 0567
+                +973 3451 6681
               </a>
             </div>
           </div>
